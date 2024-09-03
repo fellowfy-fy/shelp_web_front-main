@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Flex, Box, IconButton } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
@@ -32,11 +33,14 @@ const HorizontalUsersView = ({ children, gap = 4 }) => {
       <Flex overflow="hidden" w="100%" justifyContent="center">
         {React.Children.map(children, (child, index) => (
           <Box
+            as={Link} // Make the entire Box a Link
+            to={`/user/${index + 1}`}
             flex="0 0 auto"
             mx={gap}
             key={index}
             display="flex"
             justifyContent="center"
+            _hover={{ textDecoration: "none" }} // Remove underline on hover
           >
             {child}
           </Box>
