@@ -4,7 +4,7 @@ import FeedPosts from "../../components/FeedPosts/FeedPosts";
 import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
 import HorizontalUsersView from "../../components/HorizontalUsersView/HorizontalUsersView.jsx";
 import CollectionMansoryGrid from "../../components/CollectionMansoryGrid/CollectionMansoryGrid.jsx";
-import MyCollectionGrid from "../../components/CollectionMansoryGrid/MyCollectionGrid.jsx";
+import CollectionCard from "../../components/CardsGrid/CollectionCard.jsx";
 import UsersViewSelection from "../../components/Filter/UsersViewSelection.jsx";
 
 const HomePage = () => {
@@ -103,9 +103,10 @@ const HomePage = () => {
 
       <div className="py-10">
         <CollectionMansoryGrid>
-          <MyCollectionGrid />
-          <MyCollectionGrid />
-          <MyCollectionGrid />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
         </CollectionMansoryGrid>
       </div>
 
