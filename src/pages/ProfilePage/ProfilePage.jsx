@@ -9,6 +9,7 @@ import {
   VStack,
   Wrap,
   WrapItem,
+  Button,
 } from "@chakra-ui/react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileTabs from "../../components/Profile/ProfileTabs";
@@ -51,17 +52,37 @@ const ProfilePage = () => {
   return (
     <Container maxW="container.xl" py={5}>
       <GoBackButton />
-      <Wrap>
-        <WrapItem>
-          <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-        </WrapItem>
-      </Wrap>
+
+      <ProfileHeader />
+
+      <Flex align="center" mb={4}>
+        <svg
+          className="w-[24px] h-[24px] mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+        </svg>
+        <span className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]">
+          My Collections
+        </span>
+      </Flex>
+
       <CollectionMansoryGrid>
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
       </CollectionMansoryGrid>
+
       <Flex
         py={10}
         px={4}
@@ -73,6 +94,7 @@ const ProfilePage = () => {
         {!isLoading && userProfile && <ProfileHeader />}
         {isLoading && <ProfileHeaderSkeleton />}
       </Flex>
+
       <Flex
         px={{ base: 2, sm: 4 }}
         maxW={"full"}
@@ -83,9 +105,11 @@ const ProfilePage = () => {
       >
         <ProfileTabs />
       </Flex>
+
       <Container maxW={"container.xl"}>
         <FeedPosts posts={collection_posts} />
       </Container>
+
       <center>
         <LoadMoreButton />
       </center>
