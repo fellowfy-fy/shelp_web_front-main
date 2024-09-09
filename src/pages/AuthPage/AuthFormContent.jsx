@@ -1,4 +1,11 @@
-import { Stack, HStack, Divider, Button, Text } from "@chakra-ui/react";
+import {
+  Stack,
+  HStack,
+  Divider,
+  Button,
+  Text,
+  Checkbox,
+} from "@chakra-ui/react";
 import {
   HiOutlineAtSymbol,
   HiOutlineUserCircle,
@@ -26,6 +33,7 @@ const AuthFormContent = ({
       value={inputs.email}
       onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
       icon={<HiOutlineAtSymbol color="#53abe9" />}
+      placeholder="John@example.com"
     />
     {!isLogin && (
       <InputFormField
@@ -35,6 +43,7 @@ const AuthFormContent = ({
         value={inputs.fname}
         onChange={(e) => setInputs({ ...inputs, fname: e.target.value })}
         icon={<HiOutlineUserCircle color="#53abe9" />}
+        placeholder="John"
       />
     )}
     <InputFormField
@@ -47,6 +56,7 @@ const AuthFormContent = ({
       isPassword
       isOpen={isOpen}
       onClickReveal={onClickReveal}
+      placeholder="Password"
     />
     {!isLogin && (
       <InputFormField
@@ -61,9 +71,11 @@ const AuthFormContent = ({
         isPassword
         isOpen={isOpen}
         onClickReveal={onClickReveal}
+        placeholder="Repeat password"
       />
     )}
     <AuthMessage error={error} passwordsMatch={passwordsMatch} />
+
     <Stack spacing="6">
       <Button
         isLoading={loading}
@@ -74,7 +86,7 @@ const AuthFormContent = ({
           transitionTimingFunction: "ease-in-out",
         }}
         color={"white"}
-        bgGradient="linear(to-r, #68eecc, #53abe9)"
+        bgColor="Black"
       >
         {isLogin ? "LOGIN" : "SIGN UP"}
       </Button>

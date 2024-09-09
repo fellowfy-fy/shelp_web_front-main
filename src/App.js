@@ -17,7 +17,7 @@ function App() {
   return (
       <Routes>
         <Route
-          path="/login"
+          path="/authorize"
           element={!authUser ? <AuthPage /> : <Navigate to="/" />}
         />
         <Route element={<PageLayout/>}>

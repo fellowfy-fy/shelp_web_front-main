@@ -13,7 +13,7 @@ export const OAuthButtonGroup = () => (
         key={name}
         flexGrow={1}
         colorScheme="teal"
-        color="#53abe9"
+        color="#D8DADC"
         variant="outline"
       >
         <VisuallyHidden>Sign in with {name}</VisuallyHidden>

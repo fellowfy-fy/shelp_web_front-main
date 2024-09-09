@@ -1,64 +1,65 @@
 import {
   FormControl,
   FormLabel,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   IconButton,
   Input,
-  InputGroup,
-  InputRightElement,
-  InputLeftElement,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { HiEye, HiEyeOff, HiOutlineKey } from "react-icons/hi";
-import { useRef } from "react";
+import { forwardRef, useRef } from "react";
+import { HiEye, HiEyeOff } from "react-icons/hi";
+import { useMergeRefs } from "../../utils/useMergeRefs"; // Adjust the path as needed
 
-const InputFormField = ({
-  id,
-  label,
-  type = "text",
-  value,
-  onChange,
-  icon,
-  isPassword = false,
-  ...props
-}) => {
-  const { isOpen, onToggle } = useDisclosure();
-  const inputRef = useRef(null);
+const InputFormField = forwardRef(
+  (
+    {
+      id,
+      label,
+      type,
+      value,
+      onChange,
+      icon,
+      isPassword,
+      isOpen,
+      onClickReveal,
+      placeholder,
+    },
+    ref
+  ) => {
+    const inputRef = useRef(null);
+    const mergeRef = useMergeRefs(inputRef, ref);
 
-  const onClickReveal = () => {
-    onToggle();
-    if (inputRef.current) {
-      inputRef.current.focus({ preventScroll: true });
-    }
-  };
+    return (
+      <FormControl>
+        <FormLabel htmlFor={id}>{label}</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">{icon}</InputLeftElement>
+          {isPassword && (
+            <InputRightElement>
+              <IconButton
+                variant="text"
+                aria-label={isOpen ? "Mask password" : "Reveal password"}
+                icon={isOpen ? <HiEyeOff /> : <HiEye />}
+                onClick={onClickReveal}
+              />
+            </InputRightElement>
+          )}
+          <Input
+            id={id}
+            ref={mergeRef}
+            type={type}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            {...(isPassword ? { type: isOpen ? "text" : "password" } : {})}
+          />
+        </InputGroup>
+      </FormControl>
+    );
+  }
+);
 
-  return (
-    <FormControl>
-      <FormLabel mb={0} fontWeight={400} htmlFor={id}>
-        {label}
-      </FormLabel>
-      <InputGroup>
-        {icon && <InputLeftElement pointerEvents="none" children={icon} />}
-        {isPassword && (
-          <InputRightElement>
-            <IconButton
-              variant="text"
-              aria-label={isOpen ? "Mask password" : "Reveal password"}
-              icon={isOpen ? <HiEyeOff /> : <HiEye />}
-              onClick={onClickReveal}
-            />
-          </InputRightElement>
-        )}
-        <Input
-          ref={inputRef}
-          id={id}
-          type={isPassword && !isOpen ? "password" : type}
-          value={value}
-          onChange={onChange}
-          {...props}
-        />
-      </InputGroup>
-    </FormControl>
-  );
-};
+InputFormField.displayName = "InputFormField";
 
 export default InputFormField;

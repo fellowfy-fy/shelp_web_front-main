@@ -15,7 +15,7 @@ import {
   HiEyeOff,
 } from "react-icons/hi";
 import { Logo } from "./Logo";
-import OAuthButtonGroup from "./OAuthButtonGroup";
+import { OAuthButtonGroup } from "./OAuthButtonGroup";
 import AuthFormContent from "./AuthFormContent";
 import AuthSwitcher from "./AuthSwitcher";
 import useLogin from "../../hooks/useLogin";
@@ -87,6 +87,7 @@ const AuthPage = () => {
                 onClickReveal={onClickReveal}
                 isOpen={isOpen}
               />
+              <OAuthButtonGroup />
               <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
             </Stack>
           </Box>
