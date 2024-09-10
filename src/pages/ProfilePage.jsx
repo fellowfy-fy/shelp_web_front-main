@@ -4,23 +4,17 @@ import {
   Link,
   Skeleton,
   SkeletonCircle,
-  Slider,
   Text,
   VStack,
-  Wrap,
-  WrapItem,
-  Button,
 } from "@chakra-ui/react";
-import ProfileHeader from "../../components/Profile/ProfileHeader";
-import ProfileTabs from "../../components/Profile/ProfileTabs";
-import ProfilePosts from "../../components/Profile/ProfilePosts";
-import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
-import UniversalSlider from "../../components/UniversalSlider.jsx";
-import CollectionMansoryGrid from "../../components/UniversalSlider.jsx";
-import CollectionCard from "../../components/CardsGrid/CollectionCard";
-import GoBackButton from "../../components/GoBackButton.jsx";
-import FeedPosts from "../../components/FeedPosts/FeedPosts.jsx";
-import LoadMoreButton from "../../components/LoadMoreButton.jsx";
+import ProfileHeader from "../components/Profile/ProfileHeader.jsx";
+import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
+import ProfilePosts from "../components/Profile/ProfilePosts.jsx";
+import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername.js";
+import CollectionCard from "../components/CardsGrid/CollectionCard.jsx";
+import GoBackButton from "../components/GoBackButton.jsx";
+import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
+import LoadMoreButton from "../components/LoadMoreButton.jsx";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
@@ -76,12 +70,20 @@ const ProfilePage = () => {
         </span>
       </Flex>
 
-      <CollectionMansoryGrid>
+      <div className="flex gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
-      </CollectionMansoryGrid>
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+      </div>
 
       <Flex
         py={10}
@@ -165,20 +167,6 @@ const ProfileHeaderSkeleton = () => {
 };
 
 const UserNotFound = () => {
-  return (
-    <Flex flexDir="column" textAlign={"center"} mx={"auto"}>
-      <Text fontSize={"2xl"}>User Not Found</Text>
-      <Link
-        as={RouterLink}
-        to={"/"}
-        color={"blue.500"}
-        w={"max-content"}
-        mx={"auto"}
-      >
-        Go home
-      </Link>
-    </Flex>
-  );
   return (
     <Flex flexDir="column" textAlign={"center"} mx={"auto"}>
       <Text fontSize={"2xl"}>User Not Found</Text>

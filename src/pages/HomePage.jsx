@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Container, Text } from "@chakra-ui/react";
-import FeedPosts from "../../components/FeedPosts/FeedPosts";
-import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
-import HorizontalUsersView from "../../components/HorizontalUsersView/HorizontalUsersView.jsx";
-import CollectionMansoryGrid from "../../components/CollectionMansoryGrid/CollectionMansoryGrid.jsx";
-import CollectionCard from "../../components/CardsGrid/CollectionCard.jsx";
-import UsersViewSelection from "../../components/Filter/UsersViewSelection.jsx";
+import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
+import SuggestedUsers from "../components/SuggestedUsers/SuggestedUsers.jsx";
+import HorizontalUsersView from "../components/HorizontalUsersView/HorizontalUsersView.jsx";
+import CollectionMansoryGrid from "../components/CollectionMansoryGrid/CollectionMansoryGrid.jsx";
+import CollectionCard from "../components/CardsGrid/CollectionCard.jsx";
+import UsersViewSelection from "../components/Filter/UsersViewSelection.jsx";
 
 const HomePage = () => {
   const collection_posts = [

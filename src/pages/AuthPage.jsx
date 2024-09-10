@@ -7,18 +7,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import {
-  HiOutlineAtSymbol,
-  HiOutlineUserCircle,
-  HiOutlineKey,
-  HiEye,
-  HiEyeOff,
-} from "react-icons/hi";
-import { Logo } from "./Logo";
-import { OAuthButtonGroup } from "./OAuthButtonGroup";
-import AuthFormContent from "./AuthFormContent";
-import AuthSwitcher from "./AuthSwitcher";
-import useLogin from "../../hooks/useLogin";
+import { Logo } from "../components/Logo";
+import { OAuthButtonGroup } from "../components/Authorize/OAuthButtonGroup";
+import AuthFormContent from "../components/Authorize/AuthFormContent";
+import AuthSwitcher from "../components/Authorize/AuthSwitcher";
+import useLogin from "../hooks/useLogin";
 
 const AuthPage = () => {
   const { isOpen, onToggle } = useDisclosure();
