@@ -1,15 +1,13 @@
 import "./App.css";
 import { Navigate, Routes, Route, useHistory } from "react-router-dom";
 
-import HomePage from "./pages/HomePage/HomePage";
-import CollectionPage from "./pages/CollectionPage/CollectionPage";
-import AuthPage from "./pages/AuthPage/AuthPage";
-// import AuthPage from "./pages/AuthPage/AuthPage";
-// import SignupPage from "./pages/AuthPage/SignupPage";
+import HomePage from "./pages/HomePage";
+import CollectionPage from "./pages/CollectionPage";
+import AuthPage from "./pages/AuthPage";
 import PageLayout from "./Layouts/PageLayout/PageLayout";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import ContentPage from "./pages/ContentPage/ContentPage";
-import ProductPage from "./pages/ProductPage/ProductPage";
+import ProfilePage from "./pages/ProfilePage";
+import ContentPage from "./pages/ContentPage";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   const [authUser] = [null]; // useAuthState(auth);

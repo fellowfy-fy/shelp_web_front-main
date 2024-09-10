@@ -12,9 +12,9 @@ import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
 import ProfilePosts from "../components/Profile/ProfilePosts.jsx";
 import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername.js";
 import CollectionCard from "../components/CardsGrid/CollectionCard.jsx";
-import GoBackButton from "../components/GoBackButton.jsx";
+import GoBackButton from "../components/NavButtons/GoBackButton.jsx";
 import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
-import LoadMoreButton from "../components/LoadMoreButton.jsx";
+import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
@@ -46,8 +46,9 @@ const ProfilePage = () => {
   return (
     <Container maxW="container.xl" py={5}>
       <GoBackButton />
-
-      <ProfileHeader />
+      <Flex>
+        <ProfileHeader />
+      </Flex>
 
       <Flex align="center" mb={4}>
         <svg
@@ -70,13 +71,7 @@ const ProfilePage = () => {
         </span>
       </Flex>
 
-      <div className="flex gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
+      <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
