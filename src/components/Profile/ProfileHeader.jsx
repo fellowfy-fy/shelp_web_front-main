@@ -3,11 +3,10 @@ import {
   AvatarGroup,
   Flex,
   VStack,
-  Grid,
-  GridItem,
   Box,
   Text,
   Button,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import ProfileActions from "./ProfileActions";
 import Bio from "./Bio";
@@ -22,47 +21,70 @@ const ProfileHeader = () => {
     profilePicURL: "https://via.placeholder.com/150",
     username: "nkchaudhary01",
     fullName: "Wildlife Photographer",
-    bio: "My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the potential to capture the attention while making a very positive first impression on the visitor.My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the potential to capture the attention while making a very positive first impression on the visitor.My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the potential to capture the attention while making a very positive first impression on the visitor.",
+    bio: "My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks...",
     posts: Array(98).fill({}),
     followers: Array(900).fill({}),
     following: Array(900).fill({}),
     products: Array(3500).fill({}),
-    collections: [
-      { name: "TeacherWorkwear", items: 34 },
-      { name: "Summer Go-To's", items: 24 },
-      { name: "Beauty", items: 25 },
-      { name: "Athleisure", items: 23 },
-      { name: "Foodie", items: 23 },
-    ],
   };
 
   const authUser = { username: "nkchaudhary01" };
   const isFollowing = false;
   const isUpdating = false;
 
+  // Detect if the view is mobile for responsive layout changes
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   const visitingOwnProfileAndAuth =
     authUser && authUser.username === userProfile?.username;
 
   return (
-    <Flex direction="column" alignItems="center" py={10} width="100%">
+    <Flex
+      direction={isMobile ? "column" : "row"}
+      alignItems={isMobile ? "center" : "flex-start"}
+      py={5}
+      px={isMobile ? 4 : 0}
+      width="100%"
+    >
+      {/* Avatar and User Info */}
       <Flex
-        direction="row"
+        direction={isMobile ? "column" : "row"}
         alignItems="center"
         justifyContent="center"
-        gap={10}
-        width="50%"
-        mb={8}
+        gap={isMobile ? 5 : 10}
+        width={isMobile ? "100%" : "50%"}
+        mb={isMobile ? 6 : 8}
       >
-        <AvatarGroup size="2xl" mx={"auto"}>
+        {/* Avatar */}
+        <AvatarGroup size="2xl" mx="auto">
           <Avatar
             src={userProfile?.profilePicURL}
             alt={`${userProfile?.username}'s profile picture`}
+            size={isMobile ? "xl" : "2xl"} // Adjust avatar size on mobile
           />
         </AvatarGroup>
 
-        <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1} width="100%">
-          <Flex gap={4} direction="row" justifyContent="space-between" w="100%">
-            <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold">
+        {/* User Info and Actions */}
+        <VStack
+          alignItems={isMobile ? "center" : "start"}
+          gap={2}
+          mx="auto"
+          flex={1}
+          width="100%"
+        >
+          {/* Username and Profile Actions */}
+          <Flex
+            gap={4}
+            direction="row"
+            justifyContent="space-between"
+            w="100%"
+            alignItems="center"
+          >
+            <Text
+              fontSize={isMobile ? "lg" : "xl"}
+              fontWeight="bold"
+              textAlign={isMobile ? "center" : "left"}
+            >
               {userProfile?.username}
             </Text>
             <ProfileActions
@@ -73,12 +95,19 @@ const ProfileHeader = () => {
             />
           </Flex>
 
-          <Text fontSize={{ base: "md", md: "lg" }} fontWeight="medium">
+          {/* Full Name */}
+          <Text
+            fontSize="md"
+            fontWeight="medium"
+            textAlign={isMobile ? "center" : "left"}
+          >
             {userProfile?.fullName}
           </Text>
 
+          {/* Bio */}
           <Bio bioText={userProfile.bio} />
 
+          {/* User Info Section (Posts, Followers, Following) */}
           <UserInfo
             posts={userProfile.posts}
             products={userProfile.products}
@@ -88,6 +117,7 @@ const ProfileHeader = () => {
         </VStack>
       </Flex>
 
+      {/* Modal for editing profile (if open) */}
       {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
