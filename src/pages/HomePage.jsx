@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Container, Flex, Box, Text, VStack } from "@chakra-ui/react";
 import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
 import SuggestedUsers from "../components/SuggestedUsers/SuggestedUsers.jsx";
 import HorizontalUsersView from "../components/HorizontalUsersView/HorizontalUsersView.jsx";
-import CollectionMansoryGrid from "../components/CollectionMansoryGrid/CollectionMansoryGrid.jsx";
 import CollectionCard from "../components/CardsGrid/CollectionCard.jsx";
 import UsersViewSelection from "../components/Filter/UsersViewSelection.jsx";
+import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
 
 const HomePage = () => {
   const collection_posts = [
@@ -81,49 +81,61 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <div>
-        {/* Select content type */}
-        <div className="flex justify-center gap-[100px] py-10">
-          <UsersViewSelection onChange={handleContentTypeChange} />
-        </div>
+    <Container maxW="container.xl" py={5}>
+      {/* Select Content Type */}
+      <Flex justify="center" py={10}>
+        <UsersViewSelection onChange={handleContentTypeChange} />
+      </Flex>
 
-        {/* Display selected user type */}
-        <div className="py-10">
-          <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
-        </div>
+      {/* Display Selected User Type */}
+      <Flex py={10}>
+        <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
+      </Flex>
 
-        {/* Additional content like My Collections or Feed Posts */}
-        {/* ... */}
-      </div>
+      {/* My Collections Section */}
+      <Flex align="center" mb={4}>
+        <svg
+          className="w-[24px] h-[24px] mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+        </svg>
+        <Text className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]">
+          My Collections
+        </Text>
+      </Flex>
 
-      <div className="flex justify-center gap-[100px] py-10">
-        My Collections
-      </div>
+      {/* Collections Cards */}
+      <Flex
+        gap={4}
+        overflowX="auto"
+        className="scrollbar-hide snap-x snap-mandatory"
+      >
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+      </Flex>
 
-      <div className="py-10">
-        <CollectionMansoryGrid>
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-        </CollectionMansoryGrid>
-      </div>
-
-      <Container maxW={"container.xl"}>
+      {/* Feed Posts Section */}
+      <Container maxW="container.xl" py={10}>
         <FeedPosts posts={collection_posts} />
-
-        {/*<Flex gap={20}>
-				<Box flex={2} py={10}>
-					<FeedPosts />
-				</Box>
-				<Box flex={3} mr={20} display={{ base: "none", lg: "block" }} maxW={"300px"}>
-					<SuggestedUsers />
-				</Box>
-			</Flex>
-			*/}
       </Container>
-    </div>
+
+      {/* Load More Button */}
+      <Flex justify="center">
+        <LoadMoreButton />
+      </Flex>
+    </Container>
   );
 };
 

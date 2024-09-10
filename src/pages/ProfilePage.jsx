@@ -78,6 +78,12 @@ const ProfilePage = () => {
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
       </div>
 
       <Flex
