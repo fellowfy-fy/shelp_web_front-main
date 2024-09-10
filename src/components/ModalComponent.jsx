@@ -81,4 +81,3 @@ const ModalComponent = ({ isOpen, onClose, type, data }) => {
 };
 
 export default ModalComponent;
-s;
