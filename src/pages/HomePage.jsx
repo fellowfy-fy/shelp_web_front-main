@@ -124,6 +124,9 @@ const HomePage = () => {
         <CollectionCard />
         <CollectionCard />
         <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
+        <CollectionCard />
       </Flex>
 
       {/* Feed Posts Section */}

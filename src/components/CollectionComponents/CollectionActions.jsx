@@ -1,26 +1,16 @@
 import { Button, Flex } from "@chakra-ui/react";
 import dots from "../../assets/dots.svg";
 
-const ProfileActions = ({ isOwnProfile, isFollowing, onOpen, isUpdating }) => {
+const CollectionActions = ({
+  isOwnProfile,
+  isFollowing,
+  onOpen,
+  isUpdating,
+}) => {
   return (
     <Flex gap={4}>
       {isOwnProfile ? (
         <>
-          <Button
-            width="80px"
-            height="32px"
-            background="transparent"
-            borderRadius="5px"
-            border="2px solid black" // Add black border here
-            fontFamily="'Assistant'"
-            fontWeight="700"
-            fontSize="14px"
-            lineHeight="18px"
-            color="black"
-          >
-            Share
-          </Button>
-
           <Button
             width="80px"
             height="32px"
@@ -63,4 +53,4 @@ const ProfileActions = ({ isOwnProfile, isFollowing, onOpen, isUpdating }) => {
   );
 };
 
-export default ProfileActions;
+export default CollectionActions;
