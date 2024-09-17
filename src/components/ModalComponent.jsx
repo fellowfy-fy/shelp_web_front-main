@@ -54,7 +54,9 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
       <ModalOverlay />
       <ModalContent
         width="627px"
-        height="400px" // Adjusted height for "more" content
+        height="auto" // Adjusted height for "more" content
+        maxH="70%"
+        minH={220}
         background="#FFFFFF"
         border="1px solid rgba(0, 0, 0, 0.1)"
         borderRadius="15px"
@@ -87,15 +89,15 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
             <VStack alignItems="stretch" spacing={4}>
               <Flex
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent="center"
                 width="100%"
-                borderBottom="1px solid #E2E8F0" // Adds a line
+                borderTop="1px solid #E2E8F0" // Adds a line
                 padding="10px 0"
               >
                 <button>
                   <Flex alignItems="center">
                     <FaShareAlt size="20px" />
-                    <Text ml={4} fontWeight="600">
+                    <Text ml={4} fontWeight="600" fontSize={20}>
                       Share
                     </Text>
                   </Flex>
@@ -103,15 +105,15 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
               </Flex>
               <Flex
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent="center"
                 width="100%"
-                borderBottom="1px solid #E2E8F0" // Adds a line
+                borderTop="1px solid #E2E8F0" // Adds a line
                 padding="10px 0"
               >
                 <button>
                   <Flex alignItems="center">
                     <FaTrashAlt size="20px" />
-                    <Text ml={4} fontWeight="600">
+                    <Text ml={4} fontWeight="600" fontSize={20}>
                       Delete
                     </Text>
                   </Flex>
