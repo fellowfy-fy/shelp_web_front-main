@@ -2,57 +2,20 @@ import FeedPosts from "../components/CardsGrid/FeedPosts";
 import { useEffect, useState } from "react";
 import SuggestedUsers from "../components/SuggestedUsers/SuggestedUsers";
 import {
-  FormControl,
-  Tag,
-  InputGroup,
-  InputLeftElement,
-  FormLabel,
   Divider,
   Center,
-  HStack,
-  Input,
   Box,
   Container,
   Flex,
-  Skeleton,
-  SkeletonCircle,
-  Text,
-  VStack,
-  Image,
-  CardBody,
-  CardFooter,
   Button,
-  Card,
-  CardHeader,
-  Avatar,
-  Heading,
-  IconButton,
-  SimpleGrid,
-  Stack,
 } from "@chakra-ui/react";
-import useGetFeedPosts from "../hooks/useGetFeedPosts";
-import { BiLike, BiChat, BiShare } from "react-icons/bi";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import useSearchUser from "../hooks/useSearchUser";
 import useFollowUser from "../hooks/useFollowUser";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineShopping } from "react-icons/ai";
-import { FaRegShareSquare } from "react-icons/fa";
-import {
-  BiBookmark,
-  BiHeart,
-  BiSolidHeart,
-  BiSolidBookmark,
-} from "react-icons/bi";
-import { BsFilePostFill } from "react-icons/bs";
-import { HiOutlineUsers } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { IoFilter } from "react-icons/io5";
-import { TbArrowsSort } from "react-icons/tb";
-import { IoSearch } from "react-icons/io5";
 import collectionItems from "../sunth_data/contents.json";
+import CollectionHeader from "../components/CollectionComponents/CollectionHeader";
 
 const CollectionPage = (props) => {
   const searchRef = useRef(null);
@@ -112,10 +75,9 @@ const CollectionPage = (props) => {
     lastID: 1234556778,
   };
 
-  const history = useNavigate();
-
   const observerTarget = useRef(null);
   const [lastID, setLastID] = useState(data.lastID);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -142,7 +104,7 @@ const CollectionPage = (props) => {
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(NaN);
 
   return (
-    <Container maxW={"100%"} px={0}>
+    <Container maxW="container.xl" py={5}>
       <Box pb={10}>
         <Container maxW={"container.xl"}>
           <Button
@@ -150,123 +112,14 @@ const CollectionPage = (props) => {
             color={"black"}
             leftIcon={<FaArrowLeft />}
             variant="link"
-            onClick={() => history(-1)}
+            onClick={() => navigate(-1)} // use navigate instead of history
           >
             Go back
           </Button>
-
-          <HStack
-            alignContent={"center"}
-            justifyContent={"space-between"}
-            gap={6}
-          >
-            <VStack
-              textAlign="center"
-              gap={3}
-              alignItems="flex-start"
-              width={"100%"}
-              maxW={"800px"}
-            >
-              <Box textStyle={"collectionTitle"}>{data.collection.tilte}</Box>
-              <Text fontSize="md">
-                Paystack helps businesses in Africa get paid by anyone, anywhere
-                in the world
-              </Text>
-              <HStack
-                fontSize="17px"
-                gap={5}
-                justifyContent="flex-start"
-                fontWeight={500}
-              >
-                <HStack fontSize={"15px"} fontWeight={600} gap={2}>
-                  {data.collection.authorUsername ? (
-                    <Link to={`/${data.collection.authorUsername}`}>
-                      <Avatar
-                        src={data.collection.authorPoriflePic}
-                        alt="user profile pic"
-                        size={"sm"}
-                      />
-                    </Link>
-                  ) : (
-                    <SkeletonCircle size="10" />
-                  )}
-
-                  {data.collection.authorUsername ? (
-                    <Link
-                      fontSize="15px"
-                      fontWeight={600}
-                      to={`/${data.collection.authorUsername}`}
-                    >
-                      {data.collection.authorUsername}
-                    </Link>
-                  ) : (
-                    <Skeleton w={"100px"} h={"10px"} />
-                  )}
-                </HStack>
-                <Divider
-                  color={"#FE5F75"}
-                  height={"20px"}
-                  border={"1px"}
-                  orientation="vertical"
-                />
-                <HStack gap={2}>
-                  <Box fontWeight={600}>12</Box> <Box> products</Box>
-                </HStack>
-                <Divider
-                  color={"#FE5F75"}
-                  height={"20px"}
-                  border={"1px"}
-                  orientation="vertical"
-                />
-                <HStack gap={2}>
-                  <Box fontWeight={600}>12</Box> <Box> posts</Box>
-                </HStack>
-              </HStack>
-            </VStack>
-            <VStack
-              gap={3}
-              alignItems={"flex-end"}
-              flexWrap="wrap"
-              justify={"flex-start"}
-              cursor={"pointer"}
-            >
-              <Button
-                size={"sm"}
-                leftIcon={
-                  <HStack gap={1}>
-                    <Box>12</Box>
-                    <BiHeart />{" "}
-                  </HStack>
-                }
-                colorScheme="blue"
-                variant="outline"
-              >
-                {data.collection.isLiked ? "Unlike" : "Like"}
-              </Button>
-              <Button
-                size={"sm"}
-                leftIcon={
-                  <HStack gap={1}>
-                    <Box>12</Box>
-                    <HiOutlineUsers />{" "}
-                  </HStack>
-                }
-                colorScheme="blue"
-                variant="outline"
-              >
-                {isFollowing ? "Unfollow" : "Follow"}
-              </Button>
-              <Button
-                size={"sm"}
-                rightIcon={<FaRegShareSquare />}
-                colorScheme="blue"
-                variant="outline"
-              >
-                Share
-              </Button>
-            </VStack>
-          </HStack>
         </Container>
+        <Flex align="center" justify="center">
+          <CollectionHeader />
+        </Flex>
       </Box>
       <Container mb={20} maxW={"container.xl"}>
         {/* 

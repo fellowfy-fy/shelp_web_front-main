@@ -3,18 +3,15 @@ import {
   AvatarGroup,
   Flex,
   VStack,
-  Box,
   Text,
-  Button,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import ProfileActions from "./ProfileActions";
+import ProfileActions from "./CollectionActions";
 import Bio from "../Bio";
-import UserInfo from "./UserInfo";
-import EditProfile from "./EditProfile";
+import CollectionInfo from "./CollectionInfo";
 import { useDisclosure } from "@chakra-ui/react";
 
-const ProfileHeader = () => {
+const CollectionHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const userProfile = {
@@ -45,7 +42,7 @@ const ProfileHeader = () => {
       justifyContent="center"
       py={5}
       px={isMobile ? 4 : 0}
-      // Remove width property to allow content to size naturally
+      // Removed width="100%"
     >
       {/* Avatar and User Info */}
       <Flex
@@ -53,7 +50,7 @@ const ProfileHeader = () => {
         alignItems="center"
         justifyContent="center"
         gap={isMobile ? 5 : 10}
-        // Remove width property to prevent overriding centering
+        // Removed width={isMobile ? "100%" : "50%"}
         mb={isMobile ? 6 : 8}
       >
         {/* Avatar */}
@@ -67,10 +64,10 @@ const ProfileHeader = () => {
 
         {/* User Info and Actions */}
         <VStack
-          alignItems={isMobile ? "center" : "start"}
+          alignItems={isMobile ? "center" : "flex-start"}
           gap={2}
           mx="auto"
-          // Remove flex and width properties
+          // Removed flex={1} and width="100%"
         >
           {/* Username and Profile Actions */}
           <Flex
@@ -108,7 +105,7 @@ const ProfileHeader = () => {
           <Bio bioText={userProfile.bio} />
 
           {/* User Info Section (Posts, Followers, Following) */}
-          <UserInfo
+          <CollectionInfo
             posts={userProfile.posts}
             products={userProfile.products}
             followers={userProfile.followers}
@@ -116,11 +113,8 @@ const ProfileHeader = () => {
           />
         </VStack>
       </Flex>
-
-      {/* Modal for editing profile (if open) */}
-      {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
 };
 
-export default ProfileHeader;
+export default CollectionHeader;

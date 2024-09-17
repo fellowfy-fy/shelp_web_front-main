@@ -23,10 +23,10 @@ const CollectionCard = () => {
   const collectionUrl = "/collection"; // URL для перехода
 
   return (
-    <LinkBox as="article" maxW="250">
+    <LinkBox as="article" maxW="250" minW="18%">
       {" "}
       {/* Уменьшил максимальную ширину карточки */}
-      <Card>
+      <Card flexShrink={0}>
         <Grid
           templateColumns="repeat(2, 1fr)"
           templateRows="repeat(2, 1fr)"

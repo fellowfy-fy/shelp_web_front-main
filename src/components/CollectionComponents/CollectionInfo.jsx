@@ -1,10 +1,10 @@
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import graydot from "../../assets/graydot.svg";
 import ModalComponent from "../ModalComponent";
+import graydot from "../../assets/graydot.svg";
 
-const UserInfo = ({ posts, products, followers, following }) => {
+const CollectionInfo = ({ posts, products, followers, following }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null); // To track which modal to show
 
@@ -58,7 +58,7 @@ const UserInfo = ({ posts, products, followers, following }) => {
         <Text as="span" fontWeight={"bold"} mr={1}>
           {following?.length || 0}
         </Text>
-        Following
+        Editors
       </Button>
 
       {/* Modal */}
@@ -80,4 +80,4 @@ const UserInfo = ({ posts, products, followers, following }) => {
   );
 };
 
-export default UserInfo;
+export default CollectionInfo;
