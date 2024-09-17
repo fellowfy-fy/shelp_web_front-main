@@ -15,12 +15,14 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import LoadMoreButton from "./NavButtons/LoadMoreButton"; // Import Load More Button component
+import { FaShareAlt, FaTrashAlt } from "react-icons/fa"; // Import icons
 
-const ModalComponent = ({ isOpen, onClose, type, data }) => {
+const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
   const headers = {
     followers: "Followers",
     following: "Following",
     products: "Products",
+    more: "Additional",
   };
 
   // State to handle the displayed data and pagination
@@ -32,11 +34,12 @@ const ModalComponent = ({ isOpen, onClose, type, data }) => {
 
   // Load initial data when the modal opens
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && type !== "more") {
+      // Only handle data for types other than "more"
       setVisibleData(data.slice(0, usersPerPage)); // Load first 20 users
       setCurrentPage(1); // Reset page counter
     }
-  }, [isOpen, data]);
+  }, [isOpen, data, type]);
 
   // Function to load more users
   const loadMoreUsers = () => {
@@ -51,7 +54,7 @@ const ModalComponent = ({ isOpen, onClose, type, data }) => {
       <ModalOverlay />
       <ModalContent
         width="627px"
-        height="761px"
+        height="400px" // Adjusted height for "more" content
         background="#FFFFFF"
         border="1px solid rgba(0, 0, 0, 0.1)"
         borderRadius="15px"
@@ -74,70 +77,96 @@ const ModalComponent = ({ isOpen, onClose, type, data }) => {
           {headers[type]}
         </ModalHeader>
 
-        {/* Search Bar (Sticky header) */}
-        <Box
-          position="sticky"
-          top="0"
-          zIndex="1"
-          background="#fff"
-          padding="20px"
-          borderBottom="1px solid rgba(0, 0, 0, 0.1)"
-        >
-          <Input placeholder={`Search ${headers[type]}`} />
-        </Box>
-
         {/* Body Content */}
         <ModalBody
           overflowY="auto"
           px={6}
           pt="20px" // Adjusted for spacing
         >
-          <VStack alignItems="stretch" spacing={4}>
-            {visibleData.map((item, index) => (
+          {type === "more" ? (
+            <VStack alignItems="stretch" spacing={4}>
               <Flex
-                key={index}
                 alignItems="center"
                 justifyContent="space-between"
                 width="100%"
+                borderBottom="1px solid #E2E8F0" // Adds a line
+                padding="10px 0"
               >
-                <Flex alignItems="center">
-                  {type === "products" ? (
-                    <Box
-                      height="50px"
-                      width="50px"
-                      background="gray.200"
-                      borderRadius="lg"
-                    />
-                  ) : (
-                    <Avatar name={item.username} src={item.avatar} />
-                  )}
-                  <Text ml={4} fontWeight="600">
-                    {type === "products" ? item.productName : item.username}
-                  </Text>
-                </Flex>
-
-                {/* Follow/Unfollow Button */}
-                <Button
-                  size="sm"
-                  width="64px"
-                  height="32px"
-                  background={item.isFollowing ? "#000000" : "transparent"}
-                  color={item.isFollowing ? "#FFFFFF" : "#000000"}
-                  border="1px solid #1B1D28"
-                  borderRadius="5px"
-                  _hover={{
-                    background: item.isFollowing ? "#1B1D28" : "black",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  {item.isFollowing ? "Unfollow" : "Follow"}
-                </Button>
+                <button>
+                  <Flex alignItems="center">
+                    <FaShareAlt size="20px" />
+                    <Text ml={4} fontWeight="600">
+                      Share
+                    </Text>
+                  </Flex>
+                </button>
               </Flex>
-            ))}
-          </VStack>
+              <Flex
+                alignItems="center"
+                justifyContent="space-between"
+                width="100%"
+                borderBottom="1px solid #E2E8F0" // Adds a line
+                padding="10px 0"
+              >
+                <button>
+                  <Flex alignItems="center">
+                    <FaTrashAlt size="20px" />
+                    <Text ml={4} fontWeight="600">
+                      Delete
+                    </Text>
+                  </Flex>
+                </button>
+              </Flex>
+            </VStack>
+          ) : (
+            // Existing content for other types (followers, following, products)
+            <VStack alignItems="stretch" spacing={4}>
+              {visibleData.map((item, index) => (
+                <Flex
+                  key={index}
+                  alignItems="center"
+                  justifyContent="space-between"
+                  width="100%"
+                >
+                  <Flex alignItems="center">
+                    {type === "products" ? (
+                      <Box
+                        height="50px"
+                        width="50px"
+                        background="gray.200"
+                        borderRadius="lg"
+                      />
+                    ) : (
+                      <Avatar name={item.username} src={item.avatar} />
+                    )}
+                    <Text ml={4} fontWeight="600">
+                      {type === "products" ? item.productName : item.username}
+                    </Text>
+                  </Flex>
+
+                  {/* Follow/Unfollow Button */}
+                  <Button
+                    size="sm"
+                    width="64px"
+                    height="32px"
+                    background={item.isFollowing ? "#000000" : "transparent"}
+                    color={item.isFollowing ? "#FFFFFF" : "#000000"}
+                    border="1px solid #1B1D28"
+                    borderRadius="5px"
+                    _hover={{
+                      background: item.isFollowing ? "#1B1D28" : "black",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {item.isFollowing ? "Unfollow" : "Follow"}
+                  </Button>
+                </Flex>
+              ))}
+            </VStack>
+          )}
 
           {/* Load More Button */}
-          {visibleData.length < data.length && (
+          {type !== "more" && visibleData.length < data.length && (
             <Box mt={4} textAlign="center">
               <LoadMoreButton onClick={loadMoreUsers} />
             </Box>

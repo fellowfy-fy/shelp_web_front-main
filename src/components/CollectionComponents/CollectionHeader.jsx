@@ -23,6 +23,7 @@ const CollectionHeader = () => {
     followers: Array(900).fill({}),
     following: Array(900).fill({}),
     products: Array(3500).fill({}),
+    more: Array(900).fill({}),
   };
 
   const authUser = { username: "nkchaudhary01" };
@@ -42,7 +43,6 @@ const CollectionHeader = () => {
       justifyContent="center"
       py={5}
       px={isMobile ? 4 : 0}
-      // Removed width="100%"
     >
       {/* Avatar and User Info */}
       <Flex
@@ -50,7 +50,6 @@ const CollectionHeader = () => {
         alignItems="center"
         justifyContent="center"
         gap={isMobile ? 5 : 10}
-        // Removed width={isMobile ? "100%" : "50%"}
         mb={isMobile ? 6 : 8}
       >
         {/* Avatar */}
@@ -58,7 +57,7 @@ const CollectionHeader = () => {
           <Avatar
             src={userProfile?.profilePicURL}
             alt={`${userProfile?.username}'s profile picture`}
-            size={isMobile ? "xl" : "2xl"} // Adjust avatar size on mobile
+            size={isMobile ? "xl" : "2xl"}
           />
         </AvatarGroup>
 
@@ -67,7 +66,6 @@ const CollectionHeader = () => {
           alignItems={isMobile ? "center" : "flex-start"}
           gap={2}
           mx="auto"
-          // Removed flex={1} and width="100%"
         >
           {/* Username and Profile Actions */}
           <Flex
