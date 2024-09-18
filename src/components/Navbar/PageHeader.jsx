@@ -77,7 +77,7 @@ const PageHeader = () => {
                 gap={0}
                 display={{ base: "none", sm: "flex" }}
               >
-                <ChakraLink h={"100%"} as={ReactRouterLink} to="/home">
+                <ChakraLink h={"100%"} as={ReactRouterLink} to="/">
                   <Button
                     layerStyle={"navButton"}
                     textStyle={"navButton"}
