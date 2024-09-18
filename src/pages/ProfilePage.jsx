@@ -12,7 +12,7 @@ import {
 import ProfileHeader from "../components/Profile/ProfileHeader.jsx";
 import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
 import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername.js";
-import CollectionCard from "../components/CardsGrid/CollectionCard.jsx";
+import CollectionCard from "../components/CollectionComponents/CollectionCard.jsx";
 import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
 import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
