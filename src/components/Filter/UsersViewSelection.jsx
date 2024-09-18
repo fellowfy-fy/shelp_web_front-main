@@ -66,17 +66,28 @@ const UsersViewSelection = ({ onChange }) => {
   const group = getRootProps();
 
   return (
-    <HStack {...group} spacing={4}>
-      {" "}
-      {/* Add spacing between buttons */}
+    <HStack
+      {...group}
+      spacing={4}
+      direction="row"
+      align="center"
+      wrap="wrap" // Ensure buttons stay in a row and wrap if needed
+    >
       {options.map(({ value, icon }) => {
         const radio = getRadioProps({ value });
         return (
           <RadioCard key={value} {...radio}>
             <Flex align="center">
-              {/* Render the image icon */}
-              <Image src={icon} alt={`${value} icon`} boxSize="20px" mr={2} />
-              <Text>{value}</Text>
+              {/* Render the image icon with responsive display */}
+              <Image
+                src={icon}
+                alt={`${value} icon`}
+                boxSize="20px"
+                mr={2}
+                display={["none", "inline-block"]} // Hide icons on small screens, show on medium and larger
+              />
+              <Text fontSize={["sm", "md"]}>{value}</Text>{" "}
+              {/* Responsive text size */}
             </Flex>
           </RadioCard>
         );

@@ -21,16 +21,19 @@ const CollectionCard = () => {
   const collectionUrl = "/collection"; // URL для перехода
 
   return (
-    <LinkBox as="article" maxW="250" minW="18%">
+    <LinkBox
+      as="article"
+      maxW={["100%", "300px", "350px", "400px"]} // Responsive max width
+      minW={["100%", "45%", "30%", "25%"]} // Responsive min width
+      width={["100%", "auto"]} // Full width on small screens
+    >
       <Card flexShrink={0} boxShadow="none" borderRadius="md">
-        {" "}
-        {/* Add borderRadius here */}
         <Grid
           templateColumns="repeat(2, 1fr)"
           templateRows="repeat(2, 1fr)"
           gap={1}
-          borderRadius="md" // Add borderRadius to the Grid to apply rounding to the corners
-          overflow="hidden" // Ensure content respects the border radius
+          borderRadius="md"
+          overflow="hidden"
         >
           {images.map((img, idx) => (
             <GridItem key={idx} colSpan={1} rowSpan={1}>
@@ -52,7 +55,11 @@ const CollectionCard = () => {
         </Grid>
         <CardBody>
           {/* Название коллекции, как кликабельная ссылка */}
-          <Heading size="xs" textAlign="center">
+          <Heading
+            size="xs"
+            textAlign="center"
+            fontSize={["sm", "md", "lg", "xl"]} // Responsive font sizes
+          >
             <LinkOverlay href={collectionUrl}>{collectionName}</LinkOverlay>
           </Heading>
         </CardBody>
