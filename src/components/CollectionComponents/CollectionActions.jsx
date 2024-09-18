@@ -1,12 +1,17 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 import dots from "../../assets/dots.svg";
+import { useState } from "react";
+import ModalComponent from "../ModalComponent";
 
-const CollectionActions = ({
-  isOwnProfile,
-  isFollowing,
-  onOpen,
-  isUpdating,
-}) => {
+const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [modalType, setModalType] = useState(null); // To track which modal to show
+
+  const handleOpenModal = (type) => {
+    setModalType(type);
+    onOpen();
+  };
+
   return (
     <Flex gap={4}>
       {isOwnProfile ? (
@@ -34,6 +39,7 @@ const CollectionActions = ({
             fontSize="14px"
             lineHeight="18px"
             color="white"
+            onClick={() => handleOpenModal("more")}
           >
             <img src={dots} alt="dots" />
           </Button>
@@ -48,6 +54,16 @@ const CollectionActions = ({
         >
           {isFollowing ? "Unfollow" : "Follow"}
         </Button>
+      )}
+
+      {/* Modal */}
+      {modalType && (
+        <ModalComponent
+          isOpen={isOpen}
+          onClose={onClose}
+          type={modalType}
+          data={[]} // Pass an empty array if there's no specific data
+        />
       )}
     </Flex>
   );
