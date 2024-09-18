@@ -1,12 +1,6 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import CommentSection from "../components/ProductDetails/CommentSection";
-import { Image, Box } from "@chakra-ui/react";
 
 export default function ProductPage() {
   return (
@@ -19,10 +13,6 @@ export default function ProductPage() {
 
           <BreadcrumbItem>
             <BreadcrumbLink href="#">Username</BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink href="#">ProductName</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </div>
