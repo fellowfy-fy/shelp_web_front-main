@@ -2,11 +2,9 @@ import {
   Box,
   Card,
   CardBody,
-  CardFooter,
   Grid,
   GridItem,
   Heading,
-  Text,
   Image,
   LinkBox,
   LinkOverlay,
@@ -24,13 +22,15 @@ const CollectionCard = () => {
 
   return (
     <LinkBox as="article" maxW="250" minW="18%">
-      {" "}
-      {/* Уменьшил максимальную ширину карточки */}
-      <Card flexShrink={0}>
+      <Card flexShrink={0} boxShadow="none" borderRadius="md">
+        {" "}
+        {/* Add borderRadius here */}
         <Grid
           templateColumns="repeat(2, 1fr)"
           templateRows="repeat(2, 1fr)"
           gap={1}
+          borderRadius="md" // Add borderRadius to the Grid to apply rounding to the corners
+          overflow="hidden" // Ensure content respects the border radius
         >
           {images.map((img, idx) => (
             <GridItem key={idx} colSpan={1} rowSpan={1}>
@@ -50,19 +50,12 @@ const CollectionCard = () => {
             </GridItem>
           ))}
         </Grid>
-
         <CardBody>
           {/* Название коллекции, как кликабельная ссылка */}
           <Heading size="xs" textAlign="center">
             <LinkOverlay href={collectionUrl}>{collectionName}</LinkOverlay>
           </Heading>
         </CardBody>
-
-        <CardFooter justify="center">
-          <Text fontSize="xs" color="gray.500">
-            {itemCount} items in collection
-          </Text>
-        </CardFooter>
       </Card>
     </LinkBox>
   );

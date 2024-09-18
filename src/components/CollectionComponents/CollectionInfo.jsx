@@ -53,7 +53,7 @@ const CollectionInfo = ({ posts, products, followers, following }) => {
         background="transparent"
         _hover={{ background: "rgba(0, 0, 0, 0.05)" }}
         _focus={{ boxShadow: "none" }}
-        onClick={() => handleOpenModal("following")}
+        onClick={() => handleOpenModal("editors")}
       >
         <Text as="span" fontWeight={"bold"} mr={1}>
           {following?.length || 0}

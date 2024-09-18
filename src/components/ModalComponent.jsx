@@ -22,12 +22,14 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
     followers: "Followers",
     following: "Following",
     products: "Products",
+    editors: "Editors",
     more: "Additional",
   };
 
   // State to handle the displayed data and pagination
   const [visibleData, setVisibleData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Number of users to load per page
   const usersPerPage = 20;
@@ -40,6 +42,15 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
       setCurrentPage(1); // Reset page counter
     }
   }, [isOpen, data, type]);
+
+  // Filter data based on the search term
+  const filteredData = visibleData.filter((item) => {
+    if (type === "products") {
+      return item.productName?.toLowerCase().includes(searchTerm.toLowerCase());
+    } else {
+      return item.username?.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+  });
 
   // Function to load more users
   const loadMoreUsers = () => {
@@ -78,6 +89,20 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
         >
           {headers[type]}
         </ModalHeader>
+
+        {/* Search Bar */}
+        {(type === "followers" ||
+          type === "following" ||
+          type === "editors" ||
+          type === "products") && (
+          <Box px={6} mt={4}>
+            <Input
+              placeholder={`Search ${headers[type]}...`}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </Box>
+        )}
 
         {/* Body Content */}
         <ModalBody
@@ -123,7 +148,7 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
           ) : (
             // Existing content for other types (followers, following, products)
             <VStack alignItems="stretch" spacing={4}>
-              {visibleData.map((item, index) => (
+              {filteredData.map((item, index) => (
                 <Flex
                   key={index}
                   alignItems="center"
@@ -141,27 +166,54 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
                     ) : (
                       <Avatar name={item.username} src={item.avatar} />
                     )}
-                    <Text ml={4} fontWeight="600">
-                      {type === "products" ? item.productName : item.username}
-                    </Text>
+                    <Box ml={4}>
+                      <Text fontWeight="600">
+                        {type === "products" ? item.productName : item.username}
+                      </Text>
+                      {type !== "products" && item.fullName && (
+                        <Text fontSize="sm" color="gray.500">
+                          {item.fullName}
+                        </Text>
+                      )}
+                    </Box>
                   </Flex>
 
-                  {/* Follow/Unfollow Button */}
-                  <Button
-                    size="sm"
-                    width="64px"
-                    height="32px"
-                    background={item.isFollowing ? "#000000" : "transparent"}
-                    color={item.isFollowing ? "#FFFFFF" : "#000000"}
-                    border="1px solid #1B1D28"
-                    borderRadius="5px"
-                    _hover={{
-                      background: item.isFollowing ? "#1B1D28" : "black",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    {item.isFollowing ? "Unfollow" : "Follow"}
-                  </Button>
+                  {/* Follow/Unfollow and Remove Buttons */}
+                  <Flex>
+                    {type !== "products" && (
+                      <Button
+                        size="sm"
+                        width="64px"
+                        height="32px"
+                        background={
+                          item.isFollowing ? "#000000" : "transparent"
+                        }
+                        color={item.isFollowing ? "#FFFFFF" : "#000000"}
+                        border="1px solid #1B1D28"
+                        borderRadius="5px"
+                        _hover={{
+                          background: item.isFollowing ? "#1B1D28" : "black",
+                          color: "#FFFFFF",
+                        }}
+                        onClick={() => {
+                          // Add logic to follow/unfollow
+                        }}
+                      >
+                        {item.isFollowing ? "Unfollow" : "Follow"}
+                      </Button>
+                    )}
+                    <Button
+                      size="sm"
+                      ml={2}
+                      background="transparent"
+                      color="#FF0000"
+                      onClick={() => {
+                        // Add logic to remove
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Flex>
                 </Flex>
               ))}
             </VStack>
