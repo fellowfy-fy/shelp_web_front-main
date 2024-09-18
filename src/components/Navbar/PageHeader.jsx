@@ -227,8 +227,8 @@ const PageHeader = () => {
                     <img
                       src="/chatIcon.svg"
                       alt="icon"
-                      width="40px"
-                      height="40px"
+                      width="25px"
+                      height="25px"
                     />
                   </Box>
                 }
