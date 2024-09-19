@@ -6,6 +6,7 @@ import { Container, Flex, Box, Text, VStack } from "@chakra-ui/react";
 import UserCard from "../components/UserCard.jsx";
 import HorizontalUsersView from "../components/HorizontalUsersView/HorizontalUsersView.jsx";
 import CollectionCard from "../components/CollectionComponents/CollectionCard.jsx";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const HomePage = () => {
   const [selectedContentType, setSelectedContentType] = useState("Trending");
@@ -54,6 +55,45 @@ const HomePage = () => {
     {
       imageUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVg0JCFzD1T0R93AGYV_h2AiOWAlEJgCkew&usqp=CAU",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
       title: "Underwater heaven",
       publishDate: "Wed, 26 January 2021",
       likesNum: 103,
@@ -224,19 +264,30 @@ const HomePage = () => {
       <Box width="100%" py={10}>
         {" "}
         {/* Use Box for full-width */}
-        <Flex gap={4} flexWrap="wrap" justifyContent="center">
-          {collectionPosts.map((post, index) => (
-            <ItemCard
-              key={index}
-              imageUrl={post.imageUrl}
-              title={post.title}
-              publishDate={post.publishDate}
-              likesNum={post.likesNum}
-              savesNum={post.savesNum}
-              author={post.author}
-            />
-          ))}
-        </Flex>
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{
+            350: 2,
+            750: 2,
+            900: 3,
+            1200: 4,
+            1500: 5,
+            1800: 6,
+          }} // Задайте точки разрыва и количество столбцов
+        >
+          <Masonry gutter="16px">
+            {collectionPosts.map((post, index) => (
+              <ItemCard
+                key={index}
+                imageUrl={post.imageUrl}
+                title={post.title}
+                publishDate={post.publishDate}
+                likesNum={post.likesNum}
+                savesNum={post.savesNum}
+                author={post.author}
+              />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </Box>
 
       {/* Load More Button */}
