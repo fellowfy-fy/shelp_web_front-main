@@ -8,6 +8,11 @@ const Send = "/Send.svg";
 const Dots = "/dots.svg";
 
 const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
+  const handleImageClick = () => {
+    // Define what happens when the image is clicked (e.g., navigate to another page)
+    console.log("Image clicked!");
+  };
+
   return (
     <Box
       width="300px"
@@ -42,14 +47,16 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
         />
       </Flex>
 
-      {/* Card Image */}
-      <Image
-        src={imageUrl}
-        alt="Card Image"
-        width="100%"
-        objectFit="cover"
-        className="aspect-auto"
-      />
+      {/* Clickable Image */}
+      <Box as="button" onClick={handleImageClick} width="100%">
+        <Image
+          src={imageUrl}
+          alt="Card Image"
+          width="100%"
+          objectFit="cover"
+          className="aspect-auto"
+        />
+      </Box>
 
       {/* Card Footer */}
       <Box p="4">
@@ -87,7 +94,7 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
 
         {/* Caption */}
         <Text fontSize="12px" fontWeight="400" color="#1B1D28" mb="2">
-          &#8220; {title}... (More)
+          &#8220; {title}... <button>(More)</button>
         </Text>
 
         {/* Date */}

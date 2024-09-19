@@ -227,7 +227,7 @@ const HomePage = () => {
         >
           Shoppers
         </Text>
-        <button>See All</button>
+        <button>See all</button>
       </Flex>
 
       {/* Display Selected User Type */}
@@ -241,9 +241,9 @@ const HomePage = () => {
           className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
           whiteSpace="nowrap" // Prevent the text from wrapping
         >
-          My Collections
+          Collections
         </Text>
-        <button>See All</button>
+        <button>See all</button>
       </Flex>
 
       {/* Collections Cards */}

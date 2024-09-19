@@ -9,11 +9,11 @@ import {
   LinkBox,
   LinkOverlay,
 } from "@chakra-ui/react";
-import image1 from "../../assets/images/image1.jpg";
-import image2 from "../../assets/images/image2.jpg";
-import image3 from "../../assets/images/image3.jpg";
 
 const CollectionCard = () => {
+  const image1 = "/image1.jpg";
+  const image2 = "/image2.jpg";
+  const image3 = "/image3.jpg";
   // Массив картинок с возможностью отсутствия одного из изображений
   const images = [image1, image2, image3, null];
   const collectionName = "My Awesome Collection"; // Название коллекции

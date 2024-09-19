@@ -7,7 +7,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import { Logo } from "../components/Logo";
 import { OAuthButtonGroup } from "../components/Authorize/OAuthButtonGroup";
 import AuthFormContent from "../components/Authorize/AuthFormContent";
 import AuthSwitcher from "../components/Authorize/AuthSwitcher";
@@ -26,6 +25,7 @@ const AuthPage = () => {
   const inputRef = useRef(null);
   const { loading, error, login } = useLogin();
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const LogoImage = "/logo_b.png";
 
   const onClickReveal = () => {
     onToggle();
@@ -61,7 +61,11 @@ const AuthPage = () => {
             borderColor="#eeeeee"
           >
             <Stack spacing={3}>
-              <Logo />
+              <img
+                class="mt-2 mb-2 mx-auto h-16 w-auto text-center"
+                src={LogoImage}
+                alt="Shelp"
+              />
               <Heading
                 fontWeight={500}
                 size={{ base: "md", md: "md" }}

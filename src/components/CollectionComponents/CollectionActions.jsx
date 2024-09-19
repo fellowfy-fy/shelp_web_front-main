@@ -1,11 +1,12 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
-import dots from "../../assets/dots.svg";
 import { useState } from "react";
 import ModalComponent from "../ModalComponent";
 
 const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [modalType, setModalType] = useState(null); // To track which modal to show
+  const [modalType, setModalType] = useState(null);
+
+  const dots = "/dots.svg";
 
   const handleOpenModal = (type) => {
     setModalType(type);

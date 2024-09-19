@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import LogoImage from "../../assets/logo_b.png";
 import {
   Box,
   Flex,
@@ -44,6 +43,7 @@ const NavLink = (props) => {
 
 const PageHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const LogoImage = "/logo_b.png";
   return (
     <>
       <Center

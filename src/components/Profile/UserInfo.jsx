@@ -1,12 +1,12 @@
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import graydot from "../../assets/graydot.svg";
 import ModalComponent from "../ModalComponent";
 
 const UserInfo = ({ posts, products, followers, following }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null); // To track which modal to show
+  const graydot = "/graydot.svg";
 
   const handleOpenModal = (type) => {
     setModalType(type);

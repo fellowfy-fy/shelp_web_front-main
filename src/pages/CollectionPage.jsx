@@ -1,15 +1,15 @@
-import FeedPosts from "../components/CardsGrid/FeedPosts";
-import { useEffect, useState } from "react";
 import { Center, Box, Container, Flex, Button } from "@chakra-ui/react";
-
 import useSearchUser from "../hooks/useSearchUser";
 import useFollowUser from "../hooks/useFollowUser";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import collectionItems from "../sunth_data/contents.json";
 import CollectionHeader from "../components/CollectionComponents/CollectionHeader";
 import SearchBar from "../components/SearchBar/SearchBar";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import ItemCard from "../components/ItemCard.jsx";
+import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
+
 const CollectionPage = (props) => {
   const searchRef = useRef(null);
   const { user, getUserProfile, isLoading, setUser } = useSearchUser();
@@ -17,65 +17,128 @@ const CollectionPage = (props) => {
     e.preventDefault();
     getUserProfile(searchRef.current.value);
   };
-
-  const collection_posts = ["/img1.png", "/img2.png", "/img3.png"];
-
-  const data = {
-    collection: {
-      tilte: "Modern online and offline payments for Africa",
-      authorUsername: "Nick",
-      authorPoriflePic:
-        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-      isLiked: false,
-    },
-    title:
-      "Trumpet/Mermaid Scoop Ankle-Length Lace Tulle Mother of the Bride Dress With Sequins Beading  - JJ's House",
-    description:
-      "Product Code: #217292 Fabric: Lace, Tulle Embellishment: Beading, Sequins Silhouette: Trumpet/Mermaid Length: Ankle-Length Neckline: Scoop Straps & Sleeves: Short Sleeve Fully Lined: Yes Built-In Bra: Yes Boning: No Features: No Leg Slit Back Style: Back Zip, Scoop",
-    isNew: true,
-    imageURL:
-      "https://i.pinimg.com/564x/ba/37/0e/ba370efb59365508e2b8d49f7575b105.jpg",
-    name: "Wayfarer Classic",
-    likesNum: 34,
-    savesNum: 222,
-    publishDate: Date.parse("2020-05-12T23:50:21.817Z"),
-    author: {
-      username: "username",
-      fname: "Segun Adebayo",
-      profilePicURL:
-        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-    },
-    is_liked: true,
-    is_saved: true,
-    isProduct: true,
-    lastID: 1234556778,
-  };
-
-  const observerTarget = useRef(null);
-  const [lastID, setLastID] = useState(data.lastID);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setLastID(data.lastID);
-          console.log("Update");
-        }
+  // Sample data for the collections
+  const collectionPosts = [
+    {
+      imageUrl:
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
       },
-      { threshold: 1 }
-    );
-
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
-  }, [observerTarget]);
+    },
+    {
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVg0JCFzD1T0R93AGYV_h2AiOWAlEJgCkew&usqp=CAU",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "data:image/jpeg;base64,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",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVg0JCFzD1T0R93AGYV_h2AiOWAlEJgCkew&usqp=CAU",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://product-images-cdn.liketoknow.it/D0aPFlYmnHpmH.Fh5gGRYpOJBIHwI6CNLlSq3Rk05rpQBkmYWZWEpDG7J2bVoWwfj8y4QWJ8q_0..jI3p2wyBzp4ThZajAnDAuuuR4M6AJtsvJp07M26SGr.2jETPZ5D39CpB8p_9b71L6pelzbOi.5ed2gKQNRpW1pBU26xzW8Shny1TbkSyUev0dM-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+    {
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVg0JCFzD1T0R93AGYV_h2AiOWAlEJgCkew&usqp=CAU",
+      title: "Underwater heaven",
+      publishDate: "Wed, 26 January 2021",
+      likesNum: 103,
+      savesNum: 50,
+      author: {
+        username: "pat.rick96",
+        location: "New Delhi, India",
+        profilePicURL: "/path/to/avatar.jpg",
+      },
+    },
+  ];
 
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(NaN);
 
@@ -88,7 +151,7 @@ const CollectionPage = (props) => {
             color={"black"}
             leftIcon={<FaArrowLeft />}
             variant="link"
-            onClick={() => navigate(-1)} // use navigate instead of history
+            onClick={() => navigate(-1)}
           >
             Go back
           </Button>
@@ -99,23 +162,34 @@ const CollectionPage = (props) => {
       </Box>
       <Container mb={20} maxW={"container.xl"}>
         <SearchBar />
-        <FeedPosts
-          posts={collection_posts}
-          items={collectionItems}
-          observer={observerTarget}
-          postData={data}
-        />
-        <Center>
-          <Button
-            border={"1px"}
-            px={20}
-            borderRadius={20}
-            background={"transparent"}
-            borderColor={"black"}
-            _hover={{ background: "black", color: "white" }}
+        {/* Feed Posts Section */}
+        <Box width="100%" py={10}>
+          {" "}
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{
+              350: 2,
+              750: 2,
+              900: 3,
+              1200: 4,
+            }}
           >
-            Load more
-          </Button>
+            <Masonry gutter="16px">
+              {collectionPosts.map((post, index) => (
+                <ItemCard
+                  key={index}
+                  imageUrl={post.imageUrl}
+                  title={post.title}
+                  publishDate={post.publishDate}
+                  likesNum={post.likesNum}
+                  savesNum={post.savesNum}
+                  author={post.author}
+                />
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </Box>
+        <Center>
+          <LoadMoreButton />
         </Center>
       </Container>
     </Container>
