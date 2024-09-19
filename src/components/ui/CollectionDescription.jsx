@@ -1,7 +1,7 @@
 import { Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
-const Bio = ({ bioText, maxBioLength = 230 }) => {
+const CollectionDescription = ({ bioText, maxBioLength = 230 }) => {
   const [showFullBio, setShowFullBio] = useState(false);
   const toggleBio = () => setShowFullBio((prev) => !prev);
 
@@ -27,4 +27,4 @@ const Bio = ({ bioText, maxBioLength = 230 }) => {
   );
 };
 
-export default Bio;
+export default CollectionDescription;

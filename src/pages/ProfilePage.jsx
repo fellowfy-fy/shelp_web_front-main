@@ -1,26 +1,35 @@
+import React, { useRef } from "react";
 import {
+  Center,
+  Box,
   Container,
   Flex,
-  Link,
-  Skeleton,
+  Button,
   SkeletonCircle,
-  Text,
   VStack,
-  Box,
+  Skeleton,
+  Text,
+  Link,
 } from "@chakra-ui/react";
-import ProfileHeader from "../components/shared/ProfileHeader.jsx";
-import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername.js";
-import CollectionCard from "../components/ui/CollectionCard.jsx";
-import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
-import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
-import GoBackButton from "../components/ui/GoBackButton.jsx";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import ItemCard from "../components/shared/ItemCard.jsx";
+import useSearchUser from "../hooks/useSearchUser";
+import useFollowUser from "../hooks/useFollowUser";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
+import CollectionHeader from "../components/shared/CollectionHeader";
 import SearchBar from "../components/shared/SearchBar";
+import MasonryGrid from "../components/shared/MasonryGrid";
+import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
+import GoBackButton from "../components/ui/GoBackButton.jsx";
+import CollectionCard from "../components/ui/CollectionCard.jsx";
 
 const ProfilePage = () => {
-  const { username } = useParams();
-  const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+  const searchRef = useRef(null);
+  const { user, getUserProfile, isLoading, setUser } = useSearchUser();
+  const handleSearchUser = (e) => {
+    e.preventDefault();
+    getUserProfile(searchRef.current.value);
+  };
+  const navigate = useNavigate();
+  const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(NaN);
 
   // Sample data for the collections
   const collectionPosts = [
@@ -143,8 +152,6 @@ const ProfilePage = () => {
     },
   ];
 
-  const navigate = useNavigate();
-
   // const userNotFound = !isLoading && !userProfile;
   // if (userNotFound) return <UserNotFound />;
 
@@ -153,79 +160,43 @@ const ProfilePage = () => {
       <Box pb={10}>
         <GoBackButton />
         <Flex align="center" justify="center">
-          <ProfileHeader />
+          <CollectionHeader />
         </Flex>
+        <Flex align="center" mb={4} justifyContent="space-between">
+          <Text
+            className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
+            whiteSpace="nowrap" // Prevent the text from wrapping
+          >
+            My Collections
+          </Text>
+          <button>See all</button>
+        </Flex>
+
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+        </div>
       </Box>
+      <Container mb={20} maxW={"container.xl"}>
+        <SearchBar />
 
-      <Flex align="center" mb={4} justifyContent="space-between">
-        <Text
-          className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
-        >
-          My Collections
-        </Text>
-        <button>See all</button>
-      </Flex>
+        {/* Use MasonryGrid here */}
+        <MasonryGrid posts={collectionPosts} />
 
-      <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-      </div>
-
-      <Flex
-        py={10}
-        px={4}
-        pl={{ base: 4, md: 10 }}
-        w={"full"}
-        mx={"auto"}
-        flexDirection={"column"}
-      >
-        {!isLoading && userProfile && <ProfileHeader />}
-        {isLoading && <ProfileHeaderSkeleton />}
-      </Flex>
-
-      <SearchBar />
-
-      {/* Feed Posts Section */}
-      <Box width="100%" py={10}>
-        {" "}
-        <ResponsiveMasonry
-          columnsCountBreakPoints={{
-            350: 2,
-            750: 2,
-            900: 3,
-            1200: 4,
-          }}
-        >
-          <Masonry gutter="16px">
-            {collectionPosts.map((post, index) => (
-              <ItemCard
-                key={index}
-                imageUrl={post.imageUrl}
-                title={post.title}
-                publishDate={post.publishDate}
-                likesNum={post.likesNum}
-                savesNum={post.savesNum}
-                author={post.author}
-              />
-            ))}
-          </Masonry>
-        </ResponsiveMasonry>
-      </Box>
-
-      <center>
-        <LoadMoreButton />
-      </center>
+        <Center>
+          <LoadMoreButton />
+        </Center>
+      </Container>
     </Container>
   );
 };

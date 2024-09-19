@@ -9,7 +9,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import ProfileActions from "./ProfileActions";
-import Bio from "../ui/Bio";
+import UserDescription from "../ui/UserDescription";
 import UserInfo from "./UserInfo";
 import EditProfile from "./EditProfile";
 import { useDisclosure } from "@chakra-ui/react";
@@ -104,8 +104,8 @@ const ProfileHeader = () => {
             {userProfile?.fullName}
           </Text>
 
-          {/* Bio */}
-          <Bio bioText={userProfile.bio} />
+          {/* UserDescription */}
+          <UserDescription bioText={userProfile.bio} />
 
           {/* User Info Section (Posts, Followers, Following) */}
           <UserInfo

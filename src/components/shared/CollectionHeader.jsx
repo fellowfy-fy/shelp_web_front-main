@@ -7,7 +7,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import ProfileActions from "./CollectionActions";
-import Bio from "../ui/Bio";
+import CollectionDescription from "../ui/CollectionDescription";
 import CollectionInfo from "./CollectionInfo";
 import { useDisclosure } from "@chakra-ui/react";
 
@@ -99,8 +99,8 @@ const CollectionHeader = () => {
             {userProfile?.fullName}
           </Text>
 
-          {/* Bio */}
-          <Bio bioText={userProfile.bio} />
+          {/* UserDescription */}
+          <CollectionDescription bioText={userProfile.bio} />
 
           {/* User Info Section (Posts, Followers, Following) */}
           <CollectionInfo

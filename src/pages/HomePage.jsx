@@ -270,7 +270,7 @@ const HomePage = () => {
         {/* Use Box for full-width */}
         <ResponsiveMasonry
           columnsCountBreakPoints={{
-            350: 2,
+            350: 1,
             750: 2,
             900: 3,
             1200: 4,
