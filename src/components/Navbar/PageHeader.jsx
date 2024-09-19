@@ -176,7 +176,7 @@ const PageHeader = () => {
                   layerStyle={"base"}
                   textStyle={"navButton"}
                   as={ReactRouterLink}
-                  to="/collected"
+                  to="/create/post"
                 >
                   <Button
                     textStyle={"navButton"}

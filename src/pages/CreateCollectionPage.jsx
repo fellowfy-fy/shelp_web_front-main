@@ -1,13 +1,7 @@
-import {
-  Input,
-  Container,
-  Textarea,
-  Switch,
-  Divider,
-  Button,
-} from "@chakra-ui/react";
-import Editors from "../components/EditorsComponents/Editors";
-import Tags from "../components/EditorsComponents/Tags";
+import { Input, Container, Textarea, Switch } from "@chakra-ui/react";
+import Editors from "../components/CreateCollectionComponents/Editors";
+import Tags from "../components/CreateCollectionComponents/Tags";
+import ProductsInCollection from "../components/CreateCollectionComponents/ProductsInCollection";
 
 const CreateCollection = () => {
   const editorsNames = [
@@ -16,6 +10,22 @@ const CreateCollection = () => {
     { name: "Will Smith", imageUrl: "/img3.png" },
   ];
   const tagsArray = ["Art", "Music", "NFTs"];
+  const collectionPosts = [
+    {
+      imageUrl:
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80",
+      title: "Underwater heaven",
+      likesNum: 103,
+      savesNum: 50,
+    },
+    {
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVg0JCFzD1T0R93AGYV_h2AiOWAlEJgCkew&usqp=CAU",
+      title: "Underwater heaven",
+      likesNum: 103,
+      savesNum: 50,
+    },
+  ];
 
   return (
     <>
@@ -46,30 +56,7 @@ const CreateCollection = () => {
               <Switch colorScheme="gray" size="lg" />
               <p>Private Collection</p>
             </div>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <h1 className="text-xl font-semibold">Products in Post</h1>
-                <Button
-                  variant="outline"
-                  borderColor="black"
-                  color="black"
-                  borderRadius="full"
-                  size="sm"
-                >
-                  Add Product
-                </Button>
-              </div>
-              <Divider />
-              <h1>Card Place</h1>
-              <Button
-                bg="black"
-                color="white"
-                maxW="200px"
-                _hover={{ bg: "blackAlpha.800" }}
-              >
-                Create collection
-              </Button>
-            </div>
+            <ProductsInCollection collectionPosts={collectionPosts} />
           </div>
         </Container>
       </div>
