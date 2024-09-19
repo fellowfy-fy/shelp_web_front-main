@@ -1,6 +1,6 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import ProductDetails from "../components/ProductDetails/ProductDetails";
-import CommentSection from "../components/ProductDetails/CommentSection";
+import ProductDetails from "../components/shared/ProductDetails";
+import CommentSection from "../components/shared/CommentSection";
 
 export default function ProductPage() {
   return (

@@ -7,20 +7,16 @@ import {
   Text,
   VStack,
   Box,
-  Button,
 } from "@chakra-ui/react";
-import ProfileHeader from "../components/Profile/ProfileHeader.jsx";
-import ProfileTabs from "../components/Profile/ProfileTabs.jsx";
+import ProfileHeader from "../components/shared/ProfileHeader.jsx";
 import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername.js";
-import CollectionCard from "../components/CollectionComponents/CollectionCard.jsx";
-import FeedPosts from "../components/FeedPosts/FeedPosts.jsx";
-import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
+import CollectionCard from "../components/ui/CollectionCard.jsx";
+import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
-import GoBackButton from "../components/NavButtons/GoBackButton.jsx";
+import GoBackButton from "../components/ui/GoBackButton.jsx";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import ItemCard from "../components/ItemCard.jsx";
-import SearchBar from "../components/SearchBar/SearchBar";
+import ItemCard from "../components/shared/ItemCard.jsx";
+import SearchBar from "../components/shared/SearchBar";
 
 const ProfilePage = () => {
   const { username } = useParams();

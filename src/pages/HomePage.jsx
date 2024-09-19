@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import ItemCard from "../components/ItemCard.jsx";
-import UsersViewSelection from "../components/Filter/UsersViewSelection.jsx";
-import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
+import ItemCard from "../components/shared/ItemCard.jsx";
+import UsersViewSelection from "../components/shared/UsersViewSelection.jsx";
+import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 import { Container, Flex, Box, Text, VStack } from "@chakra-ui/react";
-import UserCard from "../components/UserCard.jsx";
-import HorizontalUsersView from "../components/HorizontalUsersView/HorizontalUsersView.jsx";
-import CollectionCard from "../components/CollectionComponents/CollectionCard.jsx";
+import UserCard from "../components/ui/UserCard.jsx";
+import HorizontalUsersView from "../components/ui/HorizontalUsersView.jsx";
+import CollectionCard from "../components/ui/CollectionCard.jsx";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import PostProductsBar from "../components/shared/PostsProductsBar.jsx";
 
 const HomePage = () => {
   const [selectedContentType, setSelectedContentType] = useState("Trending");
@@ -260,6 +261,8 @@ const HomePage = () => {
         <CollectionCard />
         <CollectionCard />
       </Flex>
+
+      <PostProductsBar />
 
       {/* Feed Posts Section */}
       <Box width="100%" py={10}>

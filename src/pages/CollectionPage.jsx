@@ -4,11 +4,11 @@ import useFollowUser from "../hooks/useFollowUser";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import CollectionHeader from "../components/CollectionComponents/CollectionHeader";
-import SearchBar from "../components/SearchBar/SearchBar";
+import CollectionHeader from "../components/shared/CollectionHeader";
+import SearchBar from "../components/shared/SearchBar";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import ItemCard from "../components/ItemCard.jsx";
-import LoadMoreButton from "../components/NavButtons/LoadMoreButton.jsx";
+import ItemCard from "../components/shared/ItemCard.jsx";
+import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 
 const CollectionPage = (props) => {
   const searchRef = useRef(null);

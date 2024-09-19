@@ -7,9 +7,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import { OAuthButtonGroup } from "../components/Authorize/OAuthButtonGroup";
-import AuthFormContent from "../components/Authorize/AuthFormContent";
-import AuthSwitcher from "../components/Authorize/AuthSwitcher";
+import { OAuthButtonGroup } from "../components/shared/OAuthButtonGroup";
+import AuthFormContent from "../components/shared/AuthFormContent";
+import AuthSwitcher from "../components/ui/AuthSwitcher";
 import useLogin from "../hooks/useLogin";
 
 const AuthPage = () => {

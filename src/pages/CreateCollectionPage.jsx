@@ -1,7 +1,14 @@
-import { Input, Container, Textarea, Switch } from "@chakra-ui/react";
-import Editors from "../components/CreateCollectionComponents/Editors";
-import Tags from "../components/CreateCollectionComponents/Tags";
-import ProductsInCollection from "../components/CreateCollectionComponents/ProductsInCollection";
+import {
+  Input,
+  Container,
+  Textarea,
+  Switch,
+  Divider,
+  Button,
+} from "@chakra-ui/react";
+import Editors from "../components/shared/Editors";
+import Tags from "../components/shared/Tags";
+import ProductsInCollection from "../components/shared/ProductsInCollection";
 
 const CreateCollection = () => {
   const editorsNames = [
