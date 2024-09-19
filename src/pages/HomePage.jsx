@@ -204,6 +204,7 @@ const HomePage = () => {
     return usersData.map((user, index) => (
       <UserCard
         key={index}
+        imageUrl="/img1.png"
         username={user.username}
         fullName={user.fullName}
         profileUrl={user.profileUrl}
@@ -270,8 +271,6 @@ const HomePage = () => {
             750: 2,
             900: 3,
             1200: 4,
-            1500: 5,
-            1800: 6,
           }} // Задайте точки разрыва и количество столбцов
         >
           <Masonry gutter="16px">

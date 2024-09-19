@@ -3,7 +3,7 @@ import { Box, Image, Text, VStack } from "@chakra-ui/react";
 
 const UserCard = ({ username, displayName, imageUrl }) => {
   return (
-    <VStack spacing={2} align="center">
+    <VStack>
       <Box
         boxSize="100px"
         bg="gray.200"

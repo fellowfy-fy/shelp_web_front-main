@@ -81,14 +81,14 @@ const SearchBar = () => {
         </Button>
         <InputGroup>
           <InputLeftElement
-            pointerEvents="none" // Иконка будет недоступна для взаимодействия
-            children={<SearchIcon color="gray.500" />} // Иконка поиска
+            pointerEvents="none"
+            children={<SearchIcon color="gray.500" />}
           />
           <Input
-            placeholder="Search" // Плейсхолдер
-            variant="outline" // Стилизация поля ввода
-            borderRadius="md" // Скругленные углы
-            _placeholder={{ color: "black" }} // Цвет плейсхолдера
+            placeholder="Search"
+            variant="outline"
+            borderRadius="md"
+            _placeholder={{ color: "black" }}
           />
         </InputGroup>
       </div>

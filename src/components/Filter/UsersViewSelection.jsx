@@ -32,15 +32,12 @@ function RadioCard(props) {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           borderWidth: "0",
         }}
-        _focus={{
-          boxShadow: "outline",
-        }}
         _hover={{
           backgroundColor: "gray.100",
         }}
         px={5}
         py={3}
-        transition="box-shadow 0.2s ease" // Smooth transition effect
+        transition="box-shadow 0.2s ease"
       >
         {props.children}
       </Box>
@@ -49,45 +46,36 @@ function RadioCard(props) {
 }
 
 const UsersViewSelection = ({ onChange }) => {
-  // Options array with value and corresponding image for each option
   const options = [
     { value: "New", icon: NewIcon },
     { value: "Popular", icon: PopularIcon },
     { value: "Followed", icon: FollowedIcon },
-    { value: "For You", icon: FollowedIcon }, // Reusing the same icon for "For You"
+    { value: "For You", icon: FollowedIcon },
   ];
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "contentType",
     defaultValue: "New",
-    onChange, // Trigger the onChange prop passed from the parent
+    onChange,
   });
 
   const group = getRootProps();
 
   return (
-    <HStack
-      {...group}
-      spacing={4}
-      direction="row"
-      align="center"
-      wrap="wrap" // Ensure buttons stay in a row and wrap if needed
-    >
+    <HStack {...group} spacing={4} direction="row" align="center" wrap="wrap">
       {options.map(({ value, icon }) => {
         const radio = getRadioProps({ value });
         return (
           <RadioCard key={value} {...radio}>
             <Flex align="center">
-              {/* Render the image icon with responsive display */}
               <Image
                 src={icon}
                 alt={`${value} icon`}
                 boxSize="20px"
                 mr={2}
-                display={["none", "inline-block"]} // Hide icons on small screens, show on medium and larger
+                display={["none", "inline-block"]}
               />
               <Text fontSize={["sm", "md"]}>{value}</Text>{" "}
-              {/* Responsive text size */}
             </Flex>
           </RadioCard>
         );
