@@ -1,29 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Flex, Text } from "@chakra-ui/react";
-import UsersViewSelection from "../components/shared/UsersViewSelection.jsx";
-import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
-import UserCard from "../components/ui/UserCard.jsx";
-import HorizontalUsersView from "../components/ui/HorizontalUsersView.jsx";
-import CollectionCard from "../components/ui/CollectionCard.jsx";
-import PostProductsBar from "../components/shared/PostsProductsBar.jsx";
+import { Container, Flex, Box, VStack, Text } from "@chakra-ui/react";
+import GoBackButton from "../components/ui/GoBackButton.jsx";
+import PostDetails from "../components/tempComponentsForContentPage/shared/PostDetails";
+import ProductDetails from "../components/tempComponentsForContentPage/shared/ProductDetails";
+import CommentSection from "../components/tempComponentsForContentPage/shared/CommentSection";
 import MasonryGrid from "../components/shared/MasonryGrid.jsx";
 
-const HomePage = () => {
-  const [selectedContentType, setSelectedContentType] = useState("Trending");
-  const navigate = useNavigate();
+const ContentPage = ({ isProductPage, contentData }) => {
+  // Add fallback to ensure contentData and its properties exist
+  const comments = contentData?.comments ?? [];
+  const relatedProducts = contentData?.relatedProducts ?? [];
 
-  // Обработчик для перехода на страницу collections
-  const handleSeeAllCollections = () => {
-    navigate("/discover?section=collections");
-  };
-
-  // Обработчик для перехода на страницу shoppers
-  const handleSeeAllShoppers = () => {
-    navigate("/discover?section=shoppers");
-  };
-
-  // Sample data for the collection
+  // Sample data for the collections
   const collectionPosts = [
     {
       imageUrl:
@@ -144,143 +131,30 @@ const HomePage = () => {
     },
   ];
 
-  const usersData = [
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-  ];
-
-  const handleContentTypeChange = (value) => {
-    setSelectedContentType(value);
-  };
-
-  // Render users dynamically based on selected content type
-  const renderUsers = () => {
-    return usersData.map((user, index) => (
-      <UserCard
-        key={index}
-        imageUrl="/img1.png"
-        username={user.username}
-        fullName={user.fullName}
-        profileUrl={user.profileUrl}
-      />
-    ));
-  };
-
   return (
-    <Container maxW="container.xl" py={5}>
-      {/* Select Content Type */}
-      <Flex justify="left" pb={5} pt={10}>
-        <UsersViewSelection onChange={handleContentTypeChange} />
+    <Container maxW="container.xl">
+      <GoBackButton />
+      <Flex gap={5}>
+        <Box flex={5}>
+          {isProductPage ? (
+            <ProductDetails product={contentData} />
+          ) : (
+            <PostDetails post={contentData} />
+          )}
+        </Box>
+        <Box flex={5}>
+          {comments.length > 0 ? (
+            <CommentSection comments={comments} />
+          ) : (
+            <Text>No comments available</Text> // Handle the case where no comments are present
+          )}
+        </Box>
       </Flex>
-      <hr />
-
-      <Flex align="center" mb={4} pt={5} justifyContent="space-between">
-        <Text
-          className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
-        >
-          Shoppers
-        </Text>
-        <button onClick={handleSeeAllShoppers}>See all</button>
-      </Flex>
-
-      {/* Display Selected User Type */}
-      <Flex py={10} gap={4} overflowX="auto">
-        <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
-      </Flex>
-
-      {/* My Collections Section */}
-      <Flex align="center" mb={4} justifyContent="space-between">
-        <Text
-          className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
-        >
-          Collections
-        </Text>
-        <button onClick={handleSeeAllCollections}>See all</button>
-      </Flex>
-
-      {/* Collections Cards */}
-      <Flex
-        gap={4}
-        overflowX="auto"
-        className="scrollbar-hide snap-x snap-mandatory"
-      >
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-      </Flex>
-
-      <PostProductsBar />
-      <MasonryGrid posts={collectionPosts} />
-
-      <Flex justify="center">
-        <LoadMoreButton />
-      </Flex>
+      <VStack mt={10}>
+        <MasonryGrid posts={collectionPosts} />
+      </VStack>
     </Container>
   );
 };
 
-export default HomePage;
+export default ContentPage;

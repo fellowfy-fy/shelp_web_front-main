@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Image, Text, Flex, IconButton, Avatar } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom"; // Импортируем useNavigate
 
 const Like = "/Like.svg";
 const Favorite = "/Favorite.svg";
@@ -8,9 +9,16 @@ const Send = "/Send.svg";
 const Dots = "/dots.svg";
 
 const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
+  const navigate = useNavigate(); // Используем useNavigate для навигации
+
   const handleImageClick = () => {
-    // Define what happens when the image is clicked (e.g., navigate to another page)
-    console.log("Image clicked!");
+    // Переход на страницу продукта
+    navigate("/testcontent");
+  };
+
+  const handleUserClick = () => {
+    // Переход на страницу пользователя по его имени
+    navigate(`/${author.username}`);
   };
 
   return (
@@ -24,10 +32,17 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
       position="relative"
       height="auto"
     >
-      {/* Card Header */}
+      {/* Заголовок карточки */}
       <Flex p="4" align="center">
-        <Avatar src={author.profilePicURL} size="sm" mr="3" />
-        <Box>
+        {/* Клик по аватарке для перехода на страницу пользователя */}
+        <Avatar
+          src={author.profilePicURL}
+          size="sm"
+          mr="3"
+          cursor="pointer"
+          onClick={handleUserClick}
+        />
+        <Box onClick={handleUserClick} cursor="pointer">
           <Text fontSize="14px" fontWeight="400" color="#1B1D28">
             {author.username}
           </Text>
@@ -43,11 +58,11 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          transform="rotate(90deg)" // Rotate dots to horizontal
+          transform="rotate(90deg)" // Поворот точки для горизонтального отображения
         />
       </Flex>
 
-      {/* Clickable Image */}
+      {/* Кликабельное изображение */}
       <Box as="button" onClick={handleImageClick} width="100%">
         <Image
           src={imageUrl}
@@ -58,9 +73,9 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
         />
       </Box>
 
-      {/* Card Footer */}
+      {/* Подвал карточки */}
       <Box p="4">
-        {/* Action Icons */}
+        {/* Иконки действий */}
         <Flex mb="2" justifyContent="space-between" alignItems="center">
           <Flex>
             <IconButton
@@ -86,18 +101,27 @@ const ItemCard = ({ imageUrl, title, publishDate, likesNum, author }) => {
           />
         </Flex>
 
-        {/* Likes Text */}
+        {/* Текст лайков */}
         <Text fontSize="12px" fontWeight="600" color="#1B1D28" mb="2">
-          Liked by <span className="font-bold">Jessica</span> and {likesNum}{" "}
-          others
+          Liked by{" "}
+          <Text
+            as="button"
+            onClick={handleUserClick}
+            cursor="pointer"
+            fontWeight="bold"
+            display="inline"
+          >
+            Jessica
+          </Text>{" "}
+          and {likesNum} others
         </Text>
 
-        {/* Caption */}
+        {/* Заголовок */}
         <Text fontSize="12px" fontWeight="400" color="#1B1D28" mb="2">
           &#8220; {title}... <button>(More)</button>
         </Text>
 
-        {/* Date */}
+        {/* Дата публикации */}
         <Text fontSize="10px" fontWeight="400" color="#76777E">
           {publishDate}
         </Text>

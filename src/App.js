@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProductPage from "./pages/ProductPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import DiscoverPage from "./pages/DiscoverPage";
+import ContentPage from "./pages/ContentPage"; 
 
 function App() {
   const [authUser] = [null]; // useAuthState(auth);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/:username" element={<ProfilePage />} />
         <Route path="/discover" element={<DiscoverPage />}/>
+        <Route path="/testcontent" element={<ContentPage />}/>
       </Route>
     </Routes>
   );

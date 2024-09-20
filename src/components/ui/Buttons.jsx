@@ -1,31 +1,21 @@
 import React from "react";
 import { Box, Flex, Image, Text, useRadio } from "@chakra-ui/react";
 
-const Buttons = ({ value, icon, ...radioProps }) => {
-  const { getInputProps, getCheckboxProps } = useRadio(radioProps);
-
-  const input = getInputProps();
-  const checkbox = getCheckboxProps();
-
+const Buttons = ({ value, icon, isActive, onClick }) => {
   return (
-    <Box as="label">
-      <input {...input} />
+    <Box as="button" onClick={onClick}>
       <Box
-        {...checkbox}
         cursor="pointer"
         borderWidth="0"
         borderRadius="md"
-        boxShadow="none"
-        _checked={{
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          borderWidth: "0",
-        }}
+        boxShadow={isActive ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "none"}
         _hover={{
           backgroundColor: "gray.100",
         }}
         px={5}
         py={3}
         transition="box-shadow 0.2s ease"
+        bg={isActive ? "white" : "white"} // выделение активной кнопки
       >
         <Flex align="center">
           <Image

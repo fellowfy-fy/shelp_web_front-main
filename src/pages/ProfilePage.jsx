@@ -190,7 +190,6 @@ const ProfilePage = () => {
       <Container mb={20} maxW={"container.xl"}>
         <SearchBar />
 
-        {/* Use MasonryGrid here */}
         <MasonryGrid posts={collectionPosts} />
 
         <Center>

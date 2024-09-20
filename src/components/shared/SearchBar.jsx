@@ -1,17 +1,16 @@
-// SearchBar.jsx
 import React, { useState } from "react";
-import { Image, Button } from "@chakra-ui/react";
-import Buttons from "../ui/Buttons"; // Use your existing Buttons component
-import SearchField from "../ui/SearchField";
+import { Box, Flex, Button, Image } from "@chakra-ui/react";
+import Buttons from "../ui/Buttons"; // Используем компонент Buttons
+import SearchField from "../ui/SearchField"; // Импорт компонента SearchField
 
 const SearchBar = () => {
-  const [activeButton, setActiveButton] = useState("ideas");
+  const [activeButton, setActiveButton] = useState("Ideas");
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
 
-  // Options for the buttons
+  // Опции для кнопок
   const buttonOptions = [
     { value: "Ideas", icon: "/NewIcon.svg" },
     { value: "Products", icon: "/PopularIcon.svg" },
@@ -19,19 +18,20 @@ const SearchBar = () => {
   ];
 
   return (
-    <div className="flex justify-between">
-      <div className="flex gap-1">
+    <Flex justify="space-between" align="center" width="100%" py={4}>
+      <Flex gap={2}>
         {buttonOptions.map(({ value, icon }) => (
           <Buttons
             key={value}
             value={value}
             icon={icon}
-            isActive={activeButton === value.toLowerCase()}
-            onClick={() => handleButtonClick(value.toLowerCase())}
+            isActive={activeButton === value}
+            onClick={() => handleButtonClick(value)}
           />
         ))}
-      </div>
-      <div className="flex gap-2">
+      </Flex>
+
+      <Flex align="center" gap={2}>
         <Button
           variant="outline"
           colorScheme="gray"
@@ -41,9 +41,9 @@ const SearchBar = () => {
         >
           <Image src="/configureIcon.svg" alt="Configure Icon" boxSize="20px" />
         </Button>
-        <SearchField />
-      </div>
-    </div>
+        <SearchField /> {/* Вставляем компонент строки поиска */}
+      </Flex>
+    </Flex>
   );
 };
 

@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <Center
       m={0}
-      h="80px"
+      h="фauto"
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
@@ -40,14 +40,6 @@ const Footer = () => {
           <SocialButton label={"LinkedIn"} href={"#"}>
             <FaLinkedin />
           </SocialButton>
-          {/*
-                    <SocialButton label={'YouTube'} href={'#'}>
-                        <FaYoutube />
-                    </SocialButton>
-                    <SocialButton label={'Instagram'} href={'#'}>
-                        <FaInstagram />
-                    </SocialButton>
-                     */}
         </Stack>
       </Container>
     </Center>
