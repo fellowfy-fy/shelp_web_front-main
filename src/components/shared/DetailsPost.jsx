@@ -23,7 +23,7 @@ const DetailsPost = ({ tags, posts }) => {
         />
       </div>
       <Tags initialTags={tags} />
-      <ProductsInCollection collectionPosts={posts} />
+      <ProductsInCollection initialCollectionPosts={posts} />
     </div>
   );
 };

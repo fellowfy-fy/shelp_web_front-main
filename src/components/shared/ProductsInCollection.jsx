@@ -1,7 +1,27 @@
+import { useState } from "react";
 import { Button, Divider } from "@chakra-ui/react";
 import CardView from "./CardView";
+import AddProductModal from "./AddProductModal"; // Импортируем новый компонент
 
-const ProductsInCollection = ({ collectionPosts }) => {
+const ProductsInCollection = ({ initialCollectionPosts }) => {
+  const [collectionPosts, setCollectionPosts] = useState(
+    initialCollectionPosts || []
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleDeleteCard = (id) => {
+    setCollectionPosts((prevPosts) =>
+      prevPosts.filter((post) => post.id !== id)
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
@@ -12,6 +32,7 @@ const ProductsInCollection = ({ collectionPosts }) => {
           color="black"
           borderRadius="full"
           size="sm"
+          onClick={openModal}
         >
           Add collection
         </Button>
@@ -20,7 +41,7 @@ const ProductsInCollection = ({ collectionPosts }) => {
       <div className="flex gap-2">
         {collectionPosts?.map((card, index) => (
           <div key={index}>
-            <CardView card={card} />
+            <CardView card={card} onDelete={handleDeleteCard} />
           </div>
         ))}
       </div>
@@ -32,7 +53,16 @@ const ProductsInCollection = ({ collectionPosts }) => {
       >
         Create collection
       </Button>
+
+      {/* Модальное окно для добавления продукта */}
+      <AddProductModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        collectionPosts={collectionPosts}
+        onDelete={handleDeleteCard}
+      />
     </div>
   );
 };
+
 export default ProductsInCollection;

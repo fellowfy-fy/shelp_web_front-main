@@ -1,7 +1,7 @@
 import { Box, Image, Text, Flex, IconButton } from "@chakra-ui/react";
 import { FaHeart, FaRegBookmark, FaTimes } from "react-icons/fa";
 
-const CardView = ({ card }) => {
+const CardView = ({ card, onDelete }) => {
   return (
     <Box
       border="1px solid #ddd"
@@ -22,6 +22,7 @@ const CardView = ({ card }) => {
         borderRadius="50%"
         boxShadow="md"
         aria-label="Close"
+        onClick={() => onDelete(card.id)}
       />
 
       {/* Image */}

@@ -156,16 +156,18 @@ const PageHeader = () => {
                   borderRadius="xl"
                   padding="4"
                 >
-                  <MenuItem>
-                    <div className="flex gap-2 font-bold text-sm">
-                      <img
-                        src="/profileIcon.svg"
-                        alt="Profile Icon"
-                        width="20px"
-                      />
-                      Profile
-                    </div>
-                  </MenuItem>
+                  <ChakraLink href="/profile/edit">
+                    <MenuItem>
+                      <div className="flex gap-2 font-bold text-sm">
+                        <img
+                          src="/profileIcon.svg"
+                          alt="Profile Icon"
+                          width="20px"
+                        />
+                        Profile
+                      </div>
+                    </MenuItem>
+                  </ChakraLink>
                   <MenuItem>
                     <div className="flex gap-2 font-bold text-sm">
                       <img
