@@ -1,7 +1,4 @@
 import { Center, Box, Container, Flex, Button } from "@chakra-ui/react";
-import useSearchUser from "../hooks/useSearchUser";
-import useFollowUser from "../hooks/useFollowUser";
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import CollectionHeader from "../components/shared/CollectionHeader";
@@ -11,12 +8,6 @@ import ItemCard from "../components/shared/ItemCard.jsx";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 
 const CollectionPage = (props) => {
-  const searchRef = useRef(null);
-  const { user, getUserProfile, isLoading, setUser } = useSearchUser();
-  const handleSearchUser = (e) => {
-    e.preventDefault();
-    getUserProfile(searchRef.current.value);
-  };
   const navigate = useNavigate();
 
   // Sample data for the collections
@@ -139,8 +130,6 @@ const CollectionPage = (props) => {
       },
     },
   ];
-
-  const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(NaN);
 
   return (
     <Container maxW="container.xl" py={5}>

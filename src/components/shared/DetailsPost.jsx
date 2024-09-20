@@ -22,7 +22,7 @@ const DetailsPost = ({ tags, posts }) => {
           resize="vertical"
         />
       </div>
-      <Tags tags={tags} />
+      <Tags initialTags={tags} />
       <ProductsInCollection collectionPosts={posts} />
     </div>
   );

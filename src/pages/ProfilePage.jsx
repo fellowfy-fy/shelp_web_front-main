@@ -1,19 +1,5 @@
-import React, { useRef } from "react";
-import {
-  Center,
-  Box,
-  Container,
-  Flex,
-  Button,
-  SkeletonCircle,
-  VStack,
-  Skeleton,
-  Text,
-  Link,
-} from "@chakra-ui/react";
-import useSearchUser from "../hooks/useSearchUser";
-import useFollowUser from "../hooks/useFollowUser";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import React from "react";
+import { Center, Box, Container, Flex, Text } from "@chakra-ui/react";
 import CollectionHeader from "../components/shared/CollectionHeader";
 import SearchBar from "../components/shared/SearchBar";
 import MasonryGrid from "../components/shared/MasonryGrid";
@@ -22,15 +8,6 @@ import GoBackButton from "../components/ui/GoBackButton.jsx";
 import CollectionCard from "../components/ui/CollectionCard.jsx";
 
 const ProfilePage = () => {
-  const searchRef = useRef(null);
-  const { user, getUserProfile, isLoading, setUser } = useSearchUser();
-  const handleSearchUser = (e) => {
-    e.preventDefault();
-    getUserProfile(searchRef.current.value);
-  };
-  const navigate = useNavigate();
-  const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(NaN);
-
   // Sample data for the collections
   const collectionPosts = [
     {
@@ -152,9 +129,6 @@ const ProfilePage = () => {
     },
   ];
 
-  // const userNotFound = !isLoading && !userProfile;
-  // if (userNotFound) return <UserNotFound />;
-
   return (
     <Container maxW="container.xl" py={5}>
       <Box pb={10}>
@@ -201,65 +175,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
-// skeleton for profile header
-const ProfileHeaderSkeleton = () => {
-  return (
-    <Flex
-      gap={{ base: 4, sm: 10 }}
-      py={10}
-      direction={{ base: "column", sm: "row" }}
-      justifyContent={"center"}
-      alignItems={"center"}
-    >
-      <SkeletonCircle size="24" />
-      return (
-      <Flex
-        gap={{ base: 4, sm: 10 }}
-        py={10}
-        direction={{ base: "column", sm: "row" }}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <SkeletonCircle size="24" />
-
-        <VStack
-          alignItems={{ base: "center", sm: "flex-start" }}
-          gap={2}
-          mx={"auto"}
-          flex={1}
-        >
-          <Skeleton height="12px" width="150px" />
-          <Skeleton height="12px" width="100px" />
-        </VStack>
-      </Flex>
-      );
-      <VStack
-        alignItems={{ base: "center", sm: "flex-start" }}
-        gap={2}
-        mx={"auto"}
-        flex={1}
-      >
-        <Skeleton height="12px" width="150px" />
-        <Skeleton height="12px" width="100px" />
-      </VStack>
-    </Flex>
-  );
-};
-
-const UserNotFound = () => {
-  return (
-    <Flex flexDir="column" textAlign={"center"} mx={"auto"}>
-      <Text fontSize={"2xl"}>User Not Found</Text>
-      <Link
-        as={RouterLink}
-        to={"/"}
-        color={"blue.500"}
-        w={"max-content"}
-        mx={"auto"}
-      >
-        Go home
-      </Link>
-    </Flex>
-  );
-};

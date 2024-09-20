@@ -10,7 +10,6 @@ import { useState, useRef } from "react";
 import { OAuthButtonGroup } from "../components/shared/OAuthButtonGroup";
 import AuthFormContent from "../components/shared/AuthFormContent";
 import AuthSwitcher from "../components/ui/AuthSwitcher";
-import useLogin from "../hooks/useLogin";
 
 const AuthPage = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -23,7 +22,6 @@ const AuthPage = () => {
     fname: "",
   });
   const inputRef = useRef(null);
-  const { loading, error, login } = useLogin();
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const LogoImage = "/logo_b.png";
 
@@ -31,19 +29,6 @@ const AuthPage = () => {
     onToggle();
     if (inputRef.current) {
       inputRef.current.focus({ preventScroll: true });
-    }
-  };
-
-  const handleSubmit = () => {
-    if (isLogin) {
-      login(inputs);
-    } else {
-      if (inputs.password !== inputs.confirmPassword) {
-        setPasswordsMatch(false);
-      } else {
-        setPasswordsMatch(true);
-        // Вызов функции для регистрации
-      }
     }
   };
 
@@ -74,12 +59,8 @@ const AuthPage = () => {
                 Space for your shopping ideas
               </Heading>
               <AuthFormContent
-                isLogin={isLogin}
                 inputs={inputs}
                 setInputs={setInputs}
-                handleSubmit={handleSubmit}
-                loading={loading}
-                error={error}
                 passwordsMatch={passwordsMatch}
                 onClickReveal={onClickReveal}
                 isOpen={isOpen}

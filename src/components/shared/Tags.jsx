@@ -1,13 +1,33 @@
 import { Tag, TagLabel, TagCloseButton, Input, Button } from "@chakra-ui/react";
+import { useState } from "react";
 
-const Tags = ({ tags }) => {
+const Tags = ({ initialTags }) => {
+  const [tags, setTags] = useState(initialTags || []);
+  const [newTag, setNewTag] = useState("");
+
+  const removeTag = (tagToRemove) => {
+    setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
+  };
+
+  const addTag = () => {
+    if (newTag && !tags.includes(newTag)) {
+      setTags((prevTags) => [...prevTags, newTag]);
+      setNewTag("");
+    }
+  };
+
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="tags">
         Tags
       </label>
       <div className="flex gap-2">
-        <Input placeholder="Editor username" id="tags" />
+        <Input
+          placeholder="Vibe chill"
+          id="tags"
+          value={newTag}
+          onChange={(e) => setNewTag(e.target.value)}
+        />
         <Button
           variant="outline"
           position="relative"
@@ -35,16 +55,17 @@ const Tags = ({ tags }) => {
             borderRadius: "md",
             zIndex: -1,
           }}
+          onClick={addTag}
         >
           Add Tag
         </Button>
       </div>
       <div className="mt-2 gap-1 flex">
-        {tags.map((tag) => {
+        {tags?.map((tag) => {
           return (
             <Tag size="lg" variant="outline" borderRadius="full">
               <TagLabel>{tag}</TagLabel>
-              <TagCloseButton />
+              <TagCloseButton onClick={() => removeTag(tag)} />
             </Tag>
           );
         })}
