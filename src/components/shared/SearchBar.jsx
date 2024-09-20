@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Box, Flex, Button, Image } from "@chakra-ui/react";
-import Buttons from "../ui/Buttons"; // Используем компонент Buttons
-import SearchField from "../ui/SearchField"; // Импорт компонента SearchField
+import { Box, Flex, Button, Image, useBreakpointValue } from "@chakra-ui/react";
+import Buttons from "../ui/Buttons";
+import SearchField from "../ui/SearchField";
 
 const SearchBar = () => {
   const [activeButton, setActiveButton] = useState("Ideas");
+
+  // Брейкпоинт для определения мобильной версии
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -18,8 +21,16 @@ const SearchBar = () => {
   ];
 
   return (
-    <Flex justify="space-between" align="center" width="100%" py={4}>
-      <Flex gap={2}>
+    <Flex
+      direction={isMobile ? "column" : "row"}
+      justify={isMobile ? "flex-start" : "space-between"}
+      align="center"
+      width="100%"
+      py={4}
+    >
+      <Flex gap={2} mb={isMobile ? 4 : 0}>
+        {" "}
+        {/* Отступ для мобильной версии */}
         {buttonOptions.map(({ value, icon }) => (
           <Buttons
             key={value}
@@ -31,7 +42,9 @@ const SearchBar = () => {
         ))}
       </Flex>
 
-      <Flex align="center" gap={2}>
+      <Flex align="center" gap={2} width={isMobile ? "100%" : "auto"}>
+        {" "}
+        {/* На мобильной версии 100% ширина */}
         <Button
           variant="outline"
           colorScheme="gray"
@@ -41,7 +54,8 @@ const SearchBar = () => {
         >
           <Image src="/configureIcon.svg" alt="Configure Icon" boxSize="20px" />
         </Button>
-        <SearchField /> {/* Вставляем компонент строки поиска */}
+        <SearchField isMobile={isMobile} />{" "}
+        {/* Передаем пропс для управления размерами */}
       </Flex>
     </Flex>
   );
