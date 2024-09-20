@@ -9,6 +9,7 @@ import PageLayout from "./Layouts/PageLayout/PageLayout";
 import ProfilePage from "./pages/ProfilePage";
 import ProductPage from "./pages/ProductPage";
 import CreatePostPage from "./pages/CreatePostPage";
+import DiscoverPage from "./pages/DiscoverPage";
 
 function App() {
   const [authUser] = [null]; // useAuthState(auth);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/create/post" element={<CreatePostPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/:username" element={<ProfilePage />} />
+        <Route path="/discover" element={<DiscoverPage />}/>
       </Route>
     </Routes>
   );

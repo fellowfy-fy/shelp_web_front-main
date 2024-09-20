@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import { Container, Flex, Text } from "@chakra-ui/react";
-import UsersViewSelection from "../components/shared/UsersViewSelection.jsx";
-import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
-import UserCard from "../components/ui/UserCard.jsx";
-import HorizontalUsersView from "../components/ui/HorizontalUsersView.jsx";
-import CollectionCard from "../components/ui/CollectionCard.jsx";
-import PostProductsBar from "../components/shared/PostsProductsBar.jsx";
-import MasonryGrid from "../components/shared/MasonryGrid.jsx";
+import React, { useRef, useState } from "react";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { Center, Container, Flex } from "@chakra-ui/react";
+import MasonryGrid from "../components/shared/MasonryGrid";
+import SearchBar from "../components/shared/SearchBar";
+import LoadMoreButton from "../components/ui/LoadMoreButton";
 
-const HomePage = () => {
+const DiscoverPage = () => {
   const [selectedContentType, setSelectedContentType] = useState("Trending");
+  const handleContentTypeChange = (value) => {
+    setSelectedContentType(value);
+  };
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Sample data for the collection
+  // Sample data for the collections
   const collectionPosts = [
     {
       imageUrl:
@@ -132,143 +134,20 @@ const HomePage = () => {
     },
   ];
 
-  const usersData = [
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-    {
-      username: "nkchaudhary01",
-      fullName: "John Doe",
-      profileUrl: "/profile/1",
-    },
-  ];
-
-  const handleContentTypeChange = (value) => {
-    setSelectedContentType(value);
-  };
-
-  // Render users dynamically based on selected content type
-  const renderUsers = () => {
-    return usersData.map((user, index) => (
-      <UserCard
-        key={index}
-        imageUrl="/img1.png"
-        username={user.username}
-        fullName={user.fullName}
-        profileUrl={user.profileUrl}
-      />
-    ));
-  };
-
   return (
     <Container maxW="container.xl" py={5}>
-      {/* Select Content Type */}
       <Flex justify="left" pb={5} pt={10}>
-        <UsersViewSelection onChange={handleContentTypeChange} />
+        <SearchBar onChange={handleContentTypeChange} />
       </Flex>
       <hr />
 
-      <Flex align="center" mb={4} pt={5} justifyContent="space-between">
-        <Text
-          className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
-        >
-          Shoppers
-        </Text>
-        <button>See all</button>
-      </Flex>
-
-      {/* Display Selected User Type */}
-      <Flex py={10} gap={4} overflowX="auto">
-        <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
-      </Flex>
-
-      {/* My Collections Section */}
-      <Flex align="center" mb={4} justifyContent="space-between">
-        <Text
-          className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
-        >
-          Collections
-        </Text>
-        <button>See all</button>
-      </Flex>
-
-      {/* Collections Cards */}
-      <Flex
-        gap={4}
-        overflowX="auto"
-        className="scrollbar-hide snap-x snap-mandatory"
-      >
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-      </Flex>
-
-      <PostProductsBar />
       <MasonryGrid posts={collectionPosts} />
 
-      <Flex justify="center">
+      <Center>
         <LoadMoreButton />
-      </Flex>
+      </Center>
     </Container>
   );
 };
 
-export default HomePage;
+export default DiscoverPage;
