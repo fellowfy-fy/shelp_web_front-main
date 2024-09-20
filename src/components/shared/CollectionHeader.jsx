@@ -6,10 +6,10 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import ProfileActions from "./CollectionActions";
 import CollectionDescription from "../ui/CollectionDescription";
 import CollectionInfo from "./CollectionInfo";
-import { useDisclosure } from "@chakra-ui/react";
 
 const CollectionHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

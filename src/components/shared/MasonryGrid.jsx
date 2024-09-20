@@ -8,7 +8,7 @@ const MasonryGrid = ({ posts }) => {
     <Box width="100%" py={10}>
       <ResponsiveMasonry
         columnsCountBreakPoints={{
-          350: 1,
+          350: 2,
           750: 2,
           900: 3,
           1200: 4,
