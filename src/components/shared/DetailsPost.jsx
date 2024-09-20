@@ -1,7 +1,7 @@
 import { Textarea, Input } from "@chakra-ui/react";
 
-import Tags from "../components/shared/Tags";
-import ProductsInCollection from "../components/shared/ProductsInCollection";
+import Tags from "./Tags";
+import ProductsInCollection from "./ProductsInCollection";
 
 const DetailsPost = ({ tags, posts }) => {
   return (

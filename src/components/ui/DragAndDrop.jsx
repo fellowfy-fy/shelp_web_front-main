@@ -14,7 +14,7 @@ import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import SortableItem from "./SortableItem";
+import SortableItem from "../ui/SortableItem";
 
 const DragAndDrop = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);

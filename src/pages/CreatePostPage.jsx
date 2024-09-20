@@ -1,4 +1,4 @@
-import CreatePost from "../tempComponents/CreatePost";
+import CreatePost from "../components/shared/CreatePost";
 import { Container } from "@chakra-ui/react";
 
 const CreatePostPage = () => {

@@ -1,4 +1,4 @@
-import DragAndDrop from "./DragAndDrop";
+import DragAndDrop from "../ui/DragAndDrop";
 import DetailsPost from "./DetailsPost";
 
 const CreatePost = () => {
