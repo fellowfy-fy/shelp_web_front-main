@@ -51,7 +51,6 @@ const ItemCard = ({
 
   return (
     <>
-      {/* Карточка */}
       <Box
         width={cardWidth}
         boxShadow="0px 10px 40px rgba(222, 230, 237, 0.4)"
