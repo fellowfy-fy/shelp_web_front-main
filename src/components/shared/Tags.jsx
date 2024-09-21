@@ -27,6 +27,7 @@ const Tags = ({ initialTags }) => {
           id="tags"
           value={newTag}
           onChange={(e) => setNewTag(e.target.value)}
+          mt={2}
         />
         <Button
           variant="outline"

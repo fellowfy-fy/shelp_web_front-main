@@ -8,7 +8,8 @@ const Buttons = ({ value, icon, isActive, onClick }) => {
         cursor="pointer"
         borderWidth="0"
         borderRadius="md"
-        boxShadow={isActive ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "none"}
+        boxShadow={isActive ? "0px 4px 4px rgba(0, 0, 0, 0.25)" : "none"}
+        border={isActive ? "1px solid #ECECEC" : "none"}
         _hover={{
           backgroundColor: "gray.100",
         }}

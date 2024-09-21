@@ -3,9 +3,20 @@ import { Flex, Box } from "@chakra-ui/react";
 
 const HorizontalUsersView = ({ children, gap = 4 }) => {
   return (
-    <Flex justify="center" className="scrollbar-hide">
+    <Flex
+      justify="center"
+      overflowX="auto"
+      whiteSpace="nowrap"
+      sx={{
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+        "-ms-overflow-style": "none" /* IE и Edge */,
+        "scrollbar-width": "none" /* Firefox */,
+      }}
+    >
       {React.Children.map(children, (child, index) => (
-        <Box mx={gap} key={index}>
+        <Box mx={gap} key={index} display="inline-block">
           {child}
         </Box>
       ))}

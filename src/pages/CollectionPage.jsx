@@ -132,8 +132,8 @@ const CollectionPage = (props) => {
   ];
 
   return (
-    <Container maxW="container.xl" py={5}>
-      <Box pb={10}>
+    <Container maxW="container.xl" pt={5}>
+      <Box>
         <Container maxW={"container.xl"}>
           <Button
             my={5}
@@ -149,10 +149,10 @@ const CollectionPage = (props) => {
           <CollectionHeader />
         </Flex>
       </Box>
-      <Container mb={20} maxW={"container.xl"}>
+      <Container maxW={"container.xl"}>
         <SearchBar />
         {/* Feed Posts Section */}
-        <Box width="100%" py={10}>
+        <Box width="100%" pt={10}>
           {" "}
           <ResponsiveMasonry
             columnsCountBreakPoints={{

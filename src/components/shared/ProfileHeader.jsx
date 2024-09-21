@@ -11,7 +11,6 @@ import {
 import ProfileActions from "./ProfileActions";
 import UserDescription from "../ui/UserDescription";
 import UserInfo from "./UserInfo";
-import EditProfile from "./EditProfile";
 import { useDisclosure } from "@chakra-ui/react";
 
 const ProfileHeader = () => {
@@ -116,9 +115,6 @@ const ProfileHeader = () => {
           />
         </VStack>
       </Flex>
-
-      {/* Modal for editing profile (if open) */}
-      {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
 };

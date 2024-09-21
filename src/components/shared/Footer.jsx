@@ -19,6 +19,7 @@ const Footer = () => {
       minH={70}
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
+      mt={10} // Добавлен отступ в 40px сверху
     >
       <Container
         as={Stack}
@@ -29,9 +30,8 @@ const Footer = () => {
         align={{ base: "center", md: "center" }}
       >
         <Box>
-          {" "}
           <img
-            class="mt-1 mb-1 mx-auto h-12 w-auto text-center"
+            className="mt-1 mb-1 mx-auto h-12 w-auto text-center"
             src={LogoImage}
             alt="Shelp"
           />

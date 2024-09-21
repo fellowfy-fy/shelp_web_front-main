@@ -1,6 +1,6 @@
 import React from "react";
 import { Center, Box, Container, Flex, Text } from "@chakra-ui/react";
-import CollectionHeader from "../components/shared/CollectionHeader";
+import ProfileHeader from "../components/shared/ProfileHeader";
 import SearchBar from "../components/shared/SearchBar";
 import MasonryGrid from "../components/shared/MasonryGrid";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
@@ -134,7 +134,7 @@ const ProfilePage = () => {
       <Box pb={10}>
         <GoBackButton />
         <Flex align="center" justify="center">
-          <CollectionHeader />
+          <ProfileHeader />
         </Flex>
         <Flex align="center" mb={4} justifyContent="space-between">
           <Text

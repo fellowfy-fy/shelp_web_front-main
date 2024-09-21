@@ -7,14 +7,15 @@ const SearchField = ({ isMobile }) => {
     <InputGroup
       style={{
         width: isMobile ? "100%" : "419px",
-        height: "50px",
+        height: "40px",
         background: "#F9F9FB",
         border: "1px solid #C4C4C4",
         borderRadius: "8px",
         boxShadow: "none",
+        overflow: "hidden",
       }}
     >
-      <InputLeftElement pointerEvents="none">
+      <InputLeftElement pointerEvents="none" height="100%">
         <SearchIcon color="black" />
       </InputLeftElement>
       <Input
@@ -27,9 +28,11 @@ const SearchField = ({ isMobile }) => {
         background="#F9F9FB"
         border="none"
         borderRadius="8px"
+        height="100%"
         _focus={{
           boxShadow: "none",
         }}
+        paddingY="8px"
       />
     </InputGroup>
   );

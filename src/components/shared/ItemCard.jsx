@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Image,
@@ -28,11 +29,25 @@ const ItemCard = ({
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure(); // Для управления модальным окном
 
+  const [isExpanded, setIsExpanded] = useState(false); // Состояние для управления раскрытием текста
+
   const handleImageClick = () => navigate("/testcontent");
   const handleUserClick = () => navigate(`/${author.username}`);
 
   // Использование хука для изменения размера в зависимости от брейкпоинта
   const cardWidth = useBreakpointValue({ base: "165px", sm: "300px" });
+
+  // Функция для обрезки текста до 20 символов
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength ? text.substring(0, maxLength) : text;
+  };
+
+  // Обработчик для переключения раскрытия текста
+  const handleToggleText = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const shouldShowMore = title.length > 45; // Если текст больше 45 символов
 
   return (
     <>
@@ -124,9 +139,29 @@ const ItemCard = ({
             </Text>{" "}
             and {likesNum} others
           </Text>
-          <Text fontSize="12px" fontWeight="400" color="#1B1D28" mb="2">
-            &#8220; {title}... <button>(More)</button>
+
+          {/* Если текст больше 45 символов, добавляем кнопку "More", иначе показываем текст целиком */}
+          <Text
+            fontSize="12px"
+            fontWeight="400"
+            color="#1B1D28"
+            mb="2"
+            noOfLines={!isExpanded && shouldShowMore ? 1 : null}
+          >
+            {isExpanded || !shouldShowMore ? title : truncateText(title, 45)}{" "}
+            {shouldShowMore && !isExpanded ? "..." : ""}
+            {shouldShowMore && (
+              <>
+                <button
+                  onClick={handleToggleText}
+                  style={{ color: "black", fontWeight: "bold" }}
+                >
+                  ({isExpanded ? "Less" : "More"})
+                </button>
+              </>
+            )}
           </Text>
+
           <Text fontSize="10px" fontWeight="400" color="#76777E">
             {publishDate}
           </Text>
