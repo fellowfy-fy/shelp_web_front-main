@@ -4,8 +4,7 @@ import { FaHeart, FaRegBookmark, FaTimes } from "react-icons/fa";
 const CardView = ({ card, onDelete }) => {
   return (
     <Box
-      border="1px solid #ddd"
-      borderRadius="8px"
+      borderRadius="16px"
       overflow="hidden"
       position="relative"
       width="250px"
@@ -26,7 +25,13 @@ const CardView = ({ card, onDelete }) => {
       />
 
       {/* Image */}
-      <Image src={card.imageUrl} alt={card.title} width="100%" height="auto" />
+      <Image
+        src={card.imageUrl}
+        alt={card.title}
+        width="100%"
+        height="auto"
+        borderRadius="16px"
+      />
 
       {/* Info Section */}
       <Box p="8px">

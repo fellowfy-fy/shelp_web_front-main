@@ -1,4 +1,3 @@
-// UserMenu.jsx
 import React from "react";
 import {
   Avatar,
@@ -9,7 +8,7 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 
-const UserMenu = () => {
+const UserMenu = ({ onLogout }) => {
   return (
     <Menu offset={[0, 15]}>
       <MenuButton
@@ -48,7 +47,9 @@ const UserMenu = () => {
             Profile
           </div>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={onLogout}>
+          {" "}
+          {/* Вызываем функцию для logout */}
           <div className="flex gap-2 font-bold text-sm">
             <img src="/logoutIcon.svg" alt="Logout Icon" width="20px" />
             Logout

@@ -10,7 +10,7 @@ const DetailsPost = ({ tags, posts }) => {
         <label className="text-xl font-semibold" htmlFor="name">
           Post title
         </label>
-        <Input placeholder="Summer looks" id="name" />
+        <Input placeholder="Summer looks" id="name" minW="auto" maxW="3000px" />
       </div>
       <div>
         <label className="text-xl font-semibold" htmlFor="description">
@@ -20,6 +20,8 @@ const DetailsPost = ({ tags, posts }) => {
           placeholder="Post tMy specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the ext"
           id="description"
           resize="vertical"
+          minW="auto"
+          maxW="3000px"
         />
       </div>
       <Tags initialTags={tags} />

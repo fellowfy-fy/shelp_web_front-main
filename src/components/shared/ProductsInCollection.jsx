@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Divider } from "@chakra-ui/react";
+import { Button, Divider, Flex } from "@chakra-ui/react";
 import CardView from "./CardView";
 import AddProductModal from "./AddProductModal"; // Импортируем новый компонент
 
@@ -38,13 +38,14 @@ const ProductsInCollection = ({ initialCollectionPosts }) => {
         </Button>
       </div>
       <Divider />
-      <div className="flex gap-2">
+      {/* Используем Flex и меняем направление в зависимости от экрана */}
+      <Flex direction={{ base: "column", md: "row" }} gap={2}>
         {collectionPosts?.map((card, index) => (
           <div key={index}>
             <CardView card={card} onDelete={handleDeleteCard} />
           </div>
         ))}
-      </div>
+      </Flex>
       <Button
         bg="black"
         color="white"

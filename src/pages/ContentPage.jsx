@@ -1,9 +1,8 @@
-import { Container, Flex, Box, VStack, Text } from "@chakra-ui/react";
+import { Container, Flex, Box, VStack, Text, Center } from "@chakra-ui/react";
 import GoBackButton from "../components/ui/GoBackButton.jsx";
-import PostDetails from "../components/tempComponentsForContentPage/shared/PostDetails";
-import ProductDetails from "../components/tempComponentsForContentPage/shared/ProductDetails";
-import CommentSection from "../components/tempComponentsForContentPage/shared/CommentSection";
 import MasonryGrid from "../components/shared/MasonryGrid.jsx";
+import ProductDetails from "../components/shared/ProductDetails.jsx";
+import LoadMoreButton from "../components/ui/LoadMoreButton";
 
 const ContentPage = ({ isProductPage, contentData }) => {
   // Add fallback to ensure contentData and its properties exist
@@ -134,25 +133,23 @@ const ContentPage = ({ isProductPage, contentData }) => {
   return (
     <Container maxW="container.xl">
       <GoBackButton />
+      <ProductDetails />
+      <Center>
+        <Text fontWeight="semibold" fontSize="22px" mb="20px">
+          Related products and ideas
+        </Text>
+      </Center>
+      <hr />
       <Flex gap={5}>
-        <Box flex={5}>
-          {isProductPage ? (
-            <ProductDetails product={contentData} />
-          ) : (
-            <PostDetails post={contentData} />
-          )}
-        </Box>
-        <Box flex={5}>
-          {comments.length > 0 ? (
-            <CommentSection comments={comments} />
-          ) : (
-            <Text>No comments available</Text> // Handle the case where no comments are present
-          )}
-        </Box>
+        <Box flex={5}></Box>
+        <Box flex={5}></Box>
       </Flex>
       <VStack mt={10}>
         <MasonryGrid posts={collectionPosts} />
       </VStack>
+      <Center>
+        <LoadMoreButton />
+      </Center>
     </Container>
   );
 };

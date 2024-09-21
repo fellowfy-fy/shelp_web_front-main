@@ -5,7 +5,7 @@ import ItemCard from "./ItemCard.jsx";
 
 const MasonryGrid = ({ posts }) => {
   return (
-    <Box width="100%" py={10}>
+    <Box width="100%">
       <ResponsiveMasonry
         columnsCountBreakPoints={{
           350: 2,
