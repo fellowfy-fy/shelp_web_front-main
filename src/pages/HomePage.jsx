@@ -228,12 +228,12 @@ const HomePage = () => {
   return (
     <Container maxW="container.xl" py={5}>
       {/* Select Content Type */}
-      <Flex justify="left" pb={5} pt={10}>
+      <Flex justify="left" mb={5} mt={10}>
         <UsersViewSelection onChange={handleContentTypeChange} />
       </Flex>
       <hr />
 
-      <Flex align="center" mb={4} pt={5} justifyContent="space-between">
+      <Flex align="center" mb={4} mt={5} justifyContent="space-between">
         <Text
           className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
           whiteSpace="nowrap" // Prevent the text from wrapping

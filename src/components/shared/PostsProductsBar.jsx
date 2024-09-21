@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Center } from "@chakra-ui/react";
 import Buttons from "../ui/Buttons";
-import SearchField from "../ui/SearchField";
 
 const PostsProductsBar = () => {
   const [activeButton, setActiveButton] = useState("ideas");
@@ -17,13 +16,12 @@ const PostsProductsBar = () => {
   ];
 
   return (
-    <div className="flex justify-between mt-10">
-      <Text
-        className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-        whiteSpace="nowrap"
-      >
-        Posts and Products
-      </Text>
+    <div className="flex justify-between mt-10 align-center">
+      <Center>
+        <div className="font-bold text-[20px] text-[#1B1D28]">
+          Posts and Products
+        </div>
+      </Center>
       <div className="flex gap-1">
         {buttonOptions.map(({ value, icon }) => (
           <Buttons

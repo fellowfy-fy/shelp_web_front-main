@@ -1,16 +1,22 @@
 import React from "react";
 import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 
-const Buttons = ({ value, icon, isActive, onClick }) => {
-  // Меняем направление элементов в зависимости от размера экрана
-  const flexDirection = useBreakpointValue({ base: "column", lg: "row" });
+const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
+  // Вызываем хуки безусловно
+  const defaultFlexDirection = useBreakpointValue({
+    base: "column",
+    lg: "row",
+  });
   const iconSize = useBreakpointValue({ base: "24px", md: "20px" });
   const fontSize = useBreakpointValue({ base: "xs", md: "md" });
 
+  // Используем значение либо из хуков, либо фиксированное
+  const flexDirection = disableResponsive ? "row" : defaultFlexDirection;
+
   return (
-    <Box as="button" onClick={onClick} width="100%">
+    <Box as="button" onClick={onClick}>
       <Flex
-        direction={flexDirection} // Меняем расположение текста и иконки
+        direction={flexDirection}
         align="center"
         justify="center"
         cursor="pointer"
@@ -24,19 +30,19 @@ const Buttons = ({ value, icon, isActive, onClick }) => {
         px={5}
         py={3}
         transition="all 0.2s ease"
-        bg={isActive ? "white" : "transparent"} // выделение активной кнопки
+        bg={isActive ? "white" : "transparent"}
       >
         {/* Иконка */}
         <Image
           src={icon}
           alt={`${value} icon`}
           boxSize={iconSize}
-          mb={flexDirection === "column" ? 1 : 0} // Отступ снизу для мобильной версии
-          mr={flexDirection === "row" ? 2 : 0} // Отступ справа для больших экранов
+          mb={flexDirection === "column" ? 1 : 0}
+          mr={flexDirection === "row" ? 2 : 0}
         />
 
         {/* Текст */}
-        <Text fontSize={fontSize} textAlign="center">
+        <Text fontSize={fontSize} textAlign="center" width={"100%"}>
           {value}
         </Text>
       </Flex>

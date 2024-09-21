@@ -10,7 +10,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import ModalComponent from "./ModalComponent"; // Импортируем модальное окно
+import { FaHeart, FaRegBookmark } from "react-icons/fa";
+import ModalComponent from "./ModalComponent";
 
 const Like = "/Like.svg";
 const Favorite = "/Favorite.svg";
@@ -22,7 +23,6 @@ const ItemCard = ({
   imageUrl,
   title,
   publishDate,
-  likesNum,
   author,
   isAuthenticated,
 }) => {
@@ -54,8 +54,6 @@ const ItemCard = ({
       {/* Карточка */}
       <Box
         width={cardWidth}
-        backgroundColor="white"
-        border="1px solid #F0F6FD"
         boxShadow="0px 10px 40px rgba(222, 230, 237, 0.4)"
         borderRadius="12px"
         overflow="hidden"
@@ -98,54 +96,37 @@ const ItemCard = ({
             width="100%"
             objectFit="cover"
             className="aspect-auto"
+            borderRadius="15px"
           />
         </Box>
 
         <Box p="4">
-          <Flex mb="2" justifyContent="space-between" alignItems="center">
-            <Flex>
-              <IconButton
-                icon={<Image src={Like} alt="Like" />}
-                variant="ghost"
-                aria-label="Like"
-              />
-              <IconButton
-                icon={<Image src={Comment} alt="Comment" />}
-                variant="ghost"
-                aria-label="Comment"
-              />
-              <IconButton
-                icon={<Image src={Send} alt="Send" />}
-                variant="ghost"
-                aria-label="Send"
-              />
+          <Flex justify="space-between" align="center">
+            <Text fontSize="10px" fontWeight="400" color="#76777E">
+              {publishDate}
+            </Text>
+            <Flex align="center" gap={3} justifyContent={"right"}>
+              <button className="flex items-center">
+                <FaRegBookmark />
+                <Text ml="4px" fontSize="sm">
+                  123
+                </Text>
+              </button>
+              <button className="flex items-center">
+                <FaHeart ml="8px" color="red" />
+                <Text ml="4px" fontSize="sm">
+                  123
+                </Text>
+              </button>
             </Flex>
-            <IconButton
-              icon={<Image src={Favorite} alt="Save" />}
-              variant="ghost"
-              aria-label="Save"
-            />
           </Flex>
-          <Text fontSize="12px" fontWeight="600" color="#1B1D28" mb="2">
-            Liked by{" "}
-            <Text
-              as="button"
-              onClick={handleUserClick}
-              cursor="pointer"
-              fontWeight="bold"
-              display="inline"
-            >
-              Jessica
-            </Text>{" "}
-            and {likesNum} others
-          </Text>
 
           {/* Если текст больше 45 символов, добавляем кнопку "More", иначе показываем текст целиком */}
           <Text
             fontSize="12px"
             fontWeight="400"
             color="#1B1D28"
-            mb="2"
+            my="2"
             noOfLines={!isExpanded && shouldShowMore ? 1 : null}
           >
             {isExpanded || !shouldShowMore ? title : truncateText(title, 45)}{" "}
@@ -160,10 +141,6 @@ const ItemCard = ({
                 </button>
               </>
             )}
-          </Text>
-
-          <Text fontSize="10px" fontWeight="400" color="#76777E">
-            {publishDate}
           </Text>
         </Box>
       </Box>
