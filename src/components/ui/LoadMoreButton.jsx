@@ -6,7 +6,7 @@ const LoadMoreButton = ({ onClick }) => {
     <Button
       border="1px"
       px={20}
-      borderRadius={20}
+      borderRadius={10}
       background="transparent"
       borderColor="black"
       _hover={{ background: "black", color: "white" }}

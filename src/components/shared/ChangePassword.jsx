@@ -75,10 +75,24 @@ const ChangePassword = ({ username }) => {
 
       {/* Update and Cancel Buttons */}
       <Box display="flex" justifyContent="space-between">
-        <Button bg="black" color="white" _hover={{ bg: "blackAlpha.800" }}>
+        <Button
+          bg="black"
+          color="white"
+          _hover={{ bg: "blackAlpha.800" }}
+          w="190px"
+          h="50px"
+          borderRadius="10px"
+        >
           Update
         </Button>
-        <Button variant="outline" colorScheme="gray">
+        <Button
+          variant="outline"
+          colorScheme="gray"
+          w="190px"
+          h="50px"
+          borderRadius="10px"
+          background="#E9E9E9"
+        >
           Cancel
         </Button>
       </Box>

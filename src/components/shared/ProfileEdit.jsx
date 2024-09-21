@@ -13,8 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { FaTimes } from "react-icons/fa";
 import Tags from "./Tags";
-
+import DragAndDrop from "../ui/DragAndDrop";
 import { Link as ChakraLink } from "@chakra-ui/react";
+
 const ProfileEdit = () => {
   const [tags, setTags] = useState(["Summer", "Dresses"]);
   const [newTag, setNewTag] = useState("");
@@ -32,7 +33,7 @@ const ProfileEdit = () => {
   };
 
   return (
-    <Box p={8} maxWidth="500px" mx="auto" bg="white" borderRadius="10px">
+    <Box p={8} maxWidth="700px" mx="auto" bg="white" borderRadius="10px">
       <Text fontSize="2xl" fontWeight="bold" mb={6}>
         Edit profile
       </Text>
@@ -59,15 +60,7 @@ const ProfileEdit = () => {
         </Box>
 
         <Box ml={6}>
-          <Button variant="outline" colorScheme="blue" size="sm">
-            Drag and drop or{" "}
-            <Text as="span" color="blue.500">
-              Browse
-            </Text>
-          </Button>
-          <Text fontSize="sm" color="gray.500">
-            Support all image formats
-          </Text>
+          <DragAndDrop width="630px" height="150px" hideAddMore />
         </Box>
       </Flex>
 
@@ -75,13 +68,18 @@ const ProfileEdit = () => {
       <Text fontWeight="bold" mb={2}>
         Full name
       </Text>
-      <Input placeholder="Full name" defaultValue="Summer looks" mb={4} />
+      <Input
+        placeholder="Full name"
+        defaultValue="Summer looks"
+        mb={4}
+        w="120%"
+      />
 
       {/* Email input */}
       <Text fontWeight="bold" mb={2}>
         Email
       </Text>
-      <Input placeholder="example@mail.com" mb={4} />
+      <Input placeholder="example@mail.com" mb={4} w="120%" />
 
       {/* Description */}
       <Text fontWeight="bold" mb={2}>
@@ -91,6 +89,7 @@ const ProfileEdit = () => {
         placeholder="Write something about yourself..."
         defaultValue="My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the ext"
         mb={4}
+        w="120%"
       />
 
       {/* Tags Section */}
@@ -107,17 +106,40 @@ const ProfileEdit = () => {
       </Flex>
 
       {/* Update and Cancel Buttons */}
-      <Flex>
-        <Button bg="black" color="white" _hover={{ bg: "blackAlpha.800" }}>
-          Update
-        </Button>
-        <Spacer />
-        <Button variant="outline" colorScheme="gray">
-          Cancel
-        </Button>
-        <Spacer />
-        <ChakraLink href="/profile/password">
-          <Button variant="outline" colorScheme="gray">
+      <Flex direction="column" align="flex-start" w="100%">
+        {/* Кнопки Update и Cancel */}
+        <Flex justify="flex-start" align="center" gap="30px" mb={4}>
+          <Button
+            bg="black"
+            color="white"
+            _hover={{ bg: "blackAlpha.800" }}
+            w="190px"
+            h="50px"
+            borderRadius="10px"
+          >
+            Update
+          </Button>
+          <Button
+            variant="outline"
+            colorScheme="gray"
+            w="190px"
+            h="50px"
+            borderRadius="10px"
+            background="#E9E9E9"
+          >
+            Cancel
+          </Button>
+        </Flex>
+
+        {/* Кнопка Change Password */}
+        <ChakraLink href="/profile/password" w="100%">
+          <Button
+            variant="outline"
+            colorScheme="gray"
+            w="410px"
+            h="50px"
+            borderRadius="10px"
+          >
             Change Password
           </Button>
         </ChakraLink>

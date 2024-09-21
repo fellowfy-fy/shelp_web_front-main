@@ -16,13 +16,16 @@ import {
 } from "@dnd-kit/sortable";
 import SortableItem from "../ui/SortableItem";
 
-const DragAndDrop = () => {
+const DragAndDrop = ({
+  width = "450px",
+  height = "300px",
+  hideAddMore = false,
+}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [firstImageUrl, setFirstImageUrl] = useState(null);
   const nextIdRef = useRef(0);
 
   useEffect(() => {
-    // Cleanup previous URL
     if (firstImageUrl) {
       URL.revokeObjectURL(firstImageUrl);
     }
@@ -86,7 +89,6 @@ const DragAndDrop = () => {
     }
   };
 
-  // Initialize sensors
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -103,8 +105,8 @@ const DragAndDrop = () => {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         bg="gray.50"
-        width="450px"
-        height="300px"
+        width={width}
+        height={height}
         position="relative"
         overflow="hidden"
       >
@@ -160,7 +162,6 @@ const DragAndDrop = () => {
         )}
       </Box>
 
-      {/* Preview Area */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -179,11 +180,11 @@ const DragAndDrop = () => {
                 handleDelete={handleDelete}
               />
             ))}
-            {selectedFiles.length < 5 && (
+            {/* Условие для скрытия кнопки добавления фото */}
+            {!hideAddMore && selectedFiles.length < 5 && (
               <Box
                 className="border-2 border-gray-300 rounded-lg w-20 h-20 flex items-center justify-center cursor-pointer"
                 onClick={() => {
-                  // Optional: Open file picker when clicking on the plus icon
                   document.querySelector('input[type="file"]').click();
                 }}
               >
