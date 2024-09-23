@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import React, { useState } from "react";
 import { Center, Container, Flex } from "@chakra-ui/react";
 import MasonryGrid from "../components/shared/MasonryGrid";
 import SearchBar from "../components/shared/SearchBar";
@@ -10,10 +9,6 @@ const DiscoverPage = () => {
   const handleContentTypeChange = (value) => {
     setSelectedContentType(value);
   };
-  const searchRef = useRef(null);
-  const navigate = useNavigate();
-
-  // Sample data for the collections
   const collectionPosts = [
     {
       imageUrl:

@@ -8,6 +8,7 @@ import HorizontalUsersView from "../components/ui/HorizontalUsersView.jsx";
 import CollectionCard from "../components/ui/CollectionCard.jsx";
 import PostProductsBar from "../components/shared/PostsProductsBar.jsx";
 import MasonryGrid from "../components/shared/MasonryGrid.jsx";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
   const [selectedContentType, setSelectedContentType] = useState("Trending");
@@ -224,6 +225,7 @@ const HomePage = () => {
       />
     ));
   };
+  const { t } = useTranslation();
 
   return (
     <Container maxW="container.xl" py={5}>
@@ -238,9 +240,9 @@ const HomePage = () => {
           className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
           whiteSpace="nowrap" // Prevent the text from wrapping
         >
-          Shoppers
+          {t("home-shoppers")}
         </Text>
-        <button onClick={handleSeeAllShoppers}>See all</button>
+        <button onClick={handleSeeAllShoppers}>{t("home-see-all")}</button>
       </Flex>
 
       {/* Display Selected User Type */}
@@ -254,9 +256,9 @@ const HomePage = () => {
           className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
           whiteSpace="nowrap" // Prevent the text from wrapping
         >
-          Collections
+          {t("home-collections")}
         </Text>
-        <button onClick={handleSeeAllCollections}>See all</button>
+        <button onClick={handleSeeAllCollections}>{t("home-see-all")}</button>
       </Flex>
 
       {/* Collections Cards */}

@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import {
-  HStack,
-  useRadioGroup,
-  useBreakpointValue,
-  Flex,
-} from "@chakra-ui/react";
+import { useRadioGroup, useBreakpointValue, Flex } from "@chakra-ui/react";
 import Buttons from "../ui/Buttons";
+import { useTranslation } from "react-i18next";
 
 const NewIcon = "/NewIcon.svg";
 const FollowedIcon = "/FollowedIcon.svg";
 const PopularIcon = "/PopularIcon.svg";
 
 const UsersViewSelection = ({ onChange }) => {
+  const { t } = useTranslation();
   const [activeButton, setActiveButton] = useState("New");
   // Брейкпоинт для определения мобильной версии
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -21,10 +18,10 @@ const UsersViewSelection = ({ onChange }) => {
   };
 
   const buttonOptions = [
-    { value: "New", icon: NewIcon },
-    { value: "Popular", icon: PopularIcon },
-    { value: "Followed", icon: FollowedIcon },
-    { value: "For You", icon: FollowedIcon },
+    { value: t("home-new"), icon: NewIcon },
+    { value: t("home-popular"), icon: PopularIcon },
+    { value: t("home-followed"), icon: FollowedIcon },
+    { value: t("home-for-you"), icon: FollowedIcon },
   ];
 
   const handleChange = (value) => {

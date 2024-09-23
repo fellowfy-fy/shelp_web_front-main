@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -7,38 +6,37 @@ import {
   HStack,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   useDisclosure,
   useColorModeValue,
   Stack,
   Center,
   Container,
-  Avatar,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink, NavLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import Buttons from "../ui/Buttons";
 import UserMenu from "./UserMenu";
 
 const PageHeader = () => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const LogoImage = "/logo_b.png";
 
-  // Опции для кнопок навигации
   const buttonOptions = [
-    { label: "Home", icon: "/homeIcon.svg", to: "/" },
-    { label: "Discover", icon: "/discoverIcon.svg", to: "/discover" },
+    { label: t("header-home"), icon: "/homeIcon.svg", to: "/" },
+    { label: t("header-discover"), icon: "/discoverIcon.svg", to: "/discover" },
   ];
 
-  // Если пользователь авторизован, добавляем дополнительные кнопки
   if (isAuthenticated) {
     buttonOptions.push(
-      { label: "Collected", icon: "/collectedIcon.svg", to: "/collected" },
-      { label: "Create", icon: "/createIcon.svg", to: "/create/post" }
+      {
+        label: t("header-collected"),
+        icon: "/collectedIcon.svg",
+        to: "/collected",
+      },
+      { label: t("header-create"), icon: "/createIcon.svg", to: "/create/post" }
     );
   }
 
@@ -110,20 +108,20 @@ const PageHeader = () => {
                 <>
                   <Button
                     as={ReactRouterLink}
-                    to="/login"
+                    to="/authorize"
                     variant="outline"
                     mr={2}
                   >
-                    Login
+                    {t("header-login")}
                   </Button>
                   <Button
                     as={ReactRouterLink}
-                    to="/register"
+                    to="/authorize"
                     bg="black"
                     color="white"
                     _hover={{ bg: "gray.700" }}
                   >
-                    Register
+                    {t("header-register")}
                   </Button>
                 </>
               ) : (
@@ -172,7 +170,6 @@ const PageHeader = () => {
           {/* Мобильное меню - показывается при нажатии гамбургера */}
           {isOpen ? (
             <Box pb={4} display={{ sm: "none" }}>
-              {" "}
               {/* Видно только на мобильных экранах */}
               <Stack as={"nav"} spacing={4}>
                 {buttonOptions.map(({ label, to }) => (

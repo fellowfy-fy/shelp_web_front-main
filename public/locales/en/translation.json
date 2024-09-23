@@ -1,0 +1,33 @@
+{
+    "header-home": "Home",
+    "header-discover": "Discover",
+    "header-collected": "Collected",
+    "header-create": "Create",
+    "header-profile": "Profile",
+    "header-logout": "Logout",
+    "header-login": "Login",
+    "header-register": "Register",
+
+    "home-new": "New",
+    "home-popular": "Popular",
+    "home-followed": "Followed",
+    "home-for-you": "For You",
+    "home-shoppers": "Shoppers",
+    "home-see-all": "See all",
+    "home-collections": "Collections",
+
+    "posts-and-products": "Posts and Products",
+    "posts": "Posts",
+    "products": "Products",
+    "load-more": "Load more",
+
+    "footer-rights": "Shelp FZ LLC © 2024 All rights reserved",
+    "footer-about": "About",
+    "footer-contact": "Contacts",
+
+    "search-ideas": "Ideas",
+    "search-products": "Products",
+    "search-collections": "Collections",
+    "search": "Search"
+
+}

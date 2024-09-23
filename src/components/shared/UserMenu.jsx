@@ -7,8 +7,10 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const UserMenu = ({ onLogout }) => {
+  const { t } = useTranslation();
   return (
     <Menu offset={[0, 15]}>
       <MenuButton
@@ -44,7 +46,7 @@ const UserMenu = ({ onLogout }) => {
         <MenuItem>
           <div className="flex gap-2 font-bold text-sm">
             <img src="/profileIcon.svg" alt="Profile Icon" width="20px" />
-            Profile
+            {t("header-profile")}
           </div>
         </MenuItem>
         <MenuItem onClick={onLogout}>
@@ -52,7 +54,7 @@ const UserMenu = ({ onLogout }) => {
           {/* Вызываем функцию для logout */}
           <div className="flex gap-2 font-bold text-sm">
             <img src="/logoutIcon.svg" alt="Logout Icon" width="20px" />
-            Logout
+            {t("header-logout")}
           </div>
         </MenuItem>
       </MenuList>

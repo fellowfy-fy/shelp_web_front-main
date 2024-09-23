@@ -1,8 +1,10 @@
 import React from "react";
 import { InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 const SearchField = ({ isMobile }) => {
+  const { t } = useTranslation();
   return (
     <InputGroup
       style={{
@@ -19,7 +21,7 @@ const SearchField = ({ isMobile }) => {
         <SearchIcon color="black" />
       </InputLeftElement>
       <Input
-        placeholder="Search"
+        placeholder={t("search")}
         fontSize={isMobile ? "16px" : "20px"}
         fontWeight="400"
         lineHeight="23px"

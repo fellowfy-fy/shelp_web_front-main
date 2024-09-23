@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const LoadMoreButton = ({ onClick }) => {
+  const { t } = useTranslation();
   return (
     <Button
       border="1px"
@@ -12,7 +14,7 @@ const LoadMoreButton = ({ onClick }) => {
       _hover={{ background: "black", color: "white" }}
       onClick={onClick}
     >
-      Load more
+      {t("load-more")}
     </Button>
   );
 };
