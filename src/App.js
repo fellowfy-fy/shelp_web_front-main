@@ -13,9 +13,11 @@ import DiscoverPage from "./pages/DiscoverPage";
 import ContentPage from "./pages/ContentPage";
 import ProfileEdit from "./components/shared/ProfileEdit";
 import ChangePassword from "./components/shared/ChangePassword";
+import CreateProductPage from "./pages/CreateProductPage";
+import DetailsProductPage from "./pages/DetailsProductPage";
 
 function App() {
-  const [authUser] = [null]; // useAuthState(auth);
+  const [authUser] = [null]; 
 
   return (
     <Routes>
@@ -30,6 +32,8 @@ function App() {
         <Route path="/profile/password" element={<ChangePassword />} />
         <Route path="/create/collection" element={<CreateCollection />} />
         <Route path="/create/post" element={<CreatePostPage />} />
+        <Route path="/create/add/product" element={<DetailsProductPage/>}/>
+        <Route path="/create/product" element={<CreateProductPage/>}/>
         <Route path="/product" element={<ProductPage />} />
         <Route path="/:username" element={<ProfilePage />} />
         <Route path="/discover" element={<DiscoverPage />} />
