@@ -5,7 +5,7 @@ import ProductsInCollection from "./ProductsInCollection";
 
 const DetailsPost = ({ tags, posts }) => {
   return (
-    <div div className="flex flex-col gap-3 mt-6">
+    <div div className="flex flex-col gap-3">
       <div>
         <label className="text-xl font-semibold" htmlFor="name">
           Post title

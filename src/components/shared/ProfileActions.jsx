@@ -21,7 +21,6 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             background="transparent"
             borderRadius="5px"
             border="2px solid black" // Add black border here
-            fontFamily="'Assistant'"
             fontWeight="700"
             fontSize="14px"
             lineHeight="18px"
@@ -35,7 +34,6 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             height="32px"
             background="#1B1D28"
             borderRadius="5px"
-            fontFamily="'Assistant'"
             fontWeight="700"
             fontSize="14px"
             lineHeight="18px"

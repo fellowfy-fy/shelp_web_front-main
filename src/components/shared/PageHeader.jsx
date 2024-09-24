@@ -22,6 +22,9 @@ const PageHeader = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isChatDotVisible, setIsChatDotVisible] = useState(true); // Состояние для кружка уведомлений на иконке чата
+  const [isNotificationDotVisible, setIsNotificationDotVisible] =
+    useState(true); // Состояние для кружка уведомлений на иконке уведомлений
   const LogoImage = "/logo_b.png";
 
   const buttonOptions = [
@@ -44,6 +47,10 @@ const PageHeader = () => {
   const handleLogout = () => {
     setIsAuthenticated(false);
   };
+
+  // Обработчики для скрытия кружков
+  const handleChatClick = () => setIsChatDotVisible(false);
+  const handleNotificationClick = () => setIsNotificationDotVisible(false);
 
   return (
     <>
@@ -126,41 +133,73 @@ const PageHeader = () => {
                 </>
               ) : (
                 <>
-                  <IconButton
-                    background={"transparent"}
-                    variant="solid"
-                    rounded={"full"}
-                    color={"black"}
-                    aria-label="Done"
-                    fontSize="19px"
-                    icon={
-                      <Box as="span">
-                        <img
-                          src="/chatIcon.svg"
-                          alt="icon"
-                          width="25px"
-                          height="25px"
-                        />
-                      </Box>
-                    }
-                  />
-                  <IconButton
-                    background={"transparent"}
-                    variant="solid"
-                    rounded={"full"}
-                    aria-label="Done"
-                    fontSize="19px"
-                    icon={
-                      <Box as="span">
-                        <img
-                          src="/notificationIcon.svg"
-                          alt="icon"
-                          width="40px"
-                          height="40px"
-                        />
-                      </Box>
-                    }
-                  />
+                  {/* Иконка чата с кружком уведомления */}
+                  <Box position="relative">
+                    <IconButton
+                      background={"transparent"}
+                      variant="solid"
+                      rounded={"full"}
+                      color={"black"}
+                      aria-label="Chat"
+                      fontSize="19px"
+                      onClick={handleChatClick}
+                      icon={
+                        <Box as="span">
+                          <img
+                            src="/chatIcon.svg"
+                            alt="icon"
+                            width="25px"
+                            height="25px"
+                          />
+                        </Box>
+                      }
+                    />
+                    {isChatDotVisible && (
+                      <Box
+                        position="absolute"
+                        width="10px"
+                        height="10px"
+                        background="#01D6B8"
+                        borderRadius="full"
+                        top="6px"
+                        right="6px"
+                      />
+                    )}
+                  </Box>
+
+                  {/* Иконка уведомлений с кружком уведомления */}
+                  <Box position="relative">
+                    <IconButton
+                      background={"transparent"}
+                      variant="solid"
+                      rounded={"full"}
+                      aria-label="Notification"
+                      fontSize="19px"
+                      onClick={handleNotificationClick}
+                      icon={
+                        <Box as="span">
+                          <img
+                            src="/notificationIcon.svg"
+                            alt="icon"
+                            width="40px"
+                            height="40px"
+                          />
+                        </Box>
+                      }
+                    />
+                    {isNotificationDotVisible && (
+                      <Box
+                        position="absolute"
+                        width="10px"
+                        height="10px"
+                        background="#01D6B8"
+                        borderRadius="full"
+                        top="6px"
+                        right="6px"
+                      />
+                    )}
+                  </Box>
+
                   <UserMenu onLogout={handleLogout} />
                 </>
               )}

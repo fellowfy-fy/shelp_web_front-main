@@ -54,7 +54,7 @@ const AddProductModal = ({ isOpen, onClose, collectionPosts, onDelete }) => {
       <Flex flexWrap="wrap" gap={4}>
         {collectionPosts?.map((card, index) => (
           <Box key={index}>
-            <CardView card={card} onDelete={onDelete} />
+            <CardView card={card} onDelete={onDelete} showDeleteButton={true} />
           </Box>
         ))}
       </Flex>

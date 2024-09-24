@@ -1,28 +1,30 @@
 import { Box, Image, Text, Flex, IconButton } from "@chakra-ui/react";
 import { FaHeart, FaRegBookmark, FaTimes } from "react-icons/fa";
 
-const CardView = ({ card, onDelete }) => {
+const CardView = ({ card, onDelete, showDeleteButton }) => {
   return (
     <Box
       borderRadius="16px"
       overflow="hidden"
       position="relative"
-      width="250px"
+      width="100%"
       bg="white"
     >
-      {/* Close Button */}
-      <IconButton
-        icon={<FaTimes />}
-        size="sm"
-        position="absolute"
-        top="8px"
-        right="8px"
-        bg="white"
-        borderRadius="50%"
-        boxShadow="md"
-        aria-label="Close"
-        onClick={() => onDelete(card.id)}
-      />
+      {/* Условно рендерим кнопку удаления */}
+      {showDeleteButton && (
+        <IconButton
+          icon={<FaTimes />}
+          size="sm"
+          position="absolute"
+          top="8px"
+          right="8px"
+          bg="white"
+          borderRadius="50%"
+          boxShadow="md"
+          aria-label="Close"
+          onClick={() => onDelete(card.id)}
+        />
+      )}
 
       {/* Image */}
       <Image
@@ -30,6 +32,7 @@ const CardView = ({ card, onDelete }) => {
         alt={card.title}
         width="100%"
         height="auto"
+        maxW={"200px"}
         borderRadius="16px"
       />
 

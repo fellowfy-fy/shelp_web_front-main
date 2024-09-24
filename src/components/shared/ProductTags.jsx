@@ -62,19 +62,16 @@ const ProductTags = () => {
             size="lg"
             variant="outline"
             borderRadius="full"
-            padding="4px 12px"
             display="flex"
-            alignItems="center"
             key={tag.id}
-            maxW="200px"
-            minW="150px"
+            width={"auto"}
           >
             <Avatar
-              size="xs" // Уменьшил размер аватара
+              size="sm"
               name={tag.name}
-              src={tag.image} // Используем изображение из данных
+              src={tag.image}
               borderRadius="full"
-              marginRight="8px"
+              ml={"-12px"}
             />
             <Flex alignItems="center" ml={1} isTruncated>
               <Text fontSize="md" fontWeight="medium" isTruncated>

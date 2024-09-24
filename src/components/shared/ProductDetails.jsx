@@ -7,10 +7,12 @@ import {
   Text,
   HStack,
   Divider,
+  IconButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { FaHeart, FaBookmark } from "react-icons/fa";
+import { FaHeart, FaBookmark, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"; // Импортируем хук useNavigate
+import Slider from "react-slick"; // Импортируем карусель
 import CardForPost from "./CardForPost";
 import Comments from "../ui/Comments";
 
@@ -48,6 +50,40 @@ const productData = {
   ],
 };
 
+// Кастомная левая стрелка
+const PrevArrow = ({ onClick }) => (
+  <IconButton
+    icon={<FaArrowLeft />}
+    position="absolute"
+    left="10px"
+    top="50%"
+    transform="translateY(-50%)"
+    bg="white"
+    borderRadius="full"
+    boxShadow="md"
+    aria-label="Previous Slide"
+    onClick={onClick}
+    zIndex={1}
+  />
+);
+
+// Кастомная правая стрелка
+const NextArrow = ({ onClick }) => (
+  <IconButton
+    icon={<FaArrowRight />}
+    position="absolute"
+    right="10px"
+    top="50%"
+    transform="translateY(-50%)"
+    bg="white"
+    borderRadius="full"
+    boxShadow="md"
+    aria-label="Next Slide"
+    onClick={onClick}
+    zIndex={1}
+  />
+);
+
 const ProductDetails = () => {
   const product = productData; // Статичные данные, которые потом можно заменить на данные из API
   const [liked, setLiked] = useState(false);
@@ -63,43 +99,59 @@ const ProductDetails = () => {
   const handleLike = () => setLiked(!liked);
   const handleSave = () => setSaved(!saved);
 
+  // Настройки для карусели
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   return (
     <Flex
-      direction={{ base: "column", md: "row" }}
+      direction={{ base: "column", xl: "row" }}
       gap={10}
       maxW="1200px"
       mx="auto"
       my={6}
     >
-      {/* Левая часть с изображением */}
-      <Box>
-        {product.imageUrl ? (
-          <Image
-            src={product.imageUrl}
-            alt={product.title || "Product Image"}
-            maxW="570px"
-            objectFit="cover"
-            borderRadius="15px"
-          />
-        ) : (
-          <Text>No image available</Text>
-        )}
+      {/* Левая часть с каруселью изображений */}
+      <Box width={{ base: "100%", xl: "50%" }} position="relative">
+        <Slider {...settings}>
+          {/* Слайдеры для изображений продукта */}
+          <Box>
+            <Image
+              src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDQ1MTZ8MHwxfGFsbHwyfHx8fHx8fHwxNjU4NDA3MTc0&ixlib=rb-1.2.1&q=80&w=1080"
+              alt="Product Image 1"
+              maxW="100%"
+              objectFit="cover"
+              borderRadius="15px"
+            />
+          </Box>
+          <Box>
+            <Image
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDQ1MTZ8MHwxfGFsbHwyfHx8fHx8fHwxNjU4NDA3MTc0&ixlib=rb-1.2.1&q=80&w=1080"
+              alt="Product Image 2"
+              maxW="100%"
+              objectFit="cover"
+              borderRadius="15px"
+            />
+          </Box>
+        </Slider>
       </Box>
 
       {/* Правая часть */}
       <Box flex="1">
         {/* Кнопки лайк и сейв */}
-        <HStack spacing={4} mb={4} gap="140px">
+        <HStack spacing={4} mb={4} justify={"space-between"}>
           <Box>
             <Button
               onClick={handleLike}
-              leftIcon={
-                liked ? (
-                  <FaHeart color="red" /> // Иконка с красным цветом для лайка
-                ) : (
-                  <FaHeart /> // Обычная иконка лайка
-                )
-              }
+              leftIcon={liked ? <FaHeart color="red" /> : <FaHeart />}
               variant="ghost"
             >
               {liked ? product.likes + 1 : product.likes}
@@ -212,6 +264,7 @@ const ProductDetails = () => {
             <CardForPost
               collectionPosts={product.collectionPosts}
               handleDeleteCard={() => {}}
+              showDeleteButton={false} // Передаем false, чтобы скрыть кнопку удаления
             />
           ) : (
             <Comments /> // Компонент для отображения комментариев

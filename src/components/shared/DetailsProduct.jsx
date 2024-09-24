@@ -11,7 +11,7 @@ import ProductTags from "./ProductTags";
 
 const DetailsProduct = ({ tags }) => {
   return (
-    <div className="flex flex-col gap-3 mt-6">
+    <div className="flex flex-col gap-3">
       <div>
         <label className="text-xl font-semibold" htmlFor="name">
           Post title
