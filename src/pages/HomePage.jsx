@@ -213,7 +213,6 @@ const HomePage = () => {
     setSelectedContentType(value);
   };
 
-  // Render users dynamically based on selected content type
   const renderUsers = () => {
     return usersData.map((user, index) => (
       <UserCard
@@ -229,7 +228,6 @@ const HomePage = () => {
 
   return (
     <Container maxW="container.xl" py={5}>
-      {/* Select Content Type */}
       <Flex justify="left" mb={5} mt={10}>
         <UsersViewSelection onChange={handleContentTypeChange} />
       </Flex>
@@ -238,7 +236,7 @@ const HomePage = () => {
       <Flex align="center" mb={4} mt={5} justifyContent="space-between">
         <Text
           className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
-          whiteSpace="nowrap" // Prevent the text from wrapping
+          whiteSpace="nowrap"
         >
           {t("home-shoppers")}
         </Text>

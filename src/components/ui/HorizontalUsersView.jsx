@@ -4,7 +4,6 @@ import { Flex, Box } from "@chakra-ui/react";
 const HorizontalUsersView = ({ children, gap = 4 }) => {
   return (
     <Flex
-      justify="center"
       overflowX="auto"
       whiteSpace="nowrap"
       sx={{
