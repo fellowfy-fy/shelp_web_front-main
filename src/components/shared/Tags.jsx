@@ -1,5 +1,6 @@
 import { Tag, TagLabel, TagCloseButton, Input, Button } from "@chakra-ui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Tags = ({ initialTags }) => {
   const [tags, setTags] = useState(initialTags || []);
@@ -15,19 +16,19 @@ const Tags = ({ initialTags }) => {
       setNewTag("");
     }
   };
+  const { t } = useTranslation();
 
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="tags">
-        Tags
+        {t("tags")}
       </label>
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         <Input
           placeholder="Vibe chill"
           id="tags"
           value={newTag}
           onChange={(e) => setNewTag(e.target.value)}
-          mt={2}
         />
         <Button
           variant="outline"

@@ -28,6 +28,9 @@
     "search-ideas": "Ideas",
     "search-products": "Products",
     "search-collections": "Collections",
-    "search": "Search"
+    "search": "Search",
+
+    "go-back": "Go back",
+    "tags": "Tags"
 
 }

@@ -1,8 +1,10 @@
 import { Button } from "@chakra-ui/react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const GoBackButton = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -13,7 +15,7 @@ const GoBackButton = () => {
       variant="link"
       onClick={() => navigate(-1)}
     >
-      Go back
+      {t("go-back")}
     </Button>
   );
 };

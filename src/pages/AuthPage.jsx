@@ -35,14 +35,11 @@ const AuthPage = () => {
   };
 
   const handleSignUp = () => {
-    // Здесь добавляем логику для отправки данных регистрации
-    setIsVerification(true); // Переход на форму верификации
+    setIsVerification(true);
   };
 
   const handleVerificationSubmit = () => {
-    // Здесь добавляем логику для подтверждения кода
     console.log("Code confirmed");
-    // После успешной верификации можно перенаправить пользователя на другую страницу
   };
 
   return (
@@ -80,7 +77,7 @@ const AuthPage = () => {
                     passwordsMatch={passwordsMatch}
                     onClickReveal={onClickReveal}
                     isOpen={isOpen}
-                    handleSubmit={isLogin ? null : handleSignUp} // Добавляем логику для Sign up
+                    handleSubmit={isLogin ? null : handleSignUp}
                   />
                   <OAuthButtonGroup />
                   <AuthSwitcher isLogin={isLogin} setIsLogin={setIsLogin} />
