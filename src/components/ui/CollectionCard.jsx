@@ -59,8 +59,8 @@ const CollectionCard = () => {
           {/* Название коллекции, как кликабельная ссылка */}
           <Heading
             size="xs"
-            textAlign="left"
-            fontSize={["xs", "sm", "sm", "md"]} // Smaller responsive font sizes
+            textAlign="center"
+            fontSize={["xs", "sm", "sm"]} // Smaller responsive font sizes
           >
             <LinkOverlay href={collectionUrl}>{collectionName}</LinkOverlay>
           </Heading>

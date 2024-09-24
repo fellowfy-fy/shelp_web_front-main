@@ -1,5 +1,13 @@
-import React from "react";
-import { Center, Box, Container, Flex, Text } from "@chakra-ui/react";
+import React, { useRef } from "react";
+import {
+  Center,
+  Box,
+  Container,
+  Flex,
+  Text,
+  IconButton,
+} from "@chakra-ui/react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import ProfileHeader from "../components/shared/ProfileHeader";
 import SearchBar from "../components/shared/SearchBar";
 import MasonryGrid from "../components/shared/MasonryGrid";
@@ -8,6 +16,18 @@ import GoBackButton from "../components/ui/GoBackButton.jsx";
 import CollectionCard from "../components/ui/CollectionCard.jsx";
 
 const ProfilePage = () => {
+  const containerRef = useRef(null);
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -200, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: 200, behavior: "smooth" });
+    }
+  };
   // Sample data for the collections
   const collectionPosts = [
     {
@@ -146,20 +166,70 @@ const ProfilePage = () => {
           <button>See all</button>
         </Flex>
 
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-          <CollectionCard />
-        </div>
+        <Box position="relative">
+          {/* Левая стрелка */}
+          <IconButton
+            icon={<FaArrowLeft />}
+            position="absolute"
+            left="10px"
+            top="45%"
+            transform="translateY(-50%)"
+            bg="white"
+            borderRadius="full"
+            boxShadow="md"
+            aria-label="Scroll Left"
+            onClick={scrollLeft}
+            zIndex={1}
+          />
+
+          {/* Контейнер с карточками */}
+          <Flex
+            gap={4}
+            overflowX="auto"
+            ref={containerRef}
+            className="scrollbar-hide snap-x snap-mandatory"
+            whiteSpace="nowrap"
+            sx={{
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+              "-ms-overflow-style": "none", // IE and Edge
+              "scrollbar-width": "none", // Firefox
+            }}
+          >
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+            <CollectionCard />
+          </Flex>
+
+          {/* Правая стрелка */}
+          <IconButton
+            icon={<FaArrowRight />}
+            position="absolute"
+            right="10px"
+            top="45%"
+            transform="translateY(-50%)"
+            bg="white"
+            borderRadius="full"
+            boxShadow="md"
+            aria-label="Scroll Right"
+            onClick={scrollRight}
+            zIndex={1}
+          />
+        </Box>
       </Box>
       <Container mb={20} maxW={"container.xl"}>
         <SearchBar />

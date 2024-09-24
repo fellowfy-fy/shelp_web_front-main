@@ -15,6 +15,9 @@ import ProfileEdit from "./components/shared/ProfileEdit";
 import ChangePassword from "./components/shared/ChangePassword";
 import CreateProductPage from "./pages/CreateProductPage";
 import DetailsProductPage from "./pages/DetailsProductPage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   const [authUser] = [null]; 

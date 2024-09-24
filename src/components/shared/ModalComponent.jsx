@@ -61,7 +61,7 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
             justifyContent="center"
             width="100%"
             borderTop="1px solid #E2E8F0"
-            padding="10px 0"
+            pt="10px"
           >
             <Button
               variant="ghost"

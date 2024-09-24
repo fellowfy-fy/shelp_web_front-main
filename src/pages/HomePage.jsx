@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Flex, Text } from "@chakra-ui/react";
+import { Container, Flex, Text, IconButton, Box } from "@chakra-ui/react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import UsersViewSelection from "../components/shared/UsersViewSelection.jsx";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 import UserCard from "../components/ui/UserCard.jsx";
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 const HomePage = () => {
   const [selectedContentType, setSelectedContentType] = useState("Trending");
   const navigate = useNavigate();
+  const containerRef = useRef(null);
 
   // Обработчик для перехода на страницу collections
   const handleSeeAllCollections = () => {
@@ -22,6 +24,18 @@ const HomePage = () => {
   // Обработчик для перехода на страницу shoppers
   const handleSeeAllShoppers = () => {
     navigate("/discover?section=shoppers");
+  };
+
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -200, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: 200, behavior: "smooth" });
+    }
   };
 
   // Sample data for the collection
@@ -244,9 +258,7 @@ const HomePage = () => {
       </Flex>
 
       {/* Display Selected User Type */}
-      <Flex py={10} gap={4} overflowX="auto">
-        <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
-      </Flex>
+      <HorizontalUsersView>{renderUsers()}</HorizontalUsersView>
 
       {/* My Collections Section */}
       <Flex align="center" mb={4} justifyContent="space-between">
@@ -260,19 +272,70 @@ const HomePage = () => {
       </Flex>
 
       {/* Collections Cards */}
-      <Flex
-        gap={4}
-        overflowX="auto"
-        className="scrollbar-hide snap-x snap-mandatory"
-      >
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-        <CollectionCard />
-      </Flex>
+      <Box position="relative">
+        {/* Левая стрелка */}
+        <IconButton
+          icon={<FaArrowLeft />}
+          position="absolute"
+          left="10px"
+          top="45%"
+          transform="translateY(-50%)"
+          bg="white"
+          borderRadius="full"
+          boxShadow="md"
+          aria-label="Scroll Left"
+          onClick={scrollLeft}
+          zIndex={1}
+        />
+
+        {/* Контейнер с карточками */}
+        <Flex
+          gap={4}
+          overflowX="auto"
+          ref={containerRef}
+          className="scrollbar-hide snap-x snap-mandatory"
+          whiteSpace="nowrap"
+          sx={{
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            "-ms-overflow-style": "none", // IE and Edge
+            "scrollbar-width": "none", // Firefox
+          }}
+        >
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+          <CollectionCard />
+        </Flex>
+
+        {/* Правая стрелка */}
+        <IconButton
+          icon={<FaArrowRight />}
+          position="absolute"
+          right="10px"
+          top="45%"
+          transform="translateY(-50%)"
+          bg="white"
+          borderRadius="full"
+          boxShadow="md"
+          aria-label="Scroll Right"
+          onClick={scrollRight}
+          zIndex={1}
+        />
+      </Box>
 
       <PostProductsBar />
       <MasonryGrid posts={collectionPosts} />
