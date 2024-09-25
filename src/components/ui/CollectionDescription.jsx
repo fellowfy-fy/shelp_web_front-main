@@ -17,7 +17,7 @@ const CollectionDescription = ({ bioText, maxBioLength = 230 }) => {
           variant="link"
           color="blue.500"
           onClick={toggleBio}
-          size="sm"
+          size="sm" // Убрали объект, оставили строку
           ml={2}
         >
           {showFullBio ? "Show Less" : "Read More"}

@@ -6,13 +6,14 @@ import { useTranslation } from "react-i18next";
 const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [modalType, setModalType] = useState(null); // To track which modal to show
+  const [modalType, setModalType] = useState(null);
   const dots = "/dots.svg";
 
   const handleOpenModal = (type) => {
     setModalType(type);
     onOpen();
   };
+
   return (
     <Flex gap={4}>
       {isOwnProfile ? (
@@ -22,7 +23,7 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             height="32px"
             background="transparent"
             borderRadius="5px"
-            border="2px solid black" // Add black border here
+            border="2px solid black"
             fontWeight="700"
             fontSize="14px"
             lineHeight="18px"
@@ -48,11 +49,9 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             height="32px"
             background="transparent"
             borderRadius="5px"
-            fontFamily="'Assistant'"
             fontWeight="700"
             fontSize="14px"
             lineHeight="18px"
-            color="white"
             onClick={() => handleOpenModal("more")}
           >
             <img src={dots} alt="dots" />
@@ -69,6 +68,7 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
           {isFollowing ? "Unfollow" : "Follow"}
         </Button>
       )}
+
       {modalType && (
         <ModalComponent
           isOpen={isOpen}

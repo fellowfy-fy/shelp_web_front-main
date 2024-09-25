@@ -20,19 +20,19 @@ const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
       {isOwnProfile ? (
         <>
           <Button
-            width="80px"
+            width={{ base: "70px", md: "80px" }} // Адаптивная ширина кнопки
             height="32px"
             background="#1B1D28"
             borderRadius="5px"
             fontWeight="700"
-            fontSize="14px"
+            fontSize={{ base: "12px", md: "14px" }} // Адаптивный шрифт
             lineHeight="18px"
             color="white"
           >
             {t("follow")}
           </Button>
           <Button
-            width="10px"
+            width={{ base: "8px", md: "10px" }} // Адаптивная ширина
             height="32px"
             background="transparent"
             borderRadius="5px"
@@ -50,7 +50,7 @@ const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
           bg={"blue.500"}
           color={"white"}
           _hover={{ bg: "blue.600" }}
-          size={{ base: "xs", md: "sm" }}
+          size={{ base: "xs", md: "sm" }} // Адаптивный размер кнопки
           isLoading={isUpdating}
         >
           {isFollowing ? "Unfollow" : "Follow"}

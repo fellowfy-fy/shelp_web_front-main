@@ -39,18 +39,20 @@ const CollectionHeader = () => {
   return (
     <Flex
       direction={isMobile ? "column" : "row"}
-      alignItems="center"
-      justifyContent="center"
+      alignItems={isMobile ? "flex-start" : "center"} // Изменено на flex-start для мобильных
+      justifyContent={isMobile ? "flex-start" : "space-between"}
       py={5}
       px={isMobile ? 4 : 0}
+      gap={isMobile ? 5 : 10}
     >
       {/* Avatar and User Info */}
       <Flex
         direction={isMobile ? "column" : "row"}
-        alignItems="center"
-        justifyContent="center"
-        gap={isMobile ? 5 : 10}
+        alignItems={isMobile ? "flex-start" : "center"} // Изменено на flex-start для мобильных
+        justifyContent={isMobile ? "flex-start" : "flex-start"}
+        gap={isMobile ? 4 : 10}
         mb={isMobile ? 6 : 8}
+        width="100%"
       >
         {/* Avatar */}
         <AvatarGroup size="2xl" mx="auto">
@@ -63,22 +65,23 @@ const CollectionHeader = () => {
 
         {/* User Info and Actions */}
         <VStack
-          alignItems={isMobile ? "center" : "flex-start"}
-          gap={2}
+          alignItems={isMobile ? "flex-start" : "flex-start"} // Выровнено по левому краю для мобильных
+          spacing={isMobile ? 3 : 4}
           mx="auto"
+          width={isMobile ? "100%" : "auto"}
         >
           {/* Username and Profile Actions */}
           <Flex
-            gap={4}
+            gap={isMobile ? 2 : 4}
             direction="row"
-            justifyContent="space-between"
-            w="100%"
+            justifyContent="space-between" // Выровнено по левому краю
+            w={isMobile ? "100%" : "auto"}
             alignItems="center"
           >
             <Text
-              fontSize={isMobile ? "lg" : "xl"}
+              fontSize={isMobile ? "lg" : "2xl"}
               fontWeight="bold"
-              textAlign={isMobile ? "center" : "left"}
+              textAlign="left" // Выровнено по левому краю
             >
               {userProfile?.username}
             </Text>
@@ -92,9 +95,9 @@ const CollectionHeader = () => {
 
           {/* Full Name */}
           <Text
-            fontSize="md"
+            fontSize={isMobile ? "sm" : "lg"}
             fontWeight="medium"
-            textAlign={isMobile ? "center" : "left"}
+            textAlign={isMobile ? "left" : "left"} // Выровнено по левому краю
           >
             {userProfile?.fullName}
           </Text>

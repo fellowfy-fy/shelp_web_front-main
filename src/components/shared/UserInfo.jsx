@@ -16,7 +16,11 @@ const UserInfo = ({ posts, products, followers, following }) => {
   };
 
   return (
-    <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
+    <Flex
+      alignItems={"center"}
+      gap={{ base: 2, sm: 4 }}
+      flexWrap={{ base: "wrap", md: "nowrap" }} // Для адаптивности на мобильных устройствах
+    >
       <Text fontSize={{ base: "xs", md: "sm" }}>
         <Text as="span" fontWeight={"bold"} mr={1}>
           {posts?.length || 0}
