@@ -1,8 +1,10 @@
 import DragAndDrop from "../ui/DragAndDrop";
 import DetailsPost from "./DetailsPost";
 import GoBackButton from "../ui/GoBackButton";
+import { useTranslation } from "react-i18next";
 
 const CreatePost = () => {
+  const { t } = useTranslation();
   const tagsArray = ["Art", "Music", "NFTs"];
   const collectionPosts = [
     {
@@ -28,7 +30,7 @@ const CreatePost = () => {
       <div className="flex flex-col items-start gap-1">
         <GoBackButton />
         <label className="text-2xl font-semibold mb-2" htmlFor="name">
-          Add post
+          {t("add-post")}
         </label>
       </div>
       <div className="flex flex-wrap gap-5">

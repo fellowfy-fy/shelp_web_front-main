@@ -1,6 +1,8 @@
 import { Switch } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export default function ProductDetails() {
+  const { t } = useTranslation();
   return (
     <div className="mb-[20px]">
       <div className="flex justify-between mb-4">
@@ -10,7 +12,7 @@ export default function ProductDetails() {
         </div>
         <div className="flex gap-2 align-middle justify-center">
           <button className="border-[2px] border-black px-4 py-2 rounded-md font-bold">
-            Save
+            {t("save")}
           </button>
           <button>
             <img src="/hamburgerIcon.svg" />
@@ -49,9 +51,9 @@ export default function ProductDetails() {
         visitor... <span className="font-bold"> ( Read More )</span>
       </p>
       <a href="#" className="text-[#F0304E] font-bold">
-        Product Page
+        {t("product-page")}
       </a>
-      <p className="font-bold">Price 2000 AED</p>
+      <p className="font-bold">{t("price")} 2000 AED</p>
     </div>
   );
 }

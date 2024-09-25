@@ -11,11 +11,13 @@ import { OAuthButtonGroup } from "../components/shared/OAuthButtonGroup";
 import AuthFormContent from "../components/shared/AuthFormContent";
 import AuthSwitcher from "../components/ui/AuthSwitcher";
 import VerificationForm from "../components/shared/VerificationForm";
+import { useTranslation } from "react-i18next";
 
 const AuthPage = () => {
+  const { t } = useTranslation();
   const { isOpen, onToggle } = useDisclosure();
-  const [isLogin, setIsLogin] = useState(true); // Управляет режимом логина/регистрации
-  const [isVerification, setIsVerification] = useState(false); // Управляет отображением формы верификации
+  const [isLogin, setIsLogin] = useState(true);
+  const [isVerification, setIsVerification] = useState(false);
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
@@ -66,12 +68,13 @@ const AuthPage = () => {
                 size={{ base: "md", md: "md" }}
                 textAlign="center"
               >
-                Space for your shopping ideas
+                {t("space-for-your-shopping-ideas")}
               </Heading>
 
               {!isVerification ? (
                 <>
                   <AuthFormContent
+                    isLogin={isLogin}
                     inputs={inputs}
                     setInputs={setInputs}
                     passwordsMatch={passwordsMatch}

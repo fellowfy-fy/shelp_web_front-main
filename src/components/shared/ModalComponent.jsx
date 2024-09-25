@@ -11,9 +11,11 @@ import {
 import { useState, useEffect } from "react";
 import LoadMoreButton from "../ui/LoadMoreButton";
 import { FaShareAlt, FaTrashAlt } from "react-icons/fa";
-import CustomModal from "./CustomModal"; // Импортируем новый компонент
+import CustomModal from "./CustomModal";
+import { useTranslation } from "react-i18next";
 
 const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
+  const { t } = useTranslation();
   const headers = {
     followers: "Followers",
     following: "Following",
@@ -72,7 +74,7 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
               <Flex alignItems="center">
                 <FaShareAlt size="20px" />
                 <Text ml={4} fontWeight="600" fontSize={20}>
-                  Share
+                  {t("share")}
                 </Text>
               </Flex>
             </Button>
@@ -93,7 +95,7 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
               <Flex alignItems="center">
                 <FaTrashAlt size="20px" />
                 <Text ml={4} fontWeight="600" fontSize={20}>
-                  Delete
+                  {t("delete")}
                 </Text>
               </Flex>
             </Button>
@@ -180,7 +182,7 @@ const ModalComponent = ({ isOpen, onClose, type, data = [] }) => {
                       // Логика удаления
                     }}
                   >
-                    Remove
+                    {t("remove")}
                   </Button>
                 </Flex>
               </Flex>

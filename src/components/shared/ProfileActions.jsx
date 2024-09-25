@@ -1,8 +1,10 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
+import { useTranslation } from "react-i18next";
 
 const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null); // To track which modal to show
   const dots = "/dots.svg";
@@ -26,7 +28,7 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             lineHeight="18px"
             color="black"
           >
-            Share
+            {t("share")}
           </Button>
 
           <Button
@@ -39,7 +41,7 @@ const ProfileActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             lineHeight="18px"
             color="white"
           >
-            Follow
+            {t("follow")}
           </Button>
           <Button
             width="10px"

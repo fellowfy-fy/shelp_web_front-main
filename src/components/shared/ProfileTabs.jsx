@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { BsBookmark, BsGrid3X3 } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 const ProfileTabs = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("Posts");
 
   const handleTabClick = (tab) => {
@@ -11,8 +13,8 @@ const ProfileTabs = () => {
 
   // Опции для вкладок
   const tabOptions = [
-    { value: "Posts", icon: BsGrid3X3 },
-    { value: "Products", icon: BsBookmark },
+    { value: t("posts"), icon: BsGrid3X3 },
+    { value: t("products"), icon: BsBookmark },
   ];
 
   return (

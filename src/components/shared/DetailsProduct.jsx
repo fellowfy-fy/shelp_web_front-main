@@ -8,25 +8,27 @@ import {
 } from "@chakra-ui/react";
 import Tags from "./Tags";
 import ProductTags from "./ProductTags";
+import { useTranslation } from "react-i18next";
 
 const DetailsProduct = ({ tags }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-3">
       <div>
         <label className="text-xl font-semibold" htmlFor="name">
-          Post title
+          {t("post-title")}
         </label>
         <Input placeholder="Summer looks" id="name" minW="auto" maxW="3000px" />
       </div>
       <div>
         <label className="text-xl font-semibold" htmlFor="link">
-          Link
+          {t("link")}
         </label>
         <Input placeholder="https://" id="link" minW="auto" maxW="3000px" />
       </div>
       <div>
         <label className="text-xl font-semibold" htmlFor="description">
-          Description
+          {t("description")}
         </label>
         <Textarea
           placeholder="Post My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the ext"
@@ -44,7 +46,7 @@ const DetailsProduct = ({ tags }) => {
       <div className="mt-4">
         <FormControl display="flex" alignItems="center" mb={4}>
           <FormLabel htmlFor="private-product" mb="0">
-            Private product
+            {t("private-product")}
           </FormLabel>
           <Switch id="private-product" />
         </FormControl>
@@ -59,7 +61,7 @@ const DetailsProduct = ({ tags }) => {
         mt={4}
         _hover={{ bg: "gray.800" }}
       >
-        Save product
+        {t("save-product")}
       </Button>
     </div>
   );

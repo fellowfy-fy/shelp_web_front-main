@@ -6,15 +6,17 @@ import {
   AccordionIcon,
   Box,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export default function CommentSection() {
+  const { t } = useTranslation();
   return (
     <Accordion allowToggle>
       <AccordionItem>
         <h2>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              4 Comments
+              4 {t("comments")}
             </Box>
             <AccordionIcon />
           </AccordionButton>

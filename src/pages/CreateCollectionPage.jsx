@@ -9,8 +9,10 @@ import {
 import Editors from "../components/shared/Editors";
 import Tags from "../components/shared/Tags";
 import ProductsInCollection from "../components/shared/ProductsInCollection";
+import { useTranslation } from "react-i18next";
 
 const CreateCollection = () => {
+  const { t } = useTranslation();
   const editorsNames = [
     { name: "John Don", imageUrl: "/img1.png" },
     { name: "Jahn Don", imageUrl: "/img2.png" },
@@ -38,17 +40,17 @@ const CreateCollection = () => {
     <>
       <div className="mt-[64px]">
         <Container maxW="800px">
-          <h1 className="font-bold text-3xl">New Collection</h1>
+          <h1 className="font-bold text-3xl">{t("new-collection")}</h1>
           <div className="flex flex-col gap-3 mt-6">
             <div>
               <label className="text-xl font-semibold" htmlFor="name">
-                Collection name
+                {t("collection-name")}
               </label>
               <Input placeholder="Summer looks" id="name" />
             </div>
             <div>
               <label className="text-xl font-semibold" htmlFor="description">
-                Description
+                {t("description")}
               </label>
               <Textarea
                 placeholder="Post tMy specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the ext"
@@ -61,7 +63,7 @@ const CreateCollection = () => {
 
             <div className="flex gap-3 my-3">
               <Switch colorScheme="gray" size="lg" />
-              <p>Private Collection</p>
+              <p>{t("private-collection")}</p>
             </div>
             <ProductsInCollection collectionPosts={collectionPosts} />
           </div>

@@ -15,12 +15,14 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import SortableItem from "../ui/SortableItem";
+import { useTranslation } from "react-i18next";
 
 const DragAndDrop = ({
   width = "450px",
   height = "300px",
   hideAddMore = false,
 }) => {
+  const { t } = useTranslation();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [firstImageUrl, setFirstImageUrl] = useState(null);
   const nextIdRef = useRef(0);
@@ -49,7 +51,7 @@ const DragAndDrop = ({
       file,
     }));
     if (selectedFiles.length + files.length > 5) {
-      alert("You can only upload up to 5 photos.");
+      alert(t("only-five-photos"));
       return;
     }
     setSelectedFiles((prevFiles) => [...prevFiles, ...files].slice(0, 5));
@@ -65,7 +67,7 @@ const DragAndDrop = ({
       file,
     }));
     if (selectedFiles.length + files.length > 5) {
-      alert("You can only upload up to 5 photos.");
+      alert(t("only-five-photos"));
       return;
     }
     setSelectedFiles((prevFiles) => [...prevFiles, ...files].slice(0, 5));
@@ -151,12 +153,14 @@ const DragAndDrop = ({
           >
             <Icon as={FaFileUpload} boxSize="40px" color="gray.500" />
             <Text mt={2} fontSize="md" color="gray.700">
-              Choose a file or drag and drop it here
+              {t("choose-file-to-dnd")}
             </Text>
             <Text mt={1} fontSize="sm" color="gray.500" className="text-center">
-              We recommend using high-quality .jpg
-              <br /> files less than 20MB or .mp4 files less <br />
-              than 200MB.
+              {t("dnd-message-one")}
+              <br />
+              {t("dnd-message-two")}
+              <br />
+              {t("dnd-message-three")}
             </Text>
           </Box>
         )}

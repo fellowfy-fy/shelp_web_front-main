@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom"; // Импортируем хук
 import Slider from "react-slick"; // Импортируем карусель
 import CardForPost from "./CardForPost";
 import Comments from "../ui/Comments";
+import { useTranslation } from "react-i18next";
 
 // Статичные данные, которые легко заменить на данные из API
 const productData = {
@@ -85,6 +86,7 @@ const NextArrow = ({ onClick }) => (
 );
 
 const ProductDetails = () => {
+  const { t } = useTranslation();
   const product = productData; // Статичные данные, которые потом можно заменить на данные из API
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -202,7 +204,7 @@ const ProductDetails = () => {
                 zIndex: -1,
               }}
             >
-              Save
+              {t("save")}
             </Button>
 
             {/* Три точки */}
@@ -245,7 +247,7 @@ const ProductDetails = () => {
             fontWeight={activeTab === "products" ? "bold" : "normal"}
             color={activeTab === "products" ? "black" : "gray.500"}
           >
-            Products in post
+            {t("products-in-posts")}
           </Button>
           <Button
             onClick={() => setActiveTab("comments")}
@@ -253,7 +255,7 @@ const ProductDetails = () => {
             fontWeight={activeTab === "comments" ? "bold" : "normal"}
             color={activeTab === "comments" ? "black" : "gray.500"}
           >
-            Comments
+            {t("comments")}
           </Button>
         </HStack>
         <Divider />

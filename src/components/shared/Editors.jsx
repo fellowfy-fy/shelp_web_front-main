@@ -6,12 +6,14 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const Editors = ({ editors }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="editors">
-        Editors
+        {t("editors")}
       </label>
       <div className="flex gap-2">
         <Input placeholder="Editor username" id="editors" />
@@ -21,7 +23,7 @@ const Editors = ({ editors }) => {
           _hover={{ bg: "#faf7fa" }}
           minW="80px"
         >
-          Add
+          {t("add")}
         </Button>
       </div>
       <div className="mt-2 flex gap-1">

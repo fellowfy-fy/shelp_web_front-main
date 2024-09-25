@@ -3,11 +3,13 @@ import GoBackButton from "../components/ui/GoBackButton.jsx";
 import MasonryGrid from "../components/shared/MasonryGrid.jsx";
 import ProductDetails from "../components/shared/ProductDetails.jsx";
 import LoadMoreButton from "../components/ui/LoadMoreButton";
+import { useTranslation } from "react-i18next";
 
 const ContentPage = ({ isProductPage, contentData }) => {
   // Add fallback to ensure contentData and its properties exist
   const comments = contentData?.comments ?? [];
   const relatedProducts = contentData?.relatedProducts ?? [];
+  const { t } = useTranslation();
 
   // Sample data for the collections
   const collectionPosts = [
@@ -136,7 +138,7 @@ const ContentPage = ({ isProductPage, contentData }) => {
       <ProductDetails />
       <Center>
         <Text fontWeight="semibold" fontSize="22px" mb="20px">
-          Related products and ideas
+          {t("related-products-and-ideas")}
         </Text>
       </Center>
       <hr />

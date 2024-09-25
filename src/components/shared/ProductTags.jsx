@@ -1,6 +1,5 @@
 import {
   Tag,
-  TagLabel,
   TagCloseButton,
   Input,
   Avatar,
@@ -8,9 +7,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProductTags = () => {
-  // Хардкодированные данные для тегов
+  const { t } = useTranslation();
   const initialProductTags = [
     { id: 1, name: "Summer", image: "https://via.placeholder.com/150" },
     { id: 2, name: "Winter", image: "https://via.placeholder.com/150" },
@@ -37,7 +37,7 @@ const ProductTags = () => {
           id: Date.now(),
           name: newProductTag,
           image: "https://via.placeholder.com/150",
-        }, // Создаем новый тег с временным изображением
+        },
       ]);
       setNewProductTag("");
     }
@@ -46,7 +46,7 @@ const ProductTags = () => {
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="product-tags">
-        Save to collections
+        {t("save-to-collections")}
       </label>
       <div className="flex gap-2 mt-2">
         <Input

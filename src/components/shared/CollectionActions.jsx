@@ -1,8 +1,10 @@
 import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
+import { useTranslation } from "react-i18next";
 
 const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null);
 
@@ -27,7 +29,7 @@ const CollectionActions = ({ isOwnProfile, isFollowing, isUpdating }) => {
             lineHeight="18px"
             color="white"
           >
-            Follow
+            {t("follow")}
           </Button>
           <Button
             width="10px"

@@ -1,14 +1,9 @@
 import { Logo } from "./Logo";
-import {
-  Flex,
-  Container,
-  Stack,
-  Box,
-  Heading,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Flex, Container, Stack, Box, Heading } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const ConfirmationCode = () => {
+  const { t } = useTranslation();
   return (
     <Flex minH={"100vh"} justifyContent={"center"} alignItems={"center"}>
       <Container maxW="lg" px={{ base: "2", sm: "8" }}>
@@ -29,7 +24,7 @@ const ConfirmationCode = () => {
                 size={{ base: "md", md: "md" }}
                 textAlign="center"
               >
-                Space for your shopping ideas
+                {t("space-for-your-shipping-ideas")}
               </Heading>
             </Stack>
           </Box>

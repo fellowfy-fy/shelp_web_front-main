@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Button, Flex, Input, Box } from "@chakra-ui/react";
 import CustomModal from "./CustomModal"; // Используем компонент CustomModal
 import CardView from "./CardView"; // Компонент для отображения карточек
+import { useTranslation } from "react-i18next";
 
 const AddProductModal = ({ isOpen, onClose, collectionPosts, onDelete }) => {
   const [linkInput, setLinkInput] = useState("");
   const [productName, setProductName] = useState("");
+  const { t } = useTranslation();
 
   const handleAddProductByLink = () => {
     // Логика для добавления продукта по ссылке
@@ -32,7 +34,7 @@ const AddProductModal = ({ isOpen, onClose, collectionPosts, onDelete }) => {
           color="white"
           onClick={handleAddProductByLink}
         >
-          Add
+          {t("add")}
         </Button>
       </Flex>
 
@@ -46,7 +48,7 @@ const AddProductModal = ({ isOpen, onClose, collectionPosts, onDelete }) => {
           />
         </Box>
         <Button ml={2} bg="black" color="white" onClick={handleSearchProduct}>
-          Search
+          {t("search")}
         </Button>
       </Flex>
 

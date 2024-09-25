@@ -2,8 +2,10 @@ import { Button, Switch, FormControl, FormLabel, Flex } from "@chakra-ui/react";
 import DragAndDrop from "../ui/DragAndDrop";
 import DetailsProduct from "./DetailsProduct";
 import GoBackButton from "../ui/GoBackButton";
+import { useTranslation } from "react-i18next";
 
 const CreateProduct = () => {
+  const { t } = useTranslation();
   const tagsArray = ["Art", "Music", "NFTs"];
   const collectionPosts = [
     {
@@ -29,7 +31,7 @@ const CreateProduct = () => {
       <div className="flex flex-col items-start gap-1">
         <GoBackButton />
         <label className="text-2xl font-semibold mb-2" htmlFor="name">
-          Add product
+          {t("add-product")}
         </label>
       </div>
 

@@ -1,11 +1,4 @@
-import {
-  Stack,
-  HStack,
-  Divider,
-  Button,
-  Text,
-  Checkbox,
-} from "@chakra-ui/react";
+import { Stack, HStack, Divider, Button, Text } from "@chakra-ui/react";
 import {
   HiOutlineAtSymbol,
   HiOutlineUserCircle,

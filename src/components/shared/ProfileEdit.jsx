@@ -15,8 +15,10 @@ import { FaTimes } from "react-icons/fa";
 import Tags from "./Tags";
 import DragAndDrop from "../ui/DragAndDrop";
 import { Link as ChakraLink } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const ProfileEdit = () => {
+  const { t } = useTranslation();
   const [tags, setTags] = useState(["Summer", "Dresses"]);
   const [newTag, setNewTag] = useState("");
   const [isPrivate, setIsPrivate] = useState(false);
@@ -35,7 +37,7 @@ const ProfileEdit = () => {
   return (
     <Box p={8} maxWidth="700px" mx="auto" bg="white" borderRadius="10px">
       <Text fontSize="2xl" fontWeight="bold" mb={6}>
-        Edit profile
+        {t("edit-profile")}
       </Text>
 
       {/* Avatar Section */}
@@ -66,7 +68,7 @@ const ProfileEdit = () => {
 
       {/* Full name input */}
       <Text fontWeight="bold" mb={2}>
-        Full name
+        {t("full-name")}
       </Text>
       <Input
         placeholder="Full name"
@@ -77,13 +79,13 @@ const ProfileEdit = () => {
 
       {/* Email input */}
       <Text fontWeight="bold" mb={2}>
-        Email
+        {t("email")}
       </Text>
       <Input placeholder="example@mail.com" mb={4} w="120%" />
 
       {/* Description */}
       <Text fontWeight="bold" mb={2}>
-        Description
+        {t("description")}
       </Text>
       <Textarea
         placeholder="Write something about yourself..."
@@ -117,7 +119,7 @@ const ProfileEdit = () => {
             h="50px"
             borderRadius="10px"
           >
-            Update
+            {t("update")}
           </Button>
           <Button
             variant="outline"
@@ -127,7 +129,7 @@ const ProfileEdit = () => {
             borderRadius="10px"
             background="#E9E9E9"
           >
-            Cancel
+            {t("cancel")}
           </Button>
         </Flex>
 
@@ -140,7 +142,7 @@ const ProfileEdit = () => {
             h="50px"
             borderRadius="10px"
           >
-            Change Password
+            {t("change-password")}
           </Button>
         </ChakraLink>
       </Flex>

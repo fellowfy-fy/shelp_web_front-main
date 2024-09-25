@@ -10,12 +10,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 const ChangePassword = ({ username }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { t } = useTranslation();
 
   const handlePasswordToggle = () => setShowPassword(!showPassword);
   const handleConfirmPasswordToggle = () =>
@@ -24,12 +26,12 @@ const ChangePassword = ({ username }) => {
   return (
     <Box p={8} maxWidth="500px" mx="auto" bg="white" borderRadius="10px">
       <Text fontSize="2xl" fontWeight="bold" mb={6}>
-        Change {username} password
+        {t("change")} {username} {t("password")}
       </Text>
 
       {/* Create Password Input */}
       <FormControl mb={4}>
-        <FormLabel>Create a password</FormLabel>
+        <FormLabel>{t("create-a-password")}</FormLabel>
         <InputGroup>
           <Input
             type={showPassword ? "text" : "password"}
@@ -52,7 +54,7 @@ const ChangePassword = ({ username }) => {
 
       {/* Confirm Password Input */}
       <FormControl mb={6}>
-        <FormLabel>Confirm password</FormLabel>
+        <FormLabel>{t("confirm-password")}</FormLabel>
         <InputGroup>
           <Input
             type={showConfirmPassword ? "text" : "password"}
@@ -83,7 +85,7 @@ const ChangePassword = ({ username }) => {
           h="50px"
           borderRadius="10px"
         >
-          Update
+          {t("update")}
         </Button>
         <Button
           variant="outline"
@@ -93,7 +95,7 @@ const ChangePassword = ({ username }) => {
           borderRadius="10px"
           background="#E9E9E9"
         >
-          Cancel
+          {t("cancel")}
         </Button>
       </Box>
     </Box>

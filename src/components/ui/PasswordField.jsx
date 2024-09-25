@@ -11,8 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef, useRef } from "react";
 import { HiEye, HiEyeOff, HiOutlineKey } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 
 export const PasswordField = forwardRef((props, ref) => {
+  const { t } = useTranslation();
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -27,7 +29,7 @@ export const PasswordField = forwardRef((props, ref) => {
 
   return (
     <FormControl>
-      <FormLabel htmlFor="password">Password</FormLabel>
+      <FormLabel htmlFor="password">{t("password")}</FormLabel>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"

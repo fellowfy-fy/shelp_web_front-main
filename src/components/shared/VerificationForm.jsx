@@ -1,15 +1,14 @@
 import {
-  Box,
-  Heading,
   Text,
   HStack,
   PinInput,
   PinInputField,
-  Button,
   VStack,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const VerificationForm = ({ onSubmitVerification, username, email }) => {
+  const { t } = useTranslation();
   return (
     <VStack spacing={4} align="center">
       <Text fontSize="lg" fontWeight="bold">
@@ -17,7 +16,7 @@ const VerificationForm = ({ onSubmitVerification, username, email }) => {
       </Text>
       <center>
         <Text>
-          We've sent a message with an activation code to your email {email}
+          {t("verification-message")} {email}
         </Text>
       </center>
       <HStack justifyContent="center">

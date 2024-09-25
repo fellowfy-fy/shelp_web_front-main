@@ -14,8 +14,10 @@ import MasonryGrid from "../components/shared/MasonryGrid";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 import GoBackButton from "../components/ui/GoBackButton.jsx";
 import CollectionCard from "../components/ui/CollectionCard.jsx";
+import { useTranslation } from "react-i18next";
 
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -161,9 +163,9 @@ const ProfilePage = () => {
             className="font-assistant font-bold text-[16px] leading-[21px] text-[#1B1D28]"
             whiteSpace="nowrap" // Prevent the text from wrapping
           >
-            My Collections
+            {t("my-collection")}
           </Text>
-          <button>See all</button>
+          <button>{t("home-see-all")}</button>
         </Flex>
 
         <Box position="relative">

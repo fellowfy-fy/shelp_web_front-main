@@ -1,9 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const Comments = () => {
+  const { t } = useTranslation();
   return (
     <Box>
-      <Text>No comments yet.</Text>
+      <Text>{t("no-comments")}</Text>
     </Box>
   );
 };

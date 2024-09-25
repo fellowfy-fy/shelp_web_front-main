@@ -2,8 +2,10 @@ import { Flex, Text, Button } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
+import { useTranslation } from "react-i18next";
 
 const UserInfo = ({ posts, products, followers, following }) => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null); // To track which modal to show
   const graydot = "/graydot.svg";
@@ -19,7 +21,7 @@ const UserInfo = ({ posts, products, followers, following }) => {
         <Text as="span" fontWeight={"bold"} mr={1}>
           {posts?.length || 0}
         </Text>
-        Posts
+        {t("posts")}
       </Text>
       <img src={graydot} alt="dot" />
       <Button
@@ -32,7 +34,7 @@ const UserInfo = ({ posts, products, followers, following }) => {
         <Text as="span" fontWeight={"bold"} mr={1}>
           {products?.length || 0}
         </Text>
-        Products
+        {t("products")}
       </Button>
       <img src={graydot} alt="dot" />
       <Button
@@ -45,7 +47,7 @@ const UserInfo = ({ posts, products, followers, following }) => {
         <Text as="span" fontWeight={"bold"} mr={1}>
           {followers?.length || 0}
         </Text>
-        Followers
+        {t("followers")}
       </Button>
       <img src={graydot} alt="dot" />
       <Button
@@ -58,7 +60,7 @@ const UserInfo = ({ posts, products, followers, following }) => {
         <Text as="span" fontWeight={"bold"} mr={1}>
           {following?.length || 0}
         </Text>
-        Following
+        {t("following")}
       </Button>
 
       {/* Modal */}

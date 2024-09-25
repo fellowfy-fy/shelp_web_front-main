@@ -15,9 +15,6 @@ const FeedPosts = () => {
 
   return (
     <Box width="100%">
-      {" "}
-      {/* Changed Container to Box with full width */}
-      {/* If loading is done and there are posts */}
       {!isLoading && posts.length > 0 && (
         <ResponsiveMasonry
           columnsCountBreakPoints={{

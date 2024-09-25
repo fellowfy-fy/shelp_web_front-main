@@ -1,8 +1,10 @@
 import { Input, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import DragAndDrop from "../ui/DragAndDrop";
+import { useTranslation } from "react-i18next";
 
 const CreateProduct = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleAddProduct = () => {
@@ -12,7 +14,7 @@ const CreateProduct = () => {
   return (
     <div className="flex flex-col gap-3">
       <label className="text-xl font-semibold" htmlFor="description">
-        From link
+        {t("from-link")}
       </label>
       <div className="flex flex-row gap-3">
         <Input placeholder="https://" id="name" minW="auto" maxW="3000px" />
@@ -22,11 +24,11 @@ const CreateProduct = () => {
           width={"30%"}
           onClick={handleAddProduct}
         >
-          Add product
+          {t("add-product")}
         </Button>
       </div>
       <label className="text-xl font-semibold" htmlFor="description">
-        From price tag or photo
+        {t("from-price-tag-or-photo")}
       </label>
       <DragAndDrop width="630px" height="250px" hideAddMore />
     </div>

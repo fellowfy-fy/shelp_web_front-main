@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Divider, Flex } from "@chakra-ui/react";
 import CardView from "./CardView";
 import AddProductModal from "./AddProductModal"; // Импортируем новый компонент
+import { t } from "i18next";
 
 const ProductsInCollection = ({ initialCollectionPosts }) => {
   const [collectionPosts, setCollectionPosts] = useState(
@@ -25,7 +26,7 @@ const ProductsInCollection = ({ initialCollectionPosts }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <h1 className="text-xl font-semibold">Products in Collection</h1>
+        <h1 className="text-xl font-semibold">{t("product-in-collection")}</h1>
         <Button
           variant="outline"
           borderColor="black"
@@ -34,7 +35,7 @@ const ProductsInCollection = ({ initialCollectionPosts }) => {
           size="sm"
           onClick={openModal}
         >
-          Add collection
+          {t("add-collection")}
         </Button>
       </div>
       <Divider />
@@ -52,10 +53,9 @@ const ProductsInCollection = ({ initialCollectionPosts }) => {
         maxW="200px"
         _hover={{ bg: "blackAlpha.800" }}
       >
-        Create collection
+        {t("create-collection")}
       </Button>
 
-      {/* Модальное окно для добавления продукта */}
       <AddProductModal
         isOpen={isModalOpen}
         onClose={closeModal}

@@ -7,8 +7,11 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ItemCard from "../components/shared/ItemCard.jsx";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 
+import { useTranslation } from "react-i18next";
+
 const CollectionPage = (props) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // Sample data for the collections
   const collectionPosts = [
@@ -142,7 +145,7 @@ const CollectionPage = (props) => {
             variant="link"
             onClick={() => navigate(-1)}
           >
-            Go back
+            {t("go-back")}
           </Button>
         </Container>
         <Flex align="center" justify="center">

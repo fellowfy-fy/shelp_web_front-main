@@ -59,7 +59,7 @@ const Tags = ({ initialTags }) => {
           }}
           onClick={addTag}
         >
-          Add Tag
+          {t("add-tag")}
         </Button>
       </div>
       <div className="mt-2 gap-1 flex">
