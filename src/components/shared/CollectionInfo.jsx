@@ -86,4 +86,4 @@ const CollectionInfo = ({ posts, products, followers, following }) => {
   );
 };
 
-export default UserInfo;
+export default CollectionInfo;
