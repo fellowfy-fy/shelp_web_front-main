@@ -8,12 +8,13 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ProfileHeader from "../components/shared/ProfileHeader";
 import SearchBar from "../components/shared/SearchBar";
-import MasonryGrid from "../components/shared/MasonryGrid";
 import LoadMoreButton from "../components/ui/LoadMoreButton.jsx";
 import GoBackButton from "../components/ui/GoBackButton.jsx";
 import CollectionCard from "../components/ui/CollectionCard.jsx";
+import ItemCard from "../components/shared/ItemCard.jsx";
 
 const ProfilePage = () => {
   const containerRef = useRef(null);
@@ -234,7 +235,31 @@ const ProfilePage = () => {
       <Container mb={20} maxW={"container.xl"}>
         <SearchBar />
 
-        <MasonryGrid posts={collectionPosts} />
+        <Box width="100%" pt={10}>
+          {" "}
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{
+              350: 1,
+              750: 1,
+              900: 3,
+              1200: 4,
+            }}
+          >
+            <Masonry gutter="16px">
+              {collectionPosts.map((post, index) => (
+                <ItemCard
+                  key={index}
+                  imageUrl={post.imageUrl}
+                  title={post.title}
+                  publishDate={post.publishDate}
+                  likesNum={post.likesNum}
+                  savesNum={post.savesNum}
+                  author={post.author}
+                />
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </Box>
 
         <Center>
           <LoadMoreButton />

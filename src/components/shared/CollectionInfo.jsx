@@ -3,7 +3,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
 
-const CollectionInfo = ({ posts, products, followers, following }) => {
+const UserInfo = ({ posts, products, followers, following }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalType, setModalType] = useState(null); // To track which modal to show
   const graydot = "/graydot.svg";
@@ -14,7 +14,11 @@ const CollectionInfo = ({ posts, products, followers, following }) => {
   };
 
   return (
-    <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
+    <Flex
+      alignItems={"center"}
+      gap={{ base: 2, sm: 4 }}
+      flexWrap={{ base: "wrap", md: "nowrap" }} // Для адаптивности на мобильных устройствах
+    >
       <Text fontSize={{ base: "xs", md: "sm" }}>
         <Text as="span" fontWeight={"bold"} mr={1}>
           {posts?.length || 0}
@@ -53,12 +57,12 @@ const CollectionInfo = ({ posts, products, followers, following }) => {
         background="transparent"
         _hover={{ background: "rgba(0, 0, 0, 0.05)" }}
         _focus={{ boxShadow: "none" }}
-        onClick={() => handleOpenModal("editors")}
+        onClick={() => handleOpenModal("following")}
       >
         <Text as="span" fontWeight={"bold"} mr={1}>
           {following?.length || 0}
         </Text>
-        Editors
+        Following
       </Button>
 
       {/* Modal */}
@@ -80,4 +84,4 @@ const CollectionInfo = ({ posts, products, followers, following }) => {
   );
 };
 
-export default CollectionInfo;
+export default UserInfo;

@@ -157,7 +157,7 @@ const CollectionPage = (props) => {
           <ResponsiveMasonry
             columnsCountBreakPoints={{
               350: 1,
-              750: 2,
+              750: 1,
               900: 3,
               1200: 4,
             }}
