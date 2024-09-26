@@ -34,8 +34,8 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div className="flex flex-wrap gap-5">
-        <DragAndDrop maxW="100%" maxH="300px" />
+      <div className="flex flex-col md:flex-row gap-5">
+        <DragAndDrop />
         <DetailsProduct tags={tagsArray} posts={collectionPosts} />
       </div>
     </div>
