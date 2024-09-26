@@ -59,26 +59,33 @@ const ProductTags = () => {
       <div className="mt-2 gap-2 flex flex-wrap">
         {productTags?.map((tag) => (
           <Tag
-            size="lg"
-            variant="outline"
             borderRadius="full"
             display="flex"
+            alignItems="center"
             key={tag.id}
+            px={3}
+            pr={1}
             width={"auto"}
+            position="relative"
+            borderColor="black" // Ensure the border is black, no gray
+            borderWidth="1px" // Ensure the width is what you want
+            backgroundColor="white" // Set background to white to avoid gray
           >
             <Avatar
               size="sm"
               name={tag.name}
               src={tag.image}
               borderRadius="full"
-              ml={"-12px"}
+              border="1px solid black" // Ensure the avatar border is consistent
+              ml="-14px" // Slight negative margin to overlap the tag border
+              zIndex={1}
             />
-            <Flex alignItems="center" ml={1} isTruncated>
+            <Flex alignItems="center" ml={2}>
               <Text fontSize="md" fontWeight="medium" isTruncated>
                 {tag.name}
               </Text>
             </Flex>
-            <TagCloseButton onClick={() => removeProductTag(tag)} />
+            <TagCloseButton m={1} onClick={() => removeProductTag(tag)} />
           </Tag>
         ))}
       </div>
