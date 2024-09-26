@@ -17,11 +17,7 @@ import {
 import SortableItem from "../ui/SortableItem";
 import { useTranslation } from "react-i18next";
 
-const DragAndDrop = ({
-  width = ["100%", "450px"], // Responsive width: 100% for mobile, 450px for larger screens
-  height = ["200px", "300px"], // Height adjusts for mobile
-  hideAddMore = false,
-}) => {
+const DragAndDrop = ({ hideAddMore = false }) => {
   const { t } = useTranslation();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [firstImageUrl, setFirstImageUrl] = useState(null);
@@ -109,6 +105,8 @@ const DragAndDrop = ({
         bg="gray.50"
         position="relative"
         overflow="hidden"
+        height="300px"
+        width={{ base: "100%", md: "450px" }} // Адаптивная ширина и фиксированная высота
       >
         <input
           type="file"
@@ -179,8 +177,8 @@ const DragAndDrop = ({
         >
           <Flex
             className="space-x-2"
-            flexWrap="wrap" // Make items wrap on small screens
-            justifyContent={["center", "flex-start"]} // Center the items on mobile
+            flexWrap="wrap"
+            justifyContent={["center", "flex-start"]}
           >
             {selectedFiles.map((fileObj) => (
               <SortableItem
@@ -190,7 +188,6 @@ const DragAndDrop = ({
                 handleDelete={handleDelete}
               />
             ))}
-            {/* Условие для скрытия кнопки добавления фото */}
             {!hideAddMore && selectedFiles.length < 5 && (
               <Box
                 className="border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
