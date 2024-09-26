@@ -107,8 +107,6 @@ const DragAndDrop = ({
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         bg="gray.50"
-        width={width}
-        height={height}
         position="relative"
         overflow="hidden"
       >

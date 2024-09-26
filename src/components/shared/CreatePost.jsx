@@ -34,7 +34,7 @@ const CreatePost = () => {
         </label>
       </div>
       <div className="flex flex-wrap gap-5">
-        <DragAndDrop maxW="100%" maxH="300px" />
+        <DragAndDrop />
         <DetailsPost tags={tagsArray} posts={collectionPosts} />
       </div>
     </div>

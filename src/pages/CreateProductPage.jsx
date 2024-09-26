@@ -1,5 +1,6 @@
 import AddProduct from "../components/shared/AddProduct";
 import { Container, Heading } from "@chakra-ui/react";
+import GoBackButton from "../components/ui/GoBackButton";
 import { useTranslation } from "react-i18next";
 
 const CreatePostPage = () => {
@@ -7,6 +8,7 @@ const CreatePostPage = () => {
   return (
     <Container maxW={"660px"} py={5}>
       {/* Заголовок, выровненный по левому краю */}
+      <GoBackButton />
       <Heading as="h1" size="lg" textAlign="left" mb={4}>
         {t("add-product")}
       </Heading>

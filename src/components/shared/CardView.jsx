@@ -32,7 +32,6 @@ const CardView = ({ card, onDelete, showDeleteButton }) => {
         alt={card.title}
         width="100%"
         height="auto"
-        maxW={"200px"}
         borderRadius="16px"
       />
 

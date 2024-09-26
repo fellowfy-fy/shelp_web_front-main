@@ -17,18 +17,12 @@ const CreateProduct = () => {
       <label className="text-xl font-semibold" htmlFor="description">
         {t("from-link")}
       </label>
-      <div className="flex flex-col sm:flex-row gap-3">
-        <Input
-          placeholder="https://"
-          id="name"
-          minW="auto"
-          maxW={["100%", "3000px"]} // Responsive max width
-          flex="1" // Flex-grow on smaller screens
-        />
+      <div className="flex flex-col md:flex-row gap-3">
+        <Input placeholder="https://" id="name" minW="auto" maxW="3000px" />
         <Button
-          background="black"
-          textColor="white"
-          width={["100%", "30%"]} // 100% width on mobile, 30% on larger screens
+          background={"black"}
+          textColor={"white"}
+          width={{ base: "100%", md: "30%" }}
           onClick={handleAddProduct}
         >
           {t("add-product")}
@@ -39,7 +33,11 @@ const CreateProduct = () => {
       <label className="text-xl font-semibold" htmlFor="description">
         {t("from-price-tag-or-photo")}
       </label>
-      <DragAndDrop width="100%" height="250px" hideAddMore />
+      <DragAndDrop
+        maxW={{ base: "100%", md: "630px" }}
+        height={"auto"}
+        hideAddMore
+      />
     </div>
   );
 };
