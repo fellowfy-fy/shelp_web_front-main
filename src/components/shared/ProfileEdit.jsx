@@ -35,13 +35,15 @@ const ProfileEdit = () => {
   };
 
   return (
-    <Box p={8} maxWidth="700px" mx="auto" bg="white" borderRadius="10px">
+    <Box p={8} maxWidth="1000px" mx="auto" bg="white" borderRadius="10px">
       <Text fontSize="2xl" fontWeight="bold" mb={6}>
         {t("edit-profile")}
       </Text>
 
       {/* Avatar Section */}
-      <Flex align="center" mb={6}>
+      <Flex align="center" mb={6} width="100%">
+        {" "}
+        {/* Flex занимает всю ширину */}
         <Box position="relative">
           <Avatar
             size="xl"
@@ -60,9 +62,10 @@ const ProfileEdit = () => {
             aria-label="Remove avatar"
           />
         </Box>
-
-        <Box ml={6}>
-          <DragAndDrop width="630px" height="150px" hideAddMore />
+        <Box ml={6} width="100%">
+          {" "}
+          {/* Box для DragAndDrop занимает всю ширину */}
+          <DragAndDrop hideAddMore />
         </Box>
       </Flex>
 
@@ -70,18 +73,13 @@ const ProfileEdit = () => {
       <Text fontWeight="bold" mb={2}>
         {t("full-name")}
       </Text>
-      <Input
-        placeholder="Full name"
-        defaultValue="Summer looks"
-        mb={4}
-        w="120%"
-      />
+      <Input placeholder="Full name" defaultValue="Summer looks" mb={4} />
 
       {/* Email input */}
       <Text fontWeight="bold" mb={2}>
         {t("email")}
       </Text>
-      <Input placeholder="example@mail.com" mb={4} w="120%" />
+      <Input placeholder="example@mail.com" mb={4} />
 
       {/* Description */}
       <Text fontWeight="bold" mb={2}>
@@ -91,7 +89,6 @@ const ProfileEdit = () => {
         placeholder="Write something about yourself..."
         defaultValue="My specialty lies in creating colorful creations, amazing designs, and high-quality website artworks that have the ext"
         mb={4}
-        w="120%"
       />
 
       {/* Tags Section */}
@@ -108,7 +105,7 @@ const ProfileEdit = () => {
       </Flex>
 
       {/* Update and Cancel Buttons */}
-      <Flex direction="column" align="flex-start" w="100%">
+      <Flex direction="column" align="center" w="100%">
         {/* Кнопки Update и Cancel */}
         <Flex justify="flex-start" align="center" gap="30px" mb={4}>
           <Button
@@ -135,15 +132,18 @@ const ProfileEdit = () => {
 
         {/* Кнопка Change Password */}
         <ChakraLink href="/profile/password" w="100%">
-          <Button
-            variant="outline"
-            colorScheme="gray"
-            w="410px"
-            h="50px"
-            borderRadius="10px"
-          >
-            {t("change-password")}
-          </Button>
+          <Flex justify="center">
+            <Button
+              variant="outline"
+              colorScheme="gray"
+              w="410px" // Ширина кнопки на больших экранах
+              h="50px"
+              borderRadius="10px"
+              maxW="100%" // Ограничиваем максимальную ширину кнопки
+            >
+              {t("change-password")}
+            </Button>
+          </Flex>
         </ChakraLink>
       </Flex>
     </Box>

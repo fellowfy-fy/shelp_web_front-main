@@ -105,8 +105,8 @@ const DragAndDrop = ({ hideAddMore = false }) => {
         bg="gray.50"
         position="relative"
         overflow="hidden"
-        height="300px"
-        width={{ base: "100%", md: "450px" }} // Адаптивная ширина и фиксированная высота
+        height="200px"
+        width="100%"
       >
         <input
           type="file"
@@ -144,8 +144,8 @@ const DragAndDrop = ({ hideAddMore = false }) => {
         ) : (
           <Box
             className="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg"
-            width="full"
-            height="full"
+            width="100%"
+            height="300px"
           >
             <Icon
               as={FaFileUpload}

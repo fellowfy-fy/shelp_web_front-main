@@ -7,6 +7,7 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const UserMenu = ({ onLogout }) => {
@@ -44,14 +45,14 @@ const UserMenu = ({ onLogout }) => {
         padding="4"
       >
         <MenuItem>
-          <div className="flex gap-2 font-bold text-sm">
-            <img src="/profileIcon.svg" alt="Profile Icon" width="20px" />
-            {t("header-profile")}
-          </div>
+          <Link to="/profile/edit">
+            <div className="flex gap-2 font-bold text-sm">
+              <img src="/profileIcon.svg" alt="Profile Icon" width="20px" />
+              {t("header-profile")}
+            </div>
+          </Link>
         </MenuItem>
         <MenuItem onClick={onLogout}>
-          {" "}
-          {/* Вызываем функцию для logout */}
           <div className="flex gap-2 font-bold text-sm">
             <img src="/logoutIcon.svg" alt="Logout Icon" width="20px" />
             {t("header-logout")}
