@@ -42,7 +42,7 @@ const ProductsInCollection = ({ initialCollectionPosts }) => {
       {/* Используем Flex и меняем направление в зависимости от экрана */}
       <Flex direction={{ base: "column", md: "row" }} gap={2}>
         {collectionPosts?.map((card, index) => (
-          <div key={index}>
+          <div key={index} className="max-w-[200px]">
             <CardView card={card} onDelete={handleDeleteCard} />
           </div>
         ))}

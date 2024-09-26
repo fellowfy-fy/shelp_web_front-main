@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaHeart, FaBookmark, FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Импортируем хук useNavigate
-import Slider from "react-slick"; // Импортируем карусель
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 import CardForPost from "./CardForPost";
 import Comments from "../ui/Comments";
 import { useTranslation } from "react-i18next";
@@ -87,21 +87,19 @@ const NextArrow = ({ onClick }) => (
 
 const ProductDetails = () => {
   const { t } = useTranslation();
-  const product = productData; // Статичные данные, которые потом можно заменить на данные из API
+  const product = productData;
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState("products"); // Добавляем состояние для активной вкладки
-  const navigate = useNavigate(); // Используем useNavigate для редиректа
+  const [activeTab, setActiveTab] = useState("products");
+  const navigate = useNavigate();
 
-  // Обработчик для перехода на страницу пользователя
   const handleUserClick = () => {
-    navigate(`/${product.author.username}`); // Редирект на страницу пользователя
+    navigate(`/${product.author.username}`);
   };
 
   const handleLike = () => setLiked(!liked);
   const handleSave = () => setSaved(!saved);
 
-  // Настройки для карусели
   const settings = {
     dots: true,
     infinite: true,
@@ -122,9 +120,11 @@ const ProductDetails = () => {
       my={6}
     >
       {/* Левая часть с каруселью изображений */}
-      <Box width={{ base: "100%", xl: "50%" }} position="relative">
+      <Box
+        width={{ base: "100%", xl: "60%" }} // 60% на экранах XL и выше
+        position="relative"
+      >
         <Slider {...settings}>
-          {/* Слайдеры для изображений продукта */}
           <Box>
             <Image
               src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDQ1MTZ8MHwxfGFsbHwyfHx8fHx8fHwxNjU4NDA3MTc0&ixlib=rb-1.2.1&q=80&w=1080"
@@ -147,7 +147,7 @@ const ProductDetails = () => {
       </Box>
 
       {/* Правая часть */}
-      <Box flex="1">
+      <Box width={{ base: "100%", xl: "40%" }} flex="1">
         {/* Кнопки лайк и сейв */}
         <HStack spacing={4} mb={4} justify={"space-between"}>
           <Box>
@@ -161,13 +161,7 @@ const ProductDetails = () => {
 
             <Button
               onClick={handleSave}
-              leftIcon={
-                saved ? (
-                  <FaBookmark color="green" /> // Иконка с зеленым цветом для сохранений
-                ) : (
-                  <FaBookmark /> // Обычная иконка сохранений
-                )
-              }
+              leftIcon={saved ? <FaBookmark color="green" /> : <FaBookmark />}
               variant="ghost"
             >
               {saved ? product.saves + 1 : product.saves}
@@ -178,7 +172,7 @@ const ProductDetails = () => {
               variant="outline"
               position="relative"
               border="none"
-              borderRadius="full" // это изменит кнопку на круглые границы
+              borderRadius="full"
               _before={{
                 content: '""',
                 position: "absolute",
@@ -186,7 +180,7 @@ const ProductDetails = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                borderRadius: "full", // границы делаем полностью округлыми
+                borderRadius: "full",
                 padding: "2px",
                 bgGradient: "linear(to-r, #25A9EF, #01D6B8)",
                 zIndex: -1,
@@ -200,7 +194,7 @@ const ProductDetails = () => {
                 right: "2px",
                 bottom: "2px",
                 background: "#ffffff",
-                borderRadius: "full", // границы делаем полностью округлыми
+                borderRadius: "full",
                 zIndex: -1,
               }}
             >
@@ -224,7 +218,6 @@ const ProductDetails = () => {
           <Avatar src={product.author.avatarUrl} size="md" />
           <Box>
             <Text fontSize="16px">{product.author.username}</Text>
-            {/* Здесь можно также добавить другой текст */}
           </Box>
         </HStack>
 
@@ -236,7 +229,6 @@ const ProductDetails = () => {
         {/* Теги */}
         <Box mt={4}>
           <label>#xbox #dogs</label>
-          {/* <Tags initialTags={product.tags} /> тут импорт тэгов */}
         </Box>
 
         {/* Вкладки */}
@@ -266,10 +258,10 @@ const ProductDetails = () => {
             <CardForPost
               collectionPosts={product.collectionPosts}
               handleDeleteCard={() => {}}
-              showDeleteButton={false} // Передаем false, чтобы скрыть кнопку удаления
+              showDeleteButton={false}
             />
           ) : (
-            <Comments /> // Компонент для отображения комментариев
+            <Comments />
           )}
         </Box>
       </Box>

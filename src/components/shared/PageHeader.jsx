@@ -208,7 +208,7 @@ const PageHeader = () => {
 
           {/* Мобильное меню - показывается при нажатии гамбургера */}
           {isOpen ? (
-            <Box pb={4} display={{ sm: "none" }}>
+            <Box pb={4}>
               {/* Видно только на мобильных экранах */}
               <Stack as={"nav"} spacing={4}>
                 {buttonOptions.map(({ label, to }) => (

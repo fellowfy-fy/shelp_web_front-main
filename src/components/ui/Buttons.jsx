@@ -40,7 +40,12 @@ const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
         />
 
         {/* Текст */}
-        <Text fontSize={fontSize} textAlign="center" width={"100%"}>
+        <Text
+          fontSize={fontSize}
+          textAlign="center"
+          width={"100%"}
+          whiteSpace="nowrap"
+        >
           {value}
         </Text>
       </Flex>

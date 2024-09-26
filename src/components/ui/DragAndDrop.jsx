@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Box, Text, Icon, Image, Flex, IconButton } from "@chakra-ui/react";
 import { FaFileUpload, FaPlus, FaTrash } from "react-icons/fa";
-
 import {
   DndContext,
   closestCenter,
@@ -18,8 +17,8 @@ import SortableItem from "../ui/SortableItem";
 import { useTranslation } from "react-i18next";
 
 const DragAndDrop = ({
-  width = ["100%", "450px"], // Responsive width: 100% for mobile, 450px for larger screens
-  height = ["200px", "300px"], // Height adjusts for mobile
+  width = "450px",
+  height = "300px",
   hideAddMore = false,
 }) => {
   const { t } = useTranslation();
@@ -107,6 +106,8 @@ const DragAndDrop = ({
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         bg="gray.50"
+        width={["100%", width]} // Используем 100% на мобильных устройствах, ширину по умолчанию на больших экранах
+        height={height}
         position="relative"
         overflow="hidden"
       >
@@ -149,12 +150,8 @@ const DragAndDrop = ({
             width="full"
             height="full"
           >
-            <Icon
-              as={FaFileUpload}
-              boxSize={["30px", "40px"]}
-              color="gray.500"
-            />
-            <Text mt={2} fontSize={["sm", "md"]} color="gray.700">
+            <Icon as={FaFileUpload} boxSize="40px" color="gray.500" />
+            <Text mt={2} fontSize="md" color="gray.700">
               {t("choose-file-to-dnd")}
             </Text>
             <Text mt={1} fontSize="sm" color="gray.500" className="text-center">
@@ -177,11 +174,7 @@ const DragAndDrop = ({
           items={selectedFiles.map((fileObj) => fileObj.id)}
           strategy={horizontalListSortingStrategy}
         >
-          <Flex
-            className="space-x-2"
-            flexWrap="wrap" // Make items wrap on small screens
-            justifyContent={["center", "flex-start"]} // Center the items on mobile
-          >
+          <Flex className="space-x-2">
             {selectedFiles.map((fileObj) => (
               <SortableItem
                 key={fileObj.id}
@@ -193,14 +186,12 @@ const DragAndDrop = ({
             {/* Условие для скрытия кнопки добавления фото */}
             {!hideAddMore && selectedFiles.length < 5 && (
               <Box
-                className="border-2 border-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
-                w={["70px", "80px"]}
-                h={["70px", "80px"]}
+                className="border-2 border-gray-300 rounded-lg w-20 h-20 flex items-center justify-center cursor-pointer"
                 onClick={() => {
                   document.querySelector('input[type="file"]').click();
                 }}
               >
-                <Icon as={FaPlus} color="gray.500" boxSize={["20px", "24px"]} />
+                <Icon as={FaPlus} color="gray.500" />
               </Box>
             )}
           </Flex>

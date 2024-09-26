@@ -41,7 +41,7 @@ const ItemCard = ({
   const handleUserClick = () => navigate(`/${author.username}`);
 
   // Использование хука для изменения размера в зависимости от брейкпоинта
-  const cardWidth = useBreakpointValue({ base: "100%", sm: "300px" });
+  const cardWidth = useBreakpointValue({ base: "100%", md: "300px" });
 
   // Функция для обрезки текста до 20 символов
   const truncateText = (text, maxLength) => {
