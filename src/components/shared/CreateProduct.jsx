@@ -35,8 +35,12 @@ const CreateProduct = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-5">
-        <DragAndDrop />
-        <DetailsProduct tags={tagsArray} posts={collectionPosts} />
+        <div className="flex-1 sm:w-1/2 w-full">
+          <DragAndDrop />
+        </div>
+        <div className="flex-1 sm:w-1/2 w-full">
+          <DetailsProduct tags={tagsArray} posts={collectionPosts} />
+        </div>
       </div>
     </div>
   );

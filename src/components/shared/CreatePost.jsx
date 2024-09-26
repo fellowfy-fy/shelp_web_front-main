@@ -33,9 +33,13 @@ const CreatePost = () => {
           {t("add-post")}
         </label>
       </div>
-      <div className="flex flex-wrap gap-5">
-        <DragAndDrop />
-        <DetailsPost tags={tagsArray} posts={collectionPosts} />
+      <div className="flex sm:flex-row flex-col gap-5 justify-stretch">
+        <div className="flex-1 sm:w-1/2 w-full">
+          <DragAndDrop />
+        </div>
+        <div className="flex-1 sm:w-1/2 w-full">
+          <DetailsPost tags={tagsArray} posts={collectionPosts} />
+        </div>
       </div>
     </div>
   );
