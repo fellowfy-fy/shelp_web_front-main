@@ -9,9 +9,9 @@ const LoadMoreButton = ({ onClick }) => {
       border="1px"
       px={20}
       borderRadius={10}
-      background="transparent"
       borderColor="black"
-      _hover={{ background: "black", color: "white" }}
+      backgroundColor="black" // черный фон
+      color="white" // белый текст
       onClick={onClick}
     >
       {t("load-more")}

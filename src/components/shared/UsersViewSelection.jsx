@@ -47,8 +47,6 @@ const UsersViewSelection = ({ onChange }) => {
       py={4}
     >
       <Flex gap={2} mb={isMobile ? 4 : 0}>
-        {" "}
-        {/* Отступ для мобильной версии */}
         {buttonOptions.map(({ value, icon }) => (
           <Buttons
             key={value}
@@ -56,6 +54,7 @@ const UsersViewSelection = ({ onChange }) => {
             icon={icon}
             isActive={activeButton === value}
             onClick={() => handleButtonClick(value)}
+            disableResponsive={true}
           />
         ))}
       </Flex>

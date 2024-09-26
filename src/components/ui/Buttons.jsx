@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 
 const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
-  // Вызываем хуки безусловно
   const defaultFlexDirection = useBreakpointValue({
     base: "column",
     lg: "row",
@@ -10,7 +9,6 @@ const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
   const iconSize = useBreakpointValue({ base: "24px", md: "20px" });
   const fontSize = useBreakpointValue({ base: "xs", md: "md" });
 
-  // Используем значение либо из хуков, либо фиксированное
   const flexDirection = disableResponsive ? "row" : defaultFlexDirection;
 
   return (
