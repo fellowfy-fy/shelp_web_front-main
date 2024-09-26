@@ -7,7 +7,7 @@ const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
     lg: "row",
   });
   const iconSize = useBreakpointValue({ base: "24px", md: "20px" });
-  const fontSize = useBreakpointValue({ base: "xs", md: "md" });
+  const fontSize = useBreakpointValue({ base: "md", md: "md" });
 
   const flexDirection = disableResponsive ? "row" : defaultFlexDirection;
 

@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import CardView from "./CardView";
 
 const CardForPost = ({
@@ -7,17 +7,17 @@ const CardForPost = ({
   showDeleteButton,
 }) => {
   return (
-    <Flex direction={{ base: "column", md: "row" }} gap={2}>
+    <div className="grid grid-cols-2 gap-4">
       {collectionPosts?.map((card, index) => (
-        <div key={index}>
+        <Box key={index} mb={4}>
           <CardView
             card={card}
             onDelete={handleDeleteCard}
             showDeleteButton={showDeleteButton}
           />
-        </div>
+        </Box>
       ))}
-    </Flex>
+    </div>
   );
 };
 

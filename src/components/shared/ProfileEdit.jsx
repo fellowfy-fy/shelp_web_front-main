@@ -107,12 +107,12 @@ const ProfileEdit = () => {
       {/* Update and Cancel Buttons */}
       <Flex direction="column" align="center" w="100%">
         {/* Кнопки Update и Cancel */}
-        <Flex justify="flex-start" align="center" gap="30px" mb={4}>
+        <Flex align="center" justify="center" gap="30px" mb={4} w="100%">
           <Button
             bg="black"
             color="white"
             _hover={{ bg: "blackAlpha.800" }}
-            w="190px"
+            w={{ base: "100%", sm: "190px" }} // 100% ширины на мобильных устройствах
             h="50px"
             borderRadius="10px"
           >
@@ -121,7 +121,7 @@ const ProfileEdit = () => {
           <Button
             variant="outline"
             colorScheme="gray"
-            w="190px"
+            w={{ base: "100%", sm: "190px" }} // 100% ширины на мобильных устройствах
             h="50px"
             borderRadius="10px"
             background="#E9E9E9"
