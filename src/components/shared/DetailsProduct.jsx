@@ -14,19 +14,27 @@ const DetailsProduct = ({ tags }) => {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-3">
-      <div>
+      <div className="flex flex-col">
         <label className="text-xl font-semibold" htmlFor="name">
           {t("post-title")}
         </label>
-        <Input placeholder="Summer looks" id="name" minW="auto" maxW="3000px" />
+        <Input
+          placeholder="Summer looks"
+          id="name"
+          width={{ base: "100%", md: "500px" }}
+        />
       </div>
-      <div>
+      <div className="flex flex-col">
         <label className="text-xl font-semibold" htmlFor="link">
           {t("link")}
         </label>
-        <Input placeholder="https://" id="link" minW="auto" maxW="3000px" />
+        <Input
+          placeholder="https://"
+          id="link"
+          width={{ base: "100%", md: "500px" }}
+        />
       </div>
-      <div>
+      <div className="flex flex-col">
         <label className="text-xl font-semibold" htmlFor="description">
           {t("description")}
         </label>
@@ -35,7 +43,7 @@ const DetailsProduct = ({ tags }) => {
           id="description"
           resize="vertical"
           minW="auto"
-          maxW="3000px"
+          width={{ base: "100%", md: "500px" }}
         />
       </div>
 
