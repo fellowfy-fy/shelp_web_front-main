@@ -9,6 +9,7 @@ const CardView = ({ card, onDelete, showDeleteButton }) => {
       position="relative"
       width="100%"
       bg="white"
+      maxW="200px"
     >
       {/* Условно рендерим кнопку удаления */}
       {showDeleteButton && (
@@ -31,8 +32,9 @@ const CardView = ({ card, onDelete, showDeleteButton }) => {
         src={card.imageUrl}
         alt={card.title}
         width="100%"
-        height="auto"
+        height="150px"
         borderRadius="16px"
+        objectFit="cover"
       />
 
       {/* Info Section */}

@@ -14,10 +14,10 @@ import { FaHeart, FaRegBookmark } from "react-icons/fa";
 import ModalComponent from "./ModalComponent";
 import { timeAgo } from "../../utils/timeAgo"; // Импортируем функцию timeAgo
 
-const Like = "/Like.svg";
-const Favorite = "/Favorite.svg";
-const Comment = "/Comment.svg";
-const Send = "/Send.svg";
+// const Like = "/Like.svg";
+// const Favorite = "/Favorite.svg";
+// const Comment = "/Comment.svg";
+// const Send = "/Send.svg";
 const Dots = "/dots.svg";
 
 const ItemCard = ({

@@ -26,23 +26,6 @@ const ProductTags = () => {
     );
   };
 
-  const addProductTag = () => {
-    if (
-      newProductTag &&
-      !productTags.some((tag) => tag.name === newProductTag)
-    ) {
-      setProductTags((prevTags) => [
-        ...prevTags,
-        {
-          id: Date.now(),
-          name: newProductTag,
-          image: "https://via.placeholder.com/150",
-        },
-      ]);
-      setNewProductTag("");
-    }
-  };
-
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="product-tags">

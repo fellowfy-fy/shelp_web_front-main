@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, VisuallyHidden } from "@chakra-ui/react";
-import { GitHubIcon, GoogleIcon, TwitterIcon } from "../ui/ProviderIcons";
+import { GoogleIcon, TwitterIcon } from "../ui/ProviderIcons";
 import { useTranslation } from "react-i18next";
 
 const providers = [

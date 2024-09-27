@@ -22,16 +22,20 @@ const ProfileEdit = () => {
   const [tags, setTags] = useState(["Summer", "Dresses"]);
   const [newTag, setNewTag] = useState("");
   const [isPrivate, setIsPrivate] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("https://via.placeholder.com/100"); // Состояние для хранения URL аватара
 
-  const handleAddTag = () => {
-    if (newTag && !tags.includes(newTag)) {
-      setTags([...tags, newTag]);
-      setNewTag("");
+  // Обработчик загрузки изображения
+  const handleAvatarChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file); // Создаем временный URL для отображения
+      setAvatarUrl(imageUrl); // Обновляем URL аватара
     }
   };
 
-  const handleRemoveTag = (tagToRemove) => {
-    setTags(tags.filter((tag) => tag !== tagToRemove));
+  // Обработчик удаления аватара
+  const handleRemoveAvatar = () => {
+    setAvatarUrl("https://via.placeholder.com/100"); // Возвращаем плейсхолдер
   };
 
   return (
@@ -42,14 +46,9 @@ const ProfileEdit = () => {
 
       {/* Avatar Section */}
       <Flex align="center" mb={6} width="100%">
-        {" "}
-        {/* Flex занимает всю ширину */}
+        {/* Аватар в круге */}
         <Box position="relative">
-          <Avatar
-            size="xl"
-            name="Profile Image"
-            src="https://via.placeholder.com/100"
-          />
+          <Avatar size="xl" name="Profile Image" src={avatarUrl} />
           <IconButton
             icon={<FaTimes />}
             size="sm"
@@ -60,12 +59,28 @@ const ProfileEdit = () => {
             borderRadius="full"
             boxShadow="md"
             aria-label="Remove avatar"
+            onClick={handleRemoveAvatar} // Обработчик удаления аватара
           />
         </Box>
         <Box ml={6} width="100%">
-          {" "}
-          {/* Box для DragAndDrop занимает всю ширину */}
-          <DragAndDrop hideAddMore />
+          {/* Input для загрузки изображения */}
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleAvatarChange} // Обработчик выбора файла
+            style={{ display: "none" }}
+            id="avatar-upload"
+          />
+          <Button
+            as="label"
+            htmlFor="avatar-upload"
+            cursor="pointer"
+            bg="black"
+            color="white"
+            _hover={{ bg: "blackAlpha.800" }}
+          >
+            {t("upload-avatar")}
+          </Button>
         </Box>
       </Flex>
 

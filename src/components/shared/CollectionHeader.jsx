@@ -12,7 +12,7 @@ import CollectionDescription from "../ui/CollectionDescription";
 import CollectionInfo from "./CollectionInfo";
 
 const CollectionHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen} = useDisclosure();
 
   const userProfile = {
     profilePicURL: "https://via.placeholder.com/150",

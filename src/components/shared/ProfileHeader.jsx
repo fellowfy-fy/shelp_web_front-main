@@ -4,7 +4,6 @@ import {
   Flex,
   VStack,
   Text,
-  Box,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import ProfileActions from "./ProfileActions";
@@ -13,7 +12,7 @@ import UserInfo from "./UserInfo";
 import { useDisclosure } from "@chakra-ui/react";
 
 const ProfileHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen } = useDisclosure();
 
   const userProfile = {
     profilePicURL: "https://via.placeholder.com/150",

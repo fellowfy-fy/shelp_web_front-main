@@ -75,6 +75,15 @@ const DragAndDrop = ({ hideAddMore = false }) => {
     );
   };
 
+  const handleImageClick = (file) => {
+    const url = URL.createObjectURL(file);
+    setFirstImageUrl(url);
+
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  };
+
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
@@ -110,6 +119,7 @@ const DragAndDrop = ({ hideAddMore = false }) => {
       >
         <input
           type="file"
+          accept="image/png, image/jpeg, image/jpg"
           onChange={handleFileChange}
           multiple
           style={{
@@ -127,7 +137,7 @@ const DragAndDrop = ({ hideAddMore = false }) => {
             <Image
               src={firstImageUrl}
               alt="Selected file"
-              objectFit="cover"
+              objectFit="contain"
               width="100%"
               height="100%"
             />
@@ -186,6 +196,7 @@ const DragAndDrop = ({ hideAddMore = false }) => {
                 id={fileObj.id}
                 fileObj={fileObj}
                 handleDelete={handleDelete}
+                onClick={() => handleImageClick(fileObj.file)} // Обработчик клика по миниатюре
               />
             ))}
             {!hideAddMore && selectedFiles.length < 5 && (

@@ -1,4 +1,4 @@
-import { Tag, TagLabel, TagCloseButton, Input, Button } from "@chakra-ui/react";
+import { Tag, TagLabel, TagCloseButton, Input, Button, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -62,16 +62,15 @@ const Tags = ({ initialTags }) => {
           {t("add-tag")}
         </Button>
       </div>
-      <div className="mt-2 gap-1 flex">
-        {tags?.map((tag) => {
-          return (
-            <Tag size="lg" variant="outline" borderRadius="full">
-              <TagLabel>{tag}</TagLabel>
-              <TagCloseButton onClick={() => removeTag(tag)} />
-            </Tag>
-          );
-        })}
-      </div>
+      {/* Контейнер для тегов */}
+      <Box className="mt-2 gap-1" display="flex" flexWrap="wrap">
+        {tags?.map((tag) => (
+          <Tag size="lg" variant="outline" borderRadius="full" key={tag} m="1">
+            <TagLabel>{tag}</TagLabel>
+            <TagCloseButton onClick={() => removeTag(tag)} />
+          </Tag>
+        ))}
+      </Box>
     </div>
   );
 };

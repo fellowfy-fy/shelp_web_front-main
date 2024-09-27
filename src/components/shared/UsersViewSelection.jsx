@@ -31,13 +31,11 @@ const UsersViewSelection = ({ onChange }) => {
     }
   };
 
-  const { getRootProps, getRadioProps } = useRadioGroup({
+  const { getRootProps } = useRadioGroup({
     name: "contentType",
     defaultValue: "New",
     onChange: handleChange,
   });
-
-  const group = getRootProps();
 
   return (
     <Flex
