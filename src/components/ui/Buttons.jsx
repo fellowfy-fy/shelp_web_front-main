@@ -18,16 +18,14 @@ const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
         align="center"
         justify="center"
         cursor="pointer"
-        borderWidth={isActive ? "2px" : "0"}
         borderRadius="md"
         boxShadow={isActive ? "0px 4px 4px rgba(0, 0, 0, 0.25)" : "none"}
-        border={isActive ? "2px solid #ECECEC" : "none"}
+        border={isActive ? "1px solid #ECECEC" : "none"}
         _hover={{
           backgroundColor: "gray.100",
         }}
         px={5}
         py={3}
-        transition="all 0.2s ease"
         bg={isActive ? "white" : "transparent"}
       >
         {/* Иконка */}
