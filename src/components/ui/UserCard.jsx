@@ -13,7 +13,6 @@ const UserCard = ({ username, displayName, imageUrl }) => {
     <VStack
       as="button" // Сделаем всю карточку кликабельной
       onClick={handleUserClick}
-      _hover={{ transform: "scale(1.05)", transition: "all 0.3s ease" }}
     >
       <Box
         boxSize="100px"
