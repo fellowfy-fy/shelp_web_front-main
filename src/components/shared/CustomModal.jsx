@@ -1,4 +1,3 @@
-// CustomModal.js
 import {
   Modal,
   ModalOverlay,
@@ -23,7 +22,14 @@ const CustomModal = ({ isOpen, onClose, header, children, ...rest }) => {
         position="relative"
       >
         {/* Кнопка закрытия */}
-        <ModalCloseButton />
+        <ModalCloseButton
+          size="lg" // Увеличиваем размер кнопки
+          position="absolute" // Позиционируем явно
+          top="10px" // Настраиваем отступ сверху
+          right="10px" // Настраиваем отступ справа
+          zIndex="1" // Устанавливаем приоритет з-индекса
+          _hover={{ bg: "gray.200" }} // Добавляем эффект hover для кнопки
+        />
 
         {/* Заголовок */}
         <ModalHeader
@@ -33,8 +39,7 @@ const CustomModal = ({ isOpen, onClose, header, children, ...rest }) => {
           lineHeight="36px"
           textAlign="center"
           color="#000000"
-          position="relative"
-          top="24px"
+          mt={10} // Добавляем отступ сверху
         >
           {header}
         </ModalHeader>
