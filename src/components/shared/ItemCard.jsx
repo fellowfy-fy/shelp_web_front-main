@@ -86,7 +86,7 @@ const ItemCard = ({
     <>
       <Box
         width={cardWidth}
-        boxShadow="0px 10px 40px rgba(222, 230, 237, 0.4)"
+        // boxShadow="0px 10px 40px rgba(222, 230, 237, 0.4)"
         borderRadius="12px"
         overflow="hidden"
         position="relative"
