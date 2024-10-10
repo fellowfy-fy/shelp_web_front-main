@@ -9,11 +9,9 @@ import {
   Textarea,
   Switch,
   Text,
-  Spacer,
 } from "@chakra-ui/react";
 import { FaTimes } from "react-icons/fa";
 import Tags from "./Tags";
-import DragAndDrop from "../ui/DragAndDrop";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
@@ -22,20 +20,41 @@ const ProfileEdit = () => {
   const [tags, setTags] = useState(["Summer", "Dresses"]);
   const [newTag, setNewTag] = useState("");
   const [isPrivate, setIsPrivate] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState("https://via.placeholder.com/100"); // Состояние для хранения URL аватара
+  const [avatarUrl, setAvatarUrl] = useState("https://via.placeholder.com/100"); 
+  const [isDragging, setIsDragging] = useState(false);
 
-  // Обработчик загрузки изображения
-  const handleAvatarChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file); // Создаем временный URL для отображения
-      setAvatarUrl(imageUrl); // Обновляем URL аватара
-    }
+   // Обработчик загрузки изображения
+   const handleAvatarChange = (file) => {
+    const imageUrl = URL.createObjectURL(file); // Создаем временный URL для отображения
+    setAvatarUrl(imageUrl); // Обновляем URL аватара
   };
 
   // Обработчик удаления аватара
   const handleRemoveAvatar = () => {
     setAvatarUrl("https://via.placeholder.com/100"); // Возвращаем плейсхолдер
+  };
+
+  // Обработчик начала перетаскивания
+  const handleDragEnter = (event) => {
+    event.preventDefault();
+    setIsDragging(true); // Активируем состояние перетаскивания
+  };
+
+  // Обработчик завершения перетаскивания
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    setIsDragging(false); // Деактивируем состояние перетаскивания
+  };
+
+  // Обработчик перетаскивания файлов
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setIsDragging(false); // Деактивируем состояние перетаскивания
+
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      handleAvatarChange(file); // Обработка загрузки файла
+    }
   };
 
   return (
@@ -44,10 +63,20 @@ const ProfileEdit = () => {
         {t("edit-profile")}
       </Text>
 
+      
       {/* Avatar Section */}
       <Flex align="center" mb={6} width="100%">
-        {/* Аватар в круге */}
-        <Box position="relative">
+        {/* Аватар в круге с поддержкой Drag and Drop */}
+        <Box
+          position="relative"
+          onDragEnter={handleDragEnter}
+          onDragOver={(event) => event.preventDefault()} // Останавливаем действие по умолчанию при перетаскивании
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop} // Обработчик Drop для файлов
+          p={isDragging ? 2 : 0}
+          border={isDragging ? "2px dashed #3182CE" : "none"} // Изменяем стиль при перетаскивании
+          borderRadius="full"
+        >
           <Avatar size="xl" name="Profile Image" src={avatarUrl} />
           <IconButton
             icon={<FaTimes />}
@@ -67,7 +96,7 @@ const ProfileEdit = () => {
           <Input
             type="file"
             accept="image/*"
-            onChange={handleAvatarChange} // Обработчик выбора файла
+            onChange={(e) => handleAvatarChange(e.target.files[0])} // Обработчик выбора файла
             style={{ display: "none" }}
             id="avatar-upload"
           />

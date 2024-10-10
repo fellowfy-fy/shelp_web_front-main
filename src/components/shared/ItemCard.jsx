@@ -37,7 +37,10 @@ const ItemCard = ({
   const [liked, setLiked] = useState(false); // Состояние для кнопки лайков
   const [bookmarked, setBookmarked] = useState(false); // Состояние для кнопки закладок
 
-  const handleImageClick = () => navigate("/testcontent");
+  const handleImageClick = () => {
+    navigate("/testcontent"); 
+    window.scrollTo({ top: 80, behavior: "smooth" }); 
+  };
   const handleUserClick = () => navigate(`/${author.username}`);
 
   // Использование хука для изменения размера в зависимости от брейкпоинта
