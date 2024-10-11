@@ -115,7 +115,7 @@ const PageHeader = () => {
                 <>
                   <Button
                     as={ReactRouterLink}
-                    to="/authorize"
+                    to="/login"
                     variant="outline"
                     mr={2}
                   >
@@ -123,7 +123,7 @@ const PageHeader = () => {
                   </Button>
                   <Button
                     as={ReactRouterLink}
-                    to="/authorize"
+                    to="/signup"
                     bg="black"
                     color="white"
                     _hover={{ bg: "gray.700" }}

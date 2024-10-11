@@ -86,7 +86,7 @@ const AuthFormContent = ({
       <HStack>
         <Divider />
         <Text textStyle="sm" whiteSpace="nowrap" color="fg.muted">
-          {isLogin ? "Or login with" : "Or register with"}
+          {!isLogin ? <>Or <a href="/login">login</a> with</> :<> <a href="/signup">register</a> with</>}
         </Text>
         <Divider />
       </HStack>

@@ -4,7 +4,7 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage";
 import CreateCollection from "./pages/CreateCollectionPage";
-import AuthPage from "./pages/AuthPage";
+import { LoginPage, SignupPage, VerificationPage } from "./pages/AuthPage";
 import PageLayout from "./Layouts/PageLayout/PageLayout";
 import ProfilePage from "./pages/ProfilePage";
 import ProductPage from "./pages/ProductPage";
@@ -24,9 +24,17 @@ function App() {
 
   return (
     <Routes>
+        <Route
+        path="/login"
+        element={!authUser ? <LoginPage /> : <Navigate to="/" />}
+      />
       <Route
-        path="/authorize"
-        element={!authUser ? <AuthPage /> : <Navigate to="/" />}
+        path="/signup"
+        element={!authUser ? <SignupPage /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/signup/verify"
+        element={!authUser ? <VerificationPage /> : <Navigate to="/" />}
       />
       <Route element={<PageLayout />}>
         <Route path="/" element={<HomePage />} exact />
