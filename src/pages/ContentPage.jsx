@@ -1,5 +1,4 @@
 import { Container, Flex, Box, VStack, Text, Center } from "@chakra-ui/react";
-import GoBackButton from "../components/ui/GoBackButton.jsx";
 import MasonryGrid from "../components/shared/MasonryGrid.jsx";
 import ProductDetails from "../components/shared/ProductDetails.jsx";
 import LoadMoreButton from "../components/ui/LoadMoreButton";
@@ -134,7 +133,6 @@ const ContentPage = ({ isProductPage, contentData }) => {
 
   return (
     <Container maxW="container.xl">
-      <GoBackButton />
       <ProductDetails />
       <Center>
         <Text fontWeight="semibold" fontSize="22px" mb="20px">

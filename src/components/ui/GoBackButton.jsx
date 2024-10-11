@@ -9,7 +9,6 @@ const GoBackButton = () => {
 
   return (
     <Button
-      my={5}
       color="black"
       leftIcon={<FaArrowLeft />}
       variant="link"

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import CardForPost from "./CardForPost";
 import Comments from "../ui/Comments";
+import GoBackButton from "../ui/GoBackButton";
 import { useTranslation } from "react-i18next";
 
 // Статичные данные, которые легко заменить на данные из API
@@ -124,6 +125,8 @@ const ProductDetails = () => {
         width={{ base: "100%", xl: "60%" }} // 60% на экранах XL и выше
         position="relative"
       >
+      <GoBackButton />
+
         <Slider {...settings}>
           <Box>
             <Image
@@ -147,7 +150,7 @@ const ProductDetails = () => {
       </Box>
 
       {/* Правая часть */}
-      <Box width={{ base: "100%", xl: "40%" }} flex="1">
+      <Box width={{ base: "100%", xl: "40%" }} flex="1" my={5}>
         {/* Кнопки лайк и сейв */}
         <HStack spacing={4} mb={4} justify={"space-between"}>
           <Box>
