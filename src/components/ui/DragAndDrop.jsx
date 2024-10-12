@@ -24,6 +24,8 @@ const DragAndDrop = ({ hideAddMore = false }) => {
   const nextIdRef = useRef(0);
 
   useEffect(() => {
+    console.log("firstImageUrl:", firstImageUrl);
+    console.log("selectedFiles[0]:", selectedFiles[0]);
     if (firstImageUrl) {
       URL.revokeObjectURL(firstImageUrl);
     }
@@ -76,9 +78,32 @@ const DragAndDrop = ({ hideAddMore = false }) => {
   };
 
   const handleImageClick = (file) => {
+    if (!file) return;
+  
+    // Лог для проверки клика
+    console.log("Клик по изображению:", file);
+  
+    // Обновляем selectedFiles, перемещая кликнутый файл в начало
+    setSelectedFiles((prevFiles) => {
+      // Находим файл в массиве
+      const clickedFileIndex = prevFiles.findIndex((fileObj) => fileObj.file === file);
+  
+      // Если файл найден, перемещаем его в начало
+      if (clickedFileIndex !== -1) {
+        const updatedFiles = [...prevFiles];
+        const [clickedFileObj] = updatedFiles.splice(clickedFileIndex, 1); // Удаляем кликнутый файл из массива
+        updatedFiles.unshift(clickedFileObj); // Добавляем его в начало массива
+        return updatedFiles;
+      }
+  
+      return prevFiles; // Возвращаем массив без изменений, если файл не найден
+    });
+  
+    // Устанавливаем новое изображение для отображения в главной панели
     const url = URL.createObjectURL(file);
     setFirstImageUrl(url);
-
+  
+    // Освобождаем память для URL после использования
     return () => {
       URL.revokeObjectURL(url);
     };
@@ -103,6 +128,8 @@ const DragAndDrop = ({ hideAddMore = false }) => {
       },
     })
   );
+
+  console.log("firstImageUrl:", firstImageUrl);
 
   return (
     <Box className="space-y-4">
@@ -140,6 +167,7 @@ const DragAndDrop = ({ hideAddMore = false }) => {
               objectFit="contain"
               width="100%"
               height="100%"
+              onClick={() => handleImageClick(selectedFiles[0].file)}
             />
             <IconButton
               icon={<FaTrash />}
@@ -196,7 +224,8 @@ const DragAndDrop = ({ hideAddMore = false }) => {
                 id={fileObj.id}
                 fileObj={fileObj}
                 handleDelete={handleDelete}
-                onClick={() => handleImageClick(fileObj.file)} // Обработчик клика по миниатюре
+                onClick={() => handleImageClick(fileObj.file)} 
+                style={{ backgroundColor: 'rgba(0, 255, 0, 0.2)' }}
               />
             ))}
             {!hideAddMore && selectedFiles.length < 5 && (
