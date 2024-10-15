@@ -18,10 +18,11 @@ const styles = {
   },
   global: (props) => ({
     fonts: {
-      body: `'Nunito', sans-serif`,
+      body: `'Inter', sans-serif`, // Шрифт для всего тела
+      heading: `'Inter', sans-serif`, // Шрифт для заголовков
     },
     body: {
-      fontFamily: `'Lato', sans-serif`,
+      fontFamily: `'Inter', sans-serif`,
       bg: mode("white", "#f5f5f5")(props),
       color: mode("black", "whiteAlpha.900")(props),
     },
