@@ -44,7 +44,7 @@ const UsersViewSelection = ({ onChange }) => {
       align="center"
       py={4}
     >
-      <Flex gap={1} mb={isMobile ? 4 : 0}>
+      <Flex gap={2} mb={isMobile ? 4 : 0} wrap="wrap">
         {buttonOptions.map(({ value, icon }) => (
           <Buttons
             key={value}

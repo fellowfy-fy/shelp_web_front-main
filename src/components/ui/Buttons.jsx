@@ -43,6 +43,7 @@ const Buttons = ({ value, icon, isActive, onClick, disableResponsive }) => {
           textAlign="center"
           width={"100%"}
           whiteSpace="nowrap"
+          fontWeight={isActive ? "bold" : "normal"}
         >
           {value}
         </Text>
