@@ -38,7 +38,7 @@ const CollectionHeader = () => {
     // Основной контейнер с Flex
     <Flex
       direction="column" // Вертикальное расположение для создания строк
-      gap={4} // Промежуток между строками
+      gap={2} // Промежуток между строками
       py={5}
       px={isMobile ? 4 : 0}
       alignItems="center"

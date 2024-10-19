@@ -7,7 +7,7 @@ const CardForPost = ({
   showDeleteButton,
 }) => {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 justify-items-center">
       {collectionPosts?.map((card, index) => (
         <Box key={index} mb={4}>
           <CardView
@@ -18,7 +18,7 @@ const CardForPost = ({
         </Box>
       ))}
     </div>
-  );
+  );  
 };
 
 export default CardForPost;

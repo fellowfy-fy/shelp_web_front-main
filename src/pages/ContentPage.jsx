@@ -144,7 +144,7 @@ const ContentPage = ({ isProductPage, contentData }) => {
         <Box flex={5}></Box>
         <Box flex={5}></Box>
       </Flex>
-      <VStack mt={10}>
+      <VStack mt={10} >
         <MasonryGrid posts={collectionPosts} />
       </VStack>
       <Center>
