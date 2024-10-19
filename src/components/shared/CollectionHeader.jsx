@@ -1,8 +1,6 @@
 import {
   Avatar,
-  AvatarGroup,
   Flex,
-  VStack,
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
@@ -37,85 +35,97 @@ const CollectionHeader = () => {
     authUser && authUser.username === userProfile?.username;
 
   return (
+    // Основной контейнер с Flex
     <Flex
-      direction={isMobile ? "column" : "row"}
-      alignItems={isMobile ? "flex-start" : "center"} // Изменено на flex-start для мобильных
-      justifyContent={isMobile ? "flex-start" : "space-between"}
+      direction="column" // Вертикальное расположение для создания строк
+      gap={4} // Промежуток между строками
       py={5}
       px={isMobile ? 4 : 0}
-      gap={isMobile ? 5 : 10}
+      alignItems="center"
     >
-      {/* Avatar and User Info */}
-      <Flex
-        direction={isMobile ? "column" : "row"}
-        alignItems={isMobile ? "flex-start" : "center"} // Изменено на flex-start для мобильных
-        justifyContent={isMobile ? "flex-start" : "flex-start"}
-        gap={isMobile ? 4 : 10}
-        mb={isMobile ? 6 : 8}
-        width="100%"
-      >
-        {/* Avatar */}
-        <AvatarGroup size="2xl" mx="auto">
-          <Avatar
-            src={userProfile?.profilePicURL}
-            alt={`${userProfile?.username}'s profile picture`}
-            size={isMobile ? "xl" : "2xl"}
-          />
-        </AvatarGroup>
-
-        {/* User Info and Actions */}
-        <VStack
-          alignItems={isMobile ? "flex-start" : "flex-start"} // Выровнено по левому краю для мобильных
-          spacing={isMobile ? 3 : 4}
-          mx="auto"
-          width={isMobile ? "100%" : "auto"}
+      {/* Первая строка: Аватар и имя пользователя */}
+      {userProfile && (
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          width="100%"
+          px={4}
         >
-          {/* Username and Profile Actions */}
-          <Flex
-            gap={isMobile ? 2 : 4}
-            direction="row"
-            justifyContent="space-between" // Выровнено по левому краю
-            w={isMobile ? "100%" : "auto"}
-            alignItems="center"
-          >
+          <Flex alignItems="center">
+            {/* Аватар */}
+            <Avatar
+              src={userProfile?.profilePicURL}
+              alt={`${userProfile?.username}'s profile picture`}
+              size={isMobile ? "md" : "lg"}
+            />
+            {/* Имя пользователя */}
             <Text
+              ml={3}
               fontSize={isMobile ? "lg" : "2xl"}
               fontWeight="bold"
-              textAlign="left" // Выровнено по левому краю
+              textAlign="left"
             >
               {userProfile?.username}
             </Text>
-            <ProfileActions
-              isOwnProfile={visitingOwnProfileAndAuth}
-              isFollowing={isFollowing}
-              isUpdating={isUpdating}
-              onOpen={onOpen}
-            />
           </Flex>
-
-          {/* Full Name */}
+        </Flex>
+      )}
+  
+      {userProfile && (
+        <Flex
+          direction="row"
+          alignItems="center" // Выровнять по вертикали
+          justifyContent="space-between" // Разместить элементы с равным промежутком
+          width="100%" // Задать ширину контейнера для корректного выравнивания
+        >
+          {/* Полное имя */}
           <Text
             fontSize={isMobile ? "sm" : "lg"}
             fontWeight="medium"
-            textAlign={isMobile ? "left" : "left"} // Выровнено по левому краю
+            textAlign="left"
           >
             {userProfile?.fullName}
           </Text>
-
-          {/* UserDescription */}
-          <CollectionDescription bioText={userProfile.bio} />
-
-          {/* User Info Section (Posts, Followers, Following) */}
+  
+          <ProfileActions
+            isOwnProfile={visitingOwnProfileAndAuth}
+            isFollowing={isFollowing}
+            isUpdating={isUpdating}
+            onOpen={onOpen}
+          />
+        </Flex>
+      )}
+  
+      {userProfile && (
+        <Flex
+          justifyContent="space-around"
+          width="100%"
+          px={4}
+          backgroundColor="white"
+          py={2}
+        >
           <CollectionInfo
             posts={userProfile.posts}
             products={userProfile.products}
             followers={userProfile.followers}
             following={userProfile.following}
           />
-        </VStack>
-      </Flex>
+        </Flex>
+      )}
+  
+      {userProfile && (
+        <Flex
+          width="100%"
+          px={4}
+          py={2}
+          backgroundColor="white"
+          justifyContent="center"
+        >
+          <CollectionDescription bioText={userProfile.bio} />
+        </Flex>
+      )}
     </Flex>
-  );
+  );    
 };
 
 export default CollectionHeader;

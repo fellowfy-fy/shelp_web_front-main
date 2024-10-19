@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Tag,
   Avatar,
@@ -8,8 +9,17 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-const Editors = ({ editors }) => {
+const Editors = ({ initialEditors }) => {
   const { t } = useTranslation();
+  const [editors, setEditors] = useState(initialEditors);
+
+  // Функция для удаления редактора
+  const handleRemoveEditor = (name) => {
+    setEditors((prevEditors) =>
+      prevEditors.filter((editor) => editor.name !== name)
+    );
+  };
+
   return (
     <div>
       <label className="text-xl font-semibold" htmlFor="editors">
@@ -29,16 +39,16 @@ const Editors = ({ editors }) => {
       <div className="mt-2 flex gap-1">
         {editors.map((editor) => {
           return (
-            <Tag size="lg" variant="outline" borderRadius="full">
+            <Tag size="lg" variant="outline" borderRadius="full" key={editor.name}>
               <Avatar
                 src={editor.imageUrl}
                 size="xs"
-                name="Segun Adebayo"
+                name={editor.name}
                 ml={-1}
                 mr={2}
               />
               <TagLabel>{editor.name}</TagLabel>
-              <TagCloseButton />
+              <TagCloseButton onClick={() => handleRemoveEditor(editor.name)} />
             </Tag>
           );
         })}
@@ -46,4 +56,5 @@ const Editors = ({ editors }) => {
     </div>
   );
 };
+
 export default Editors;
